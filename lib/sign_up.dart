@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'car_details.dart';
+import 'log_in.dart';
 // ignore: unnecessary_import
 
 class MyWidget extends StatefulWidget {
@@ -110,7 +111,10 @@ class _MyWidgetState extends State<MyWidget> {
         SizedBox(
             child: TextButton(
           onPressed: () {
-            //forgot password screen
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const LogIn()),
+            );
           },
           child: const Text(
             'Log In',
