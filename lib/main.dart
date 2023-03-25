@@ -1,4 +1,3 @@
-import 'package:carpoolfront/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:carpoolfront/find_your_carpool.dart';
 import 'Extra.dart';
