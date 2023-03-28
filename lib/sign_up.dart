@@ -3,14 +3,14 @@ import 'car_details.dart';
 import 'log_in.dart';
 // ignore: unnecessary_import
 
-class MyWidget extends StatefulWidget {
-  const MyWidget({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
-  State<MyWidget> createState() => _MyWidgetState();
+  State<SignUp> createState() => _SignUp();
 }
 
-class _MyWidgetState extends State<MyWidget> {
+class _SignUp extends State<SignUp> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController phoneController = TextEditingController();

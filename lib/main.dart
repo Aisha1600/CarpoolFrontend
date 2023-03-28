@@ -1,3 +1,4 @@
+import 'package:carpoolfront/find_your_carpool.dart';
 import 'package:flutter/material.dart';
 import 'sign_up.dart';
 
@@ -37,20 +38,19 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Container(
-            height: 50,
-            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-            child: ElevatedButton(
-              child: const Text('SIGN UP PAGE'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MyWidget()),
-                );
-              },
-            )),
-      ),
+      body: Container(
+          height: 50,
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+          child: ElevatedButton(
+            child: const Text('FIND YOUR CARPOOL PAGE'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const FindYourCarpool()),
+              );
+            },
+          )),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

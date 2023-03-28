@@ -1,3 +1,5 @@
+import 'package:carpoolfront/forgot_password.dart';
+import 'package:carpoolfront/sign_up.dart';
 import 'package:flutter/material.dart';
 // ignore: unnecessary_import
 
@@ -58,7 +60,10 @@ class _LogIn extends State<LogIn> {
         SizedBox(
             child: TextButton(
           onPressed: () {
-            //forgot password screen
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ForgotPassword()),
+            );
           },
           child: const Text(
             'Forgot Password?',
@@ -66,7 +71,6 @@ class _LogIn extends State<LogIn> {
               color: Colors.blue, // Will work,
               fontSize: 15,
               fontWeight: FontWeight.bold,
-              decoration: TextDecoration.underline,
             ),
           ),
         )),
@@ -84,7 +88,7 @@ class _LogIn extends State<LogIn> {
               onPressed: () {
                 // Navigator.push(
                 //   context,
-                //   MaterialPageRoute(builder: (context) => const ()),
+                //   MaterialPageRoute(builder: (context) => const ForgotPassword()),
                 // );
               },
             )),
@@ -102,7 +106,10 @@ class _LogIn extends State<LogIn> {
         SizedBox(
             child: TextButton(
           onPressed: () {
-            //forgot password screen
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SignUp()),
+            );
           },
           child: const Text(
             'Sign Up',
