@@ -10,6 +10,8 @@ class SignUp extends StatefulWidget {
   State<SignUp> createState() => _SignUp();
 }
 
+String dropdownValue = 'M';
+
 class _SignUp extends State<SignUp> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -42,7 +44,17 @@ class _SignUp extends State<SignUp> {
             controller: nameController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'Name',
+              labelText: 'First Name',
+            ),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+          child: TextField(
+            controller: nameController,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Last Name',
             ),
           ),
         ),
@@ -64,7 +76,7 @@ class _SignUp extends State<SignUp> {
             controller: phoneController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'Phone',
+              labelText: 'Contact Number',
             ),
           ),
         ),
@@ -80,21 +92,56 @@ class _SignUp extends State<SignUp> {
           ),
         ),
         Container(
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+            child: Row(
+              children: [
+                const Text(
+                  'Select gender',
+                  style: TextStyle(
+                    color: Color(0xFF05998c), // Will work,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                DropdownButton<String>(
+                  value: dropdownValue,
+                  items: <String>['M', 'F']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: const TextStyle(fontSize: 15),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue = newValue!;
+                    });
+                  },
+                ),
+              ],
+            )),
+        Container(
             height: 60,
             padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
             child: ElevatedButton(
               child: const Text(
-                'Next',
+                'Create Account',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                     color: Colors.white),
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const CarDetails()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => const CarDetails()),
+                // );
               },
             )),
         Container(

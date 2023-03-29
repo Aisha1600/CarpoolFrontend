@@ -1,4 +1,5 @@
 import 'package:carpoolfront/find_your_carpool.dart';
+import 'package:carpoolfront/user_profile.dart';
 import 'Extra.dart';
 import 'available_list.dart';
 import 'package:flutter/material.dart';
@@ -48,8 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const FindYourCarpool()),
+                MaterialPageRoute(builder: (context) => const SignUp()),
               );
             },
           )),
