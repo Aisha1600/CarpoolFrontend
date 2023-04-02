@@ -69,15 +69,28 @@ class _RequestFormState extends State<RequestForm> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  GestureDetector(
-                    onTap: () => _selectDate(context),
-                    child: Row(
-                      children: [
-                        Text("Date: "),
-                        Text(
-                            "${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}"),
-                      ],
+                  SizedBox(
+                    width: 150,
+                    child: TextFormField(
+                      onTap: () => _selectDate(context),
+                      decoration: InputDecoration(
+                        hintText: "Date: ",
+                        border: InputBorder.none,
+                      ),
+                      initialValue: _selectedDate == null
+                          ? ' '
+                          : "${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}",
+                      // child: Row(
+                      //   children: [
+                      //     Text(),
+                      //     Text(
+                      //         "${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}"),
+                      //   ],
+                      //),
                     ),
+                  ),
+                  SizedBox(
+                    width: 20,
                   ),
                   GestureDetector(
                     onTap: () => _selectTime(context),
