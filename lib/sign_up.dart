@@ -1,7 +1,40 @@
 import 'package:flutter/material.dart';
 import 'car_details.dart';
-import 'log_in.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:postgres/postgres.dart';
+
 // ignore: unnecessary_import
+//made a class to store all the fields in an object
+class SignUpFOrm {
+  late final String fname;
+  late final String lname;
+  late final String password;
+  late final String phone;
+  late final String cnic;
+  late final String email;
+  late final String gender;
+
+  SignUpFOrm(
+      {required this.fname,
+      required this.lname,
+      required this.password,
+      required this.phone,
+      required this.cnic,
+      required this.email,
+      required this.gender});
+  Map<String, dynamic> toJson() {
+    return {
+      'f_name': fname,
+      'l_name': lname,
+      'password': password,
+      'contact_no': phone,
+      'cnic': cnic,
+      'email': email,
+      'gender': gender
+    };
+  }
+}
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -13,12 +46,14 @@ class SignUp extends StatefulWidget {
 String dropdownValue = 'M';
 
 class _SignUp extends State<SignUp> {
-  TextEditingController nameController = TextEditingController();
+  TextEditingController fnameController = TextEditingController();
+  TextEditingController lnameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController cnicController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   String title = "Carpool Application";
-
+  static const baseurl = '192.168.18.222';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +76,7 @@ class _SignUp extends State<SignUp> {
         Container(
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
           child: TextField(
-            controller: nameController,
+            controller: fnameController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'First Name',
@@ -51,7 +86,7 @@ class _SignUp extends State<SignUp> {
         Container(
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
           child: TextField(
-            controller: nameController,
+            controller: lnameController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Last Name',
@@ -88,6 +123,17 @@ class _SignUp extends State<SignUp> {
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'CNIC',
+            ),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+          child: TextField(
+            obscureText: false,
+            controller: emailController,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'email',
             ),
           ),
         ),
@@ -137,11 +183,40 @@ class _SignUp extends State<SignUp> {
                     fontSize: 18,
                     color: Colors.white),
               ),
-              onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => const CarDetails()),
-                // );
+              onPressed: () async {
+                //final conn = await getConnection();
+                SignUpFOrm form = SignUpFOrm(
+                    fname: fnameController.text,
+                    lname: lnameController.text,
+                    password: passwordController.text,
+                    phone: phoneController.text,
+                    cnic: cnicController.text,
+                    email: emailController.text,
+                    gender: dropdownValue);
+                try {
+                  final client = http.Client();
+                  final jsonData = jsonEncode(form.toJson());
+                  print(jsonData);
+                  print(json.decode(jsonData));
+                  final response = await http.post(
+                    Uri.parse('http://localhost:5000/member/SignUp'),
+                    headers: {'Content-Type': 'application/json'},
+                    body: jsonData,
+                  );
+                  print(response.statusCode);
+
+                  if (response.statusCode == 200) {
+                    // Item added successfully
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CarDetails()),
+                    );
+                    print(json.decode(response.body));
+                  }
+                } catch (error) {
+                  print(error);
+                }
               },
             )),
         Container(
@@ -157,11 +232,13 @@ class _SignUp extends State<SignUp> {
             )),
         SizedBox(
             child: TextButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const LogIn()),
-            );
+          onPressed: () async {
+            //API
+
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const LogIn()),
+            // );
           },
           child: const Text(
             'Log In',
