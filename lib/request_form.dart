@@ -66,7 +66,7 @@ class _RequestFormState extends State<RequestForm> {
               SizedBox(
                 width: 20,
               ),
-              Column(
+              Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GestureDetector(
