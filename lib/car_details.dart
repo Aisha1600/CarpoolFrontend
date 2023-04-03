@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'password.dart';
 
 class CarDetails extends StatefulWidget {
   const CarDetails({Key? key}) : super(key: key);
@@ -143,12 +142,7 @@ class _CarDetails extends State<CarDetails> {
             width: 20,
             height: 40,
             child: TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Password()),
-                );
-              },
+              onPressed: () {},
               child: const Text(
                 'Skip Car Details for now >',
                 style: TextStyle(

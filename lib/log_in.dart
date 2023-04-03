@@ -13,8 +13,6 @@ class LogIn extends StatefulWidget {
 class _LogIn extends State<LogIn> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController cnicController = TextEditingController();
   String title = "Carpool Application";
 
   @override
