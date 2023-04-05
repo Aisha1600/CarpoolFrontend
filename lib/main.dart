@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'sign_up.dart';
 import 'offer_carpool.dart';
 import 'request_form.dart';
+import 'log_in.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,11 +47,11 @@ class _MyHomePageState extends State<MyHomePage> {
           height: 50,
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: ElevatedButton(
-            child: const Text('FIND YOUR CARPOOL PAGE'),
+            child: const Text('OFFER CARPOOL PAGE'),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FindYourCarpool()),
+                MaterialPageRoute(builder: (context) => const SignUp()),
               );
             },
           )),

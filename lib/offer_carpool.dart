@@ -15,24 +15,31 @@ class _OfferCarpoolState extends State<OfferCarpool> {
   TextEditingController _toController = TextEditingController();
   bool _isPostCarpool = false;
   bool _isViewOffers = false;
+  String title = "Carpool Application";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                'Offer A CarPool',
-                style: TextStyle(
-                    color: Color(0xFF05998C),
-                    fontSize: 50.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Palanquin Dark'),
-              ),
+              Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(13),
+                  child: const Text(
+                    'Offer a Carpool',
+                    style: TextStyle(
+                      color: Color(0xFF05998c), // Will work,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                    ),
+                  )),
               SizedBox(height: 20),
               Row(children: [
                 SizedBox(height: 20.0),
@@ -44,7 +51,7 @@ class _OfferCarpoolState extends State<OfferCarpool> {
                     });
                   },
                   child: Text(
-                    'Available',
+                    'Post Carpool',
                     style: TextStyle(
                         color: _isPostCarpool ? Colors.white : Colors.black,
                         fontSize: 15.0,
@@ -74,7 +81,7 @@ class _OfferCarpoolState extends State<OfferCarpool> {
                     });
                   },
                   child: Text(
-                    'Request',
+                    'View Offers',
                     style: TextStyle(
                         color: _isViewOffers ? Colors.white : Colors.black,
                         fontSize: 15.0,

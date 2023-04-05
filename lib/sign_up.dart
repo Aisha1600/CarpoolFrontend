@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'car_details.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'log_in.dart';
 import 'package:postgres/postgres.dart';
 
 // ignore: unnecessary_import
@@ -54,6 +55,28 @@ class _SignUp extends State<SignUp> {
   TextEditingController emailController = TextEditingController();
   String title = "Carpool Application";
   static const baseurl = '192.168.18.222';
+
+  String? get _errorText {
+    // at any time, we can get the text from _controller.value.text
+    final fname = fnameController.value.text;
+    final lname = lnameController.value.text;
+    final password = passwordController.value.text;
+    final phone = phoneController.value.text;
+    final cnic = cnicController.value.text;
+    final email = emailController.value.text;
+
+    // Note: you can do your own custom validation here
+    // Move this logic this outside the widget for more testable code
+    if (text.isEmpty) {
+      return 'Can\'t be empty';
+    }
+    if (text.length < 4) {
+      return 'Too short';
+    }
+    // return null if the text is valid
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,7 +130,7 @@ class _SignUp extends State<SignUp> {
         Container(
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
           child: TextField(
-            obscureText: true,
+            keyboardType: TextInputType.number,
             controller: phoneController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -118,7 +141,7 @@ class _SignUp extends State<SignUp> {
         Container(
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
           child: TextField(
-            obscureText: true,
+            keyboardType: TextInputType.number,
             controller: cnicController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -176,49 +199,59 @@ class _SignUp extends State<SignUp> {
             height: 60,
             padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
             child: ElevatedButton(
-              child: const Text(
-                'Create Account',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Colors.white),
-              ),
-              onPressed: () async {
-                //final conn = await getConnection();
-                SignUpFOrm form = SignUpFOrm(
-                    fname: fnameController.text,
-                    lname: lnameController.text,
-                    password: passwordController.text,
-                    phone: phoneController.text,
-                    cnic: cnicController.text,
-                    email: emailController.text,
-                    gender: dropdownValue);
-                try {
-                  final client = http.Client();
-                  final jsonData = jsonEncode(form.toJson());
-                  print(jsonData);
-                  print(json.decode(jsonData));
-                  final response = await http.post(
-                    Uri.parse('http://localhost:5000/member/SignUp'),
-                    headers: {'Content-Type': 'application/json'},
-                    body: jsonData,
-                  );
-                  print(response.statusCode);
+                child: const Text(
+                  'Create Account',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.white),
+                ),
+                onPressed: () async {
+                  //final conn = await getConnection();
+                  if (fnameController.text.isNotEmpty &&
+                      lnameController.text.isNotEmpty &&
+                      passwordController.text.isNotEmpty &&
+                      phoneController.text.isNotEmpty &&
+                      cnicController.text.isNotEmpty &&
+                      emailController.text.isNotEmpty &&
+                      dropdownValue.isNotEmpty) {
+                    SignUpFOrm form = SignUpFOrm(
+                        fname: fnameController.text,
+                        lname: lnameController.text,
+                        password: passwordController.text,
+                        phone: phoneController.text,
+                        cnic: cnicController.text,
+                        email: emailController.text,
+                        gender: dropdownValue);
+                    try {
+                      final client = http.Client();
+                      final jsonData = jsonEncode(
+                          form.toJson()); //converts the data to json format
+                      print(jsonData);
+                      print(json.decode(jsonData));
+                      final response = await http.post(
+                        Uri.parse('http://localhost:5000/member/SignUp'),
+                        headers: {'Content-Type': 'application/json'},
+                        body: jsonData,
+                      );
+                      print(response.statusCode);
 
-                  if (response.statusCode == 200) {
-                    // Item added successfully
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const CarDetails()),
-                    );
-                    print(json.decode(response.body));
+                      if (response.statusCode == 200) {
+                        // Item added successfully
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const CarDetails()),
+                        );
+                        print(json.decode(response.body));
+                      }
+                    } catch (error) {
+                      print(error);
+                    }
+                  } else {
+                    print("Fields are empty");
                   }
-                } catch (error) {
-                  print(error);
-                }
-              },
-            )),
+                })),
         Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.all(8),
@@ -231,25 +264,26 @@ class _SignUp extends State<SignUp> {
               ),
             )),
         SizedBox(
+            width: 20,
+            height: 40,
             child: TextButton(
-          onPressed: () async {
-            //API
-
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => const LogIn()),
-            // );
-          },
-          child: const Text(
-            'Log In',
-            style: TextStyle(
-              color: Colors.blue, // Will work,
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              decoration: TextDecoration.underline,
-            ),
-          ),
-        )),
+              onPressed: () async {
+                //API
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LogIn()),
+                );
+              },
+              child: const Text(
+                'Log In',
+                style: TextStyle(
+                  color: Colors.blue, // Will work,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            )),
       ])),
     );
   }
