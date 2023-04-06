@@ -67,10 +67,18 @@ class _SignUp extends State<SignUp> {
 
     // Note: you can do your own custom validation here
     // Move this logic this outside the widget for more testable code
-    if (text.isEmpty) {
+    if (fname.isEmpty ||
+        lname.isEmpty ||
+        password.isEmpty ||
+        phone.isEmpty ||
+        cnic.isEmpty ||
+        email.isEmpty) {
       return 'Can\'t be empty';
     }
-    if (text.length < 4) {
+    if (password.length < 8) {
+      return 'Weak Password';
+    }
+    if (cnic.length < 18) {
       return 'Too short';
     }
     // return null if the text is valid
@@ -86,82 +94,114 @@ class _SignUp extends State<SignUp> {
       body: Center(
           child: ListView(children: <Widget>[
         Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.all(13),
+            alignment: Alignment.topLeft,
+            padding: const EdgeInsets.all(16),
             child: const Text(
               'Sign Up',
               style: TextStyle(
                 color: Color(0xFF05998c), // Will work,
                 fontWeight: FontWeight.bold,
-                fontSize: 30,
+                fontSize: 32,
               ),
             )),
         Container(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+            alignment: Alignment.topLeft,
+            padding: const EdgeInsets.all(16),
+            child: const Text(
+              'Step 1',
+              style: TextStyle(
+                color: Color(0xFF05998c), // Will work,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            )),
+        Container(
+          padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
           child: TextField(
             controller: fnameController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'First Name',
+              contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
             ),
           ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+          padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
           child: TextField(
             controller: lnameController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Last Name',
+              contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
             ),
           ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+          padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
+          child: TextField(
+            obscureText: false,
+            controller: emailController,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Email',
+              contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+            ),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.fromLTRB(10, 6, 10, 6),
           child: TextField(
             obscureText: true,
             controller: passwordController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Password',
+              contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
             ),
           ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+          padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
+          child: TextField(
+            obscureText: true,
+            controller: passwordController,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Confirm Password',
+              contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 5),
+            ),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
           child: TextField(
             keyboardType: TextInputType.number,
             controller: phoneController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Contact Number',
+              contentPadding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
             ),
           ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+          padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
           child: TextField(
             keyboardType: TextInputType.number,
             controller: cnicController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'CNIC',
+              contentPadding: EdgeInsets.symmetric(
+                  vertical: 6,
+                  horizontal: 8), // Set vertical padding to 8 pixels
             ),
           ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: TextField(
-            obscureText: false,
-            controller: emailController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'email',
-            ),
-          ),
-        ),
-        Container(
-            padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+            width: 50,
+            padding: const EdgeInsets.fromLTRB(12, 6, 12, 6),
             child: Row(
               children: [
                 const Text(
@@ -175,23 +215,26 @@ class _SignUp extends State<SignUp> {
                 const SizedBox(
                   width: 20,
                 ),
-                DropdownButton<String>(
-                  value: dropdownValue,
-                  items: <String>['M', 'F']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 15),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue = newValue!;
-                    });
-                  },
+                Container(
+                  width: 60,
+                  child: DropdownButton<String>(
+                    value: dropdownValue,
+                    items: <String>['M', 'F']
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownValue = newValue!;
+                      });
+                    },
+                  ),
                 ),
               ],
             )),
@@ -208,13 +251,7 @@ class _SignUp extends State<SignUp> {
                 ),
                 onPressed: () async {
                   //final conn = await getConnection();
-                  if (fnameController.text.isNotEmpty &&
-                      lnameController.text.isNotEmpty &&
-                      passwordController.text.isNotEmpty &&
-                      phoneController.text.isNotEmpty &&
-                      cnicController.text.isNotEmpty &&
-                      emailController.text.isNotEmpty &&
-                      dropdownValue.isNotEmpty) {
+                  {
                     SignUpFOrm form = SignUpFOrm(
                         fname: fnameController.text,
                         lname: lnameController.text,
@@ -238,18 +275,16 @@ class _SignUp extends State<SignUp> {
 
                       if (response.statusCode == 200) {
                         // Item added successfully
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CarDetails()),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const CarDetails()),
+                        // );
                         print(json.decode(response.body));
                       }
                     } catch (error) {
                       print(error);
                     }
-                  } else {
-                    print("Fields are empty");
                   }
                 })),
         Container(
