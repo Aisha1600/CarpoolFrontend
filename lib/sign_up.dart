@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'car_details.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'log_in.dart';
-import 'package:postgres/postgres.dart';
 
 // ignore: unnecessary_import
 //made a class to store all the fields in an object
@@ -43,8 +41,6 @@ class SignUp extends StatefulWidget {
   @override
   State<SignUp> createState() => _SignUp();
 }
-
-String dropdownValue = 'M';
 
 class _SignUp extends State<SignUp> {
   TextEditingController fnameController = TextEditingController();
@@ -92,216 +88,214 @@ class _SignUp extends State<SignUp> {
         title: Text(title),
       ),
       body: Center(
-          child: ListView(children: <Widget>[
-        Container(
-            alignment: Alignment.topLeft,
-            padding: const EdgeInsets.all(16),
-            child: const Text(
-              'Sign Up',
-              style: TextStyle(
-                color: Color(0xFF05998c), // Will work,
-                fontWeight: FontWeight.bold,
-                fontSize: 32,
-              ),
-            )),
-        Container(
-            alignment: Alignment.topLeft,
-            padding: const EdgeInsets.all(16),
-            child: const Text(
-              'Step 1',
-              style: TextStyle(
-                color: Color(0xFF05998c), // Will work,
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            )),
-        Container(
-          padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
-          child: TextField(
-            controller: fnameController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'First Name',
-              contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
-          child: TextField(
-            controller: lnameController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Last Name',
-              contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
-          child: TextField(
-            obscureText: false,
-            controller: emailController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Email',
-              contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(10, 6, 10, 6),
-          child: TextField(
-            obscureText: true,
-            controller: passwordController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Password',
-              contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
-          child: TextField(
-            obscureText: true,
-            controller: passwordController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Confirm Password',
-              contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 5),
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
-          child: TextField(
-            keyboardType: TextInputType.number,
-            controller: phoneController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Contact Number',
-              contentPadding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
-          child: TextField(
-            keyboardType: TextInputType.number,
-            controller: cnicController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'CNIC',
-              contentPadding: EdgeInsets.symmetric(
-                  vertical: 6,
-                  horizontal: 8), // Set vertical padding to 8 pixels
-            ),
-          ),
-        ),
-        Container(
-            width: 50,
-            padding: const EdgeInsets.fromLTRB(12, 6, 12, 6),
-            child: Row(
-              children: [
-                const Text(
-                  'Select gender',
-                  style: TextStyle(
+        child: ListView(children: <Widget>[
+          Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.all(15),
+              child: const Text(
+                'Sign Up',
+                style: TextStyle(
+                  color: Color(0xFF05998c), // Will work,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40,
+                ),
+              )),
+          Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
+              child: const Text(
+                'Lets Get You Started!',
+                style: TextStyle(
                     color: Color(0xFF05998c), // Will work,
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 25,
+                    fontFamily: 'PalanquinDark-Medium'),
+              )),
+          Container(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: TextField(
+              controller: fnameController,
+              decoration: const InputDecoration(
+                labelText: 'Username',
+                labelStyle: TextStyle(fontFamily: 'PalanquinDark-Regular'),
+                border: OutlineInputBorder(),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              ),
+            ),
+          ),
+          // Container(
+          //   padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+          //   child: TextField(
+          //     controller: lnameController,
+          //     decoration: const InputDecoration(
+          //       border: OutlineInputBorder(),
+          //       labelText: 'Last Name',
+          //       contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+          //     ),
+          //   ),
+          // ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: TextField(
+              obscureText: false,
+              controller: emailController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Email',
+                labelStyle: TextStyle(fontFamily: 'PalanquinDark-Regular'),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: TextField(
+              obscureText: true,
+              controller: passwordController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Password',
+                labelStyle: TextStyle(fontFamily: 'PalanquinDark-Regular'),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: TextField(
+              obscureText: true,
+              controller: passwordController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Confirm Password',
+                labelStyle: TextStyle(fontFamily: 'PalanquinDark-Regular'),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+            height: 20,
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: TextField(
+              keyboardType: TextInputType.number,
+              controller: phoneController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Mobile Number',
+                labelStyle: TextStyle(fontFamily: 'PalanquinDark-Regular'),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: TextField(
+              keyboardType: TextInputType.number,
+              controller: cnicController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'CNIC',
+                labelStyle: TextStyle(fontFamily: 'PalanquinDark-Regular'),
+                contentPadding: EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 8), // Set vertical padding to 8 pixels
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+            height: 20,
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: Row(children: [
+              const Text(
+                'Gender',
+                style: TextStyle(
+                  color: Color(0xFF05998c), // Will work,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+              const SizedBox(
+                width: 20,
+                height: 20,
+              ),
+              Container(
+                width: 120,
+                decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular(20), // set the border radius
+                  border: Border.all(
+                    color: const Color(0xFF05998c),
+                  ), // set the border color
+                ),
+                // child:
+              ),
+            ]),
+          ),
+          Container(
+              height: 90,
+              padding: const EdgeInsets.fromLTRB(40, 20, 40, 10),
+              child: ElevatedButton(
+                  child: const Text(
+                    'Create Account',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Container(
-                  width: 60,
-                  child: DropdownButton<String>(
-                    value: dropdownValue,
-                    items: <String>['M', 'F']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: const TextStyle(fontSize: 15),
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownValue = newValue!;
-                      });
-                    },
-                  ),
-                ),
-              ],
-            )),
-        Container(
-            height: 60,
-            padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
-            child: ElevatedButton(
-                child: const Text(
-                  'Create Account',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: Colors.white),
-                ),
-                onPressed: () async {
-                  //final conn = await getConnection();
-                  {
-                    SignUpFOrm form = SignUpFOrm(
-                        fname: fnameController.text,
-                        lname: lnameController.text,
-                        password: passwordController.text,
-                        phone: phoneController.text,
-                        cnic: cnicController.text,
-                        email: emailController.text,
-                        gender: dropdownValue);
-                    try {
-                      final client = http.Client();
-                      final jsonData = jsonEncode(
-                          form.toJson()); //converts the data to json format
-                      print(jsonData);
-                      print(json.decode(jsonData));
-                      final response = await http.post(
-                        Uri.parse('http://localhost:5000/member/SignUp'),
-                        headers: {'Content-Type': 'application/json'},
-                        body: jsonData,
-                      );
-                      print(response.statusCode);
+                  onPressed: () async {
+                    //final conn = await getConnection();
+                    {
+                      SignUpFOrm form = SignUpFOrm(
+                          fname: fnameController.text,
+                          lname: lnameController.text,
+                          password: passwordController.text,
+                          phone: phoneController.text,
+                          cnic: cnicController.text,
+                          email: emailController.text,
+                          gender: " ");
+                      try {
+                        final jsonData = jsonEncode(
+                            form.toJson()); //converts the data to json format
+                        final response = await http.post(
+                          Uri.parse('http://localhost:5000/member/SignUp'),
+                          headers: {'Content-Type': 'application/json'},
+                          body: jsonData,
+                        );
+                        print(response.statusCode);
 
-                      if (response.statusCode == 200) {
-                        // Item added successfully
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => const CarDetails()),
-                        // );
-                        print(json.decode(response.body));
+                        if (response.statusCode == 200) {
+                          // Item added successfully
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => const CarDetails()),
+                          // );
+                          print(json.decode(response.body));
+                        }
+                      } catch (error) {
+                        print(error);
                       }
-                    } catch (error) {
-                      print(error);
                     }
-                  }
-                })),
-        Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.all(8),
-            child: const Text(
+                  })),
+          Center(
+              child:
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Text(
               'Already have an account?',
               style: TextStyle(
                 color: Colors.black, // Will work,
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
+                fontSize: 14,
               ),
-            )),
-        SizedBox(
-            width: 20,
-            height: 40,
-            child: TextButton(
+            ),
+            TextButton(
               onPressed: () async {
                 //API
                 Navigator.push(
@@ -313,13 +307,18 @@ class _SignUp extends State<SignUp> {
                 'Log In',
                 style: TextStyle(
                   color: Colors.blue, // Will work,
-                  fontSize: 15,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.underline,
                 ),
               ),
-            )),
-      ])),
+            ),
+          ])),
+          const SizedBox(
+            width: 40,
+            height: 10,
+          )
+        ]),
+      ),
     );
   }
 }
