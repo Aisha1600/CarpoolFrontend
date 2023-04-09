@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Carpool Application',
       theme: ThemeData(
-          primarySwatch: Colors.teal, fontFamily: 'PalanquinDark-Medium'),
+          primarySwatch: Colors.teal, fontFamily: 'PalanquinDark-Regular'),
       home: const MyHomePage(title: 'Carpool Application'),
     );
   }

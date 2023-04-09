@@ -1,3 +1,4 @@
+import 'package:carpoolfront/select_role.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -83,6 +84,7 @@ class _SignUp extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    String dropdownValue = 'Not selected';
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -107,7 +109,6 @@ class _SignUp extends State<SignUp> {
                 'Lets Get You Started!',
                 style: TextStyle(
                     color: Color(0xFF05998c), // Will work,
-                    fontWeight: FontWeight.bold,
                     fontSize: 25,
                     fontFamily: 'PalanquinDark-Medium'),
               )),
@@ -116,7 +117,7 @@ class _SignUp extends State<SignUp> {
             child: TextField(
               controller: fnameController,
               decoration: const InputDecoration(
-                labelText: 'Username',
+                labelText: 'First Name',
                 labelStyle: TextStyle(fontFamily: 'PalanquinDark-Regular'),
                 border: OutlineInputBorder(),
                 contentPadding:
@@ -124,17 +125,18 @@ class _SignUp extends State<SignUp> {
               ),
             ),
           ),
-          // Container(
-          //   padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-          //   child: TextField(
-          //     controller: lnameController,
-          //     decoration: const InputDecoration(
-          //       border: OutlineInputBorder(),
-          //       labelText: 'Last Name',
-          //       contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-          //     ),
-          //   ),
-          // ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: TextField(
+              controller: lnameController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Last Name',
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              ),
+            ),
+          ),
           Container(
             padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
             child: TextField(
@@ -230,15 +232,22 @@ class _SignUp extends State<SignUp> {
                 height: 20,
               ),
               Container(
-                width: 120,
-                decoration: BoxDecoration(
-                  borderRadius:
-                      BorderRadius.circular(20), // set the border radius
-                  border: Border.all(
-                    color: const Color(0xFF05998c),
-                  ), // set the border color
+                width: 150,
+                child: DropdownButton<String>(
+                  value: dropdownValue,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue = newValue!;
+                    });
+                  },
+                  items: <String>['Not selected', 'Male', 'Female', 'Other']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
                 ),
-                // child:
               ),
             ]),
           ),
@@ -252,38 +261,43 @@ class _SignUp extends State<SignUp> {
                   ),
                   onPressed: () async {
                     //final conn = await getConnection();
-                    {
-                      SignUpFOrm form = SignUpFOrm(
-                          fname: fnameController.text,
-                          lname: lnameController.text,
-                          password: passwordController.text,
-                          phone: phoneController.text,
-                          cnic: cnicController.text,
-                          email: emailController.text,
-                          gender: " ");
-                      try {
-                        final jsonData = jsonEncode(
-                            form.toJson()); //converts the data to json format
-                        final response = await http.post(
-                          Uri.parse('http://localhost:5000/member/SignUp'),
-                          headers: {'Content-Type': 'application/json'},
-                          body: jsonData,
-                        );
-                        print(response.statusCode);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Select_Role()),
+                    );
+                    // {
+                    //   SignUpFOrm form = SignUpFOrm(
+                    //       fname: fnameController.text,
+                    //       lname: lnameController.text,
+                    //       password: passwordController.text,
+                    //       phone: phoneController.text,
+                    //       cnic: cnicController.text,
+                    //       email: emailController.text,
+                    //       gender: " ");
+                    //   try {
+                    //     final jsonData = jsonEncode(
+                    //         form.toJson()); //converts the data to json format
+                    //     final response = await http.post(
+                    //       Uri.parse('http://localhost:5000/member/SignUp'),
+                    //       headers: {'Content-Type': 'application/json'},
+                    //       body: jsonData,
+                    //     );
+                    //     print(response.statusCode);
 
-                        if (response.statusCode == 200) {
-                          // Item added successfully
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) => const CarDetails()),
-                          // );
-                          print(json.decode(response.body));
-                        }
-                      } catch (error) {
-                        print(error);
-                      }
-                    }
+                    //     if (response.statusCode == 200) {
+                    //       // Item added successfully
+                    //       // Navigator.push(
+                    //       //   context,
+                    //       //   MaterialPageRoute(
+                    //       //       builder: (context) => const CarDetails()),
+                    //       // );
+                    //       print(json.decode(response.body));
+                    //     }
+                    //   } catch (error) {
+                    //     print(error);
+                    //   }
+                    // }
                   })),
           Center(
               child:
