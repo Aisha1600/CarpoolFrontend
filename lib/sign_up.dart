@@ -3,9 +3,10 @@ import 'car_details.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:postgres/postgres.dart';
-
+import 'log_in.dart';
 // ignore: unnecessary_import
 //made a class to store all the fields in an object
+//add this??
 class SignUpFOrm {
   late final String fname;
   late final String lname;
@@ -53,7 +54,7 @@ class _SignUp extends State<SignUp> {
   TextEditingController cnicController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   String title = "Carpool Application";
-  static const baseurl = '192.168.18.222';
+  //static const baseurl = '192.168.18.222';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -185,6 +186,7 @@ class _SignUp extends State<SignUp> {
               ),
               onPressed: () async {
                 //final conn = await getConnection();
+                //on pressed
                 SignUpFOrm form = SignUpFOrm(
                     fname: fnameController.text,
                     lname: lnameController.text,
@@ -235,10 +237,10 @@ class _SignUp extends State<SignUp> {
           onPressed: () async {
             //API
 
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => const LogIn()),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const LogIn()),
+            );
           },
           child: const Text(
             'Log In',

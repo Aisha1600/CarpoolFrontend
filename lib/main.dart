@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Carpool Application',
+      debugShowCheckedModeBanner: false,  
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
@@ -50,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FindYourCarpool()),
+                MaterialPageRoute(builder: (context) => SignUp()),
               );
             },
           )),
