@@ -120,7 +120,7 @@ class _LogIn extends State<LogIn> {
             padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
             child: ElevatedButton(
               child: const Text(
-                'Create Account',
+                'Log In',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
