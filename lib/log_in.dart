@@ -80,31 +80,31 @@ class _LogIn extends State<LogIn> {
               //changes here
           onPressed:() async {
 
-            LoginForm form = LoginForm(
-              email: nameController.text,
-              password: passwordController.text);
-              try {
+            // LoginForm form = LoginForm(
+            //   email: nameController.text,
+            //   password: passwordController.text);
+            //   try {
                   
-                  final jsonData = jsonEncode(form.toJson());
-                  print(jsonData);
-                  print(json.decode(jsonData));
-                  final response = await http.post(
-                    //URL LOCAL HOST NEEDS TO BE CHANGED
-                    Uri.parse('http://localhost:5000/member/login'),
-                    headers: {'Content-Type': 'application/json'},
-                    body: jsonData,
-                  );
-                  print(response.statusCode);
-                   if (response.statusCode == 200) {
+            //       final jsonData = jsonEncode(form.toJson());
+            //       print(jsonData);
+            //       print(json.decode(jsonData));
+            //       final response = await http.post(
+            //         //URL LOCAL HOST NEEDS TO BE CHANGED
+            //         Uri.parse('http://localhost:5000/member/login'),
+            //         headers: {'Content-Type': 'application/json'},
+            //         body: jsonData,
+            //       );
+              //    print(response.statusCode);
+              //     if (response.statusCode == 200) {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const ForgotPassword()),
             );
-                  print(json.decode(response.body));
-                  }
-            } catch (error) {
-                  print(error);
-                }
+               //   print(json.decode(response.body));
+              //    }
+          //  } catch (error) {
+             //     print(error);
+             //   }
           },
           child: const Text(
             'Forgot Password?',
@@ -126,7 +126,33 @@ class _LogIn extends State<LogIn> {
                     fontSize: 18,
                     color: Colors.white),
               ),
-              onPressed: () {
+              onPressed: () async {
+                 LoginForm form = LoginForm(
+              email: nameController.text,
+              password: passwordController.text);
+              try {
+                  
+                  final jsonData = jsonEncode(form.toJson());
+                  print(jsonData);
+                  print(json.decode(jsonData));
+                  final response = await http.post(
+                    //URL LOCAL HOST NEEDS TO BE CHANGED
+                    Uri.parse('http://localhost:5000/member/login'),
+                    headers: {'Content-Type': 'application/json'},
+                    body: jsonData,
+                  );
+                  print(response.statusCode);
+                   if (response.statusCode == 200) {
+            Navigator.push(
+              context, // fix navigation for login
+              MaterialPageRoute(builder: (context) => const ForgotPassword()),
+            );
+                  print(json.decode(response.body));
+                  }
+            } catch (error) {
+                  print(error);
+                }
+          
                 // Navigator.push(
                 //   context,
                 //   MaterialPageRoute(builder: (context) => const ForgotPassword()),

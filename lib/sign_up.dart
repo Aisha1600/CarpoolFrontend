@@ -2,16 +2,10 @@ import 'package:carpoolfront/select_role.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-<<<<<<< HEAD
-import 'package:postgres/postgres.dart';
-import 'log_in.dart';
-=======
 import 'log_in.dart';
 
->>>>>>> 7fe9c25a36532d1b8c25cd4122426e7635510e7e
 // ignore: unnecessary_import
 //made a class to store all the fields in an object
-//add this??
 class SignUpFOrm {
   late final String fname;
   late final String lname;
@@ -57,10 +51,7 @@ class _SignUp extends State<SignUp> {
   TextEditingController cnicController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   String title = "Carpool Application";
-<<<<<<< HEAD
   //static const baseurl = '192.168.18.222';
-=======
-  static const baseurl = '192.168.18.222';
 
   String? get _errorText {
     // at any time, we can get the text from _controller.value.text
@@ -91,7 +82,6 @@ class _SignUp extends State<SignUp> {
     return null;
   }
 
->>>>>>> 7fe9c25a36532d1b8c25cd4122426e7635510e7e
   @override
   Widget build(BuildContext context) {
     String dropdownValue = 'Not selected';
@@ -259,33 +249,6 @@ class _SignUp extends State<SignUp> {
                   }).toList(),
                 ),
               ),
-<<<<<<< HEAD
-              onPressed: () async {
-                //final conn = await getConnection();
-                //on pressed
-                SignUpFOrm form = SignUpFOrm(
-                    fname: fnameController.text,
-                    lname: lnameController.text,
-                    password: passwordController.text,
-                    phone: phoneController.text,
-                    cnic: cnicController.text,
-                    email: emailController.text,
-                    gender: dropdownValue);
-                try {
-                  final client = http.Client();
-                  final jsonData = jsonEncode(form.toJson());
-                  print(jsonData);
-                  print(json.decode(jsonData));
-                  final response = await http.post(
-                    Uri.parse('http://localhost:5000/member/SignUp'),
-                    headers: {'Content-Type': 'application/json'},
-                    body: jsonData,
-                  );
-                  print(response.statusCode);
-
-                  if (response.statusCode == 200) {
-                    // Item added successfully
-=======
             ]),
           ),
           Container(
@@ -298,12 +261,36 @@ class _SignUp extends State<SignUp> {
                   ),
                   onPressed: () async {
                     //final conn = await getConnection();
->>>>>>> 7fe9c25a36532d1b8c25cd4122426e7635510e7e
+                    SignUpFOrm form = SignUpFOrm(
+                     fname: fnameController.text,
+                     lname: lnameController.text,
+                     password: passwordController.text,
+                     phone: phoneController.text,
+                     cnic: cnicController.text,
+                     email: emailController.text,
+                     gender: dropdownValue);
+                     try {
+                         final jsonData = jsonEncode(
+                             form.toJson()); //converts the data to json format
+                         final response = await http.post(
+                           Uri.parse('http://localhost:5000/member/SignUp'),
+                           headers: {'Content-Type': 'application/json'},
+                           body: jsonData,
+                         );
+                         print(response.statusCode);
+                          if (response.statusCode == 200) {
+                    //       // Item added successfully
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const Select_Role()),
                     );
+                     print(json.decode(response.body));
+                       }
+                   } catch (error) {
+                       print(error);
+                      }
+                    // }
                     // {
                     //   SignUpFOrm form = SignUpFOrm(
                     //       fname: fnameController.text,
@@ -346,27 +333,6 @@ class _SignUp extends State<SignUp> {
                 color: Colors.black, // Will work,
                 fontSize: 14,
               ),
-<<<<<<< HEAD
-            )),
-        SizedBox(
-            child: TextButton(
-          onPressed: () async {
-            //API
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const LogIn()),
-            );
-          },
-          child: const Text(
-            'Log In',
-            style: TextStyle(
-              color: Colors.blue, // Will work,
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              decoration: TextDecoration.underline,
-=======
->>>>>>> 7fe9c25a36532d1b8c25cd4122426e7635510e7e
             ),
             TextButton(
               onPressed: () async {
