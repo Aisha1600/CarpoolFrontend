@@ -128,18 +128,6 @@ class _SignUp extends State<SignUp> {
           Container(
             padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
             child: TextField(
-              controller: lnameController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Last Name',
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-              ),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
-            child: TextField(
               obscureText: false,
               controller: emailController,
               decoration: const InputDecoration(

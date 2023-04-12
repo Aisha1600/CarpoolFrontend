@@ -9,10 +9,9 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPassword extends State<ForgotPassword> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController cnicController = TextEditingController();
+  TextEditingController newPasswordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+
   String title = "Carpool Application";
 
   @override
@@ -35,23 +34,26 @@ class _ForgotPassword extends State<ForgotPassword> {
               ),
             )),
         Container(
-          padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
+          padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
           child: TextField(
-            controller: nameController,
+            controller: newPasswordController,
+            obscureText: true,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'New Password',
+              contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
             ),
           ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
+          padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
           child: TextField(
+            controller: confirmPasswordController,
             obscureText: true,
-            controller: passwordController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'Re-enter Password',
+              labelText: 'Confirm Password',
+              contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
             ),
           ),
         ),
@@ -61,10 +63,7 @@ class _ForgotPassword extends State<ForgotPassword> {
             child: ElevatedButton(
               child: const Text(
                 'Update Password',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Colors.white),
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
               onPressed: () {
                 // Navigator.push(
