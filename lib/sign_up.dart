@@ -51,7 +51,7 @@ class _SignUp extends State<SignUp> {
   TextEditingController cnicController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   String title = "Carpool Application";
-  static const baseurl = '192.168.18.222';
+  //static const baseurl = '192.168.18.222';
 
   String? get _errorText {
     // at any time, we can get the text from _controller.value.text
@@ -249,11 +249,36 @@ class _SignUp extends State<SignUp> {
                   ),
                   onPressed: () async {
                     //final conn = await getConnection();
+                    SignUpFOrm form = SignUpFOrm(
+                     fname: fnameController.text,
+                     lname: lnameController.text,
+                     password: passwordController.text,
+                     phone: phoneController.text,
+                     cnic: cnicController.text,
+                     email: emailController.text,
+                     gender: dropdownValue);
+                     try {
+                         final jsonData = jsonEncode(
+                             form.toJson()); //converts the data to json format
+                         final response = await http.post(
+                           Uri.parse('http://localhost:5000/member/SignUp'),
+                           headers: {'Content-Type': 'application/json'},
+                           body: jsonData,
+                         );
+                         print(response.statusCode);
+                          if (response.statusCode == 200) {
+                    //       // Item added successfully
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const Select_Role()),
                     );
+                     print(json.decode(response.body));
+                       }
+                   } catch (error) {
+                       print(error);
+                      }
+                    // }
                     // {
                     //   SignUpFOrm form = SignUpFOrm(
                     //       fname: fnameController.text,
