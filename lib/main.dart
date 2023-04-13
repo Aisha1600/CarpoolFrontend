@@ -1,3 +1,4 @@
+import 'package:carpoolfront/car_details.dart';
 import 'package:carpoolfront/find_your_carpool.dart';
 import 'Extra.dart';
 import 'available_list.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Carpool Application',
-      debugShowCheckedModeBanner: false,  
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.teal, fontFamily: 'PalanquinDark-Regular'),
       home: const MyHomePage(title: 'Carpool Application'),
@@ -47,11 +48,11 @@ class _MyHomePageState extends State<MyHomePage> {
           height: 50,
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: ElevatedButton(
-            child: const Text('OFFER CARPOOL PAGE'),
+            child: const Text('car details'),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SignUp()),
+                MaterialPageRoute(builder: (context) => const CarDetails()),
               );
             },
           )),
