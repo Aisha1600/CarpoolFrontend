@@ -1,8 +1,8 @@
+import 'package:carpoolfront/select_role.dart';
 import 'package:flutter/material.dart';
-import 'car_details.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:postgres/postgres.dart';
+import 'log_in.dart';
 
 // ignore: unnecessary_import
 //made a class to store all the fields in an object
@@ -43,8 +43,6 @@ class SignUp extends StatefulWidget {
   State<SignUp> createState() => _SignUp();
 }
 
-String dropdownValue = 'M';
-
 class _SignUp extends State<SignUp> {
   TextEditingController fnameController = TextEditingController();
   TextEditingController lnameController = TextEditingController();
@@ -53,203 +51,301 @@ class _SignUp extends State<SignUp> {
   TextEditingController cnicController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   String title = "Carpool Application";
-  static const baseurl = '192.168.18.222';
+  //static const baseurl = '192.168.18.222';
+
+  String? get _errorText {
+    // at any time, we can get the text from _controller.value.text
+    final fname = fnameController.value.text;
+    final lname = lnameController.value.text;
+    final password = passwordController.value.text;
+    final phone = phoneController.value.text;
+    final cnic = cnicController.value.text;
+    final email = emailController.value.text;
+
+    // Note: you can do your own custom validation here
+    // Move this logic this outside the widget for more testable code
+    if (fname.isEmpty ||
+        lname.isEmpty ||
+        password.isEmpty ||
+        phone.isEmpty ||
+        cnic.isEmpty ||
+        email.isEmpty) {
+      return 'Can\'t be empty';
+    }
+    if (password.length < 8) {
+      return 'Weak Password';
+    }
+    if (cnic.length < 18) {
+      return 'Too short';
+    }
+    // return null if the text is valid
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
+    String dropdownValue = 'Not selected';
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
       ),
       body: Center(
-          child: ListView(children: <Widget>[
-        Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.all(13),
-            child: const Text(
-              'Sign Up',
-              style: TextStyle(
-                color: Color(0xFF05998c), // Will work,
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
-              ),
-            )),
-        Container(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: TextField(
-            controller: fnameController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'First Name',
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: TextField(
-            controller: lnameController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Last Name',
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: TextField(
-            obscureText: true,
-            controller: passwordController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Password',
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: TextField(
-            obscureText: true,
-            controller: phoneController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Contact Number',
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: TextField(
-            obscureText: true,
-            controller: cnicController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'CNIC',
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: TextField(
-            obscureText: false,
-            controller: emailController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'email',
-            ),
-          ),
-        ),
-        Container(
-            padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-            child: Row(
-              children: [
-                const Text(
-                  'Select gender',
-                  style: TextStyle(
+        child: ListView(children: <Widget>[
+          Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.all(15),
+              child: const Text(
+                'Sign Up',
+                style: TextStyle(
+                  color: Color(0xFF05998c), // Will work,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40,
+                ),
+              )),
+          Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
+              child: const Text(
+                'Lets Get You Started!',
+                style: TextStyle(
                     color: Color(0xFF05998c), // Will work,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+                    fontSize: 25,
+                    fontFamily: 'PalanquinDark-Medium'),
+              )),
+          Container(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: TextField(
+              controller: fnameController,
+              decoration: const InputDecoration(
+                labelText: 'First Name',
+                labelStyle: TextStyle(fontFamily: 'PalanquinDark-Regular'),
+                border: OutlineInputBorder(),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: TextField(
+              obscureText: false,
+              controller: emailController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Email',
+                labelStyle: TextStyle(fontFamily: 'PalanquinDark-Regular'),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: TextField(
+              obscureText: true,
+              controller: passwordController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Password',
+                labelStyle: TextStyle(fontFamily: 'PalanquinDark-Regular'),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: TextField(
+              obscureText: true,
+              controller: passwordController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Confirm Password',
+                labelStyle: TextStyle(fontFamily: 'PalanquinDark-Regular'),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+            height: 20,
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: TextField(
+              keyboardType: TextInputType.number,
+              controller: phoneController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Mobile Number',
+                labelStyle: TextStyle(fontFamily: 'PalanquinDark-Regular'),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: TextField(
+              keyboardType: TextInputType.number,
+              controller: cnicController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'CNIC',
+                labelStyle: TextStyle(fontFamily: 'PalanquinDark-Regular'),
+                contentPadding: EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 8), // Set vertical padding to 8 pixels
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+            height: 20,
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: Row(children: [
+              const Text(
+                'Gender',
+                style: TextStyle(
+                  color: Color(0xFF05998c), // Will work,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
                 ),
-                const SizedBox(
-                  width: 20,
-                ),
-                DropdownButton<String>(
+              ),
+              const SizedBox(
+                width: 20,
+                height: 20,
+              ),
+              Container(
+                width: 150,
+                child: DropdownButton<String>(
                   value: dropdownValue,
-                  items: <String>['M', 'F']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 15),
-                      ),
-                    );
-                  }).toList(),
                   onChanged: (String? newValue) {
                     setState(() {
                       dropdownValue = newValue!;
                     });
                   },
-                ),
-              ],
-            )),
-        Container(
-            height: 60,
-            padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
-            child: ElevatedButton(
-              child: const Text(
-                'Create Account',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Colors.white),
-              ),
-              onPressed: () async {
-                //final conn = await getConnection();
-                SignUpFOrm form = SignUpFOrm(
-                    fname: fnameController.text,
-                    lname: lnameController.text,
-                    password: passwordController.text,
-                    phone: phoneController.text,
-                    cnic: cnicController.text,
-                    email: emailController.text,
-                    gender: dropdownValue);
-                try {
-                  final jsonData = jsonEncode(form.toJson());
-                  print(jsonData);
-                  print(json.decode(jsonData));
-                  final response = await http.post(
-                    Uri.parse('http://localhost:5000/member/SignUp'),
-                    headers: {'Content-Type': 'application/json'},
-                    body: jsonData,
-                  );
-                  print(response.statusCode);
-
-                  if (response.statusCode == 200) {
-                    // Item added successfully
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const CarDetails()),
+                  items: <String>['Not selected', 'Male', 'Female', 'Other']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
                     );
-                    print(json.decode(response.body));
-                  }
-                } catch (error) {
-                  print(error);
-                }
-              },
-            )),
-        Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.all(8),
-            child: const Text(
+                  }).toList(),
+                ),
+              ),
+            ]),
+          ),
+          Container(
+              height: 90,
+              padding: const EdgeInsets.fromLTRB(40, 20, 40, 10),
+              child: ElevatedButton(
+                  child: const Text(
+                    'Create Account',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
+                  onPressed: () async {
+                    //final conn = await getConnection();
+                    SignUpFOrm form = SignUpFOrm(
+                        fname: fnameController.text,
+                        lname: lnameController.text,
+                        password: passwordController.text,
+                        phone: phoneController.text,
+                        cnic: cnicController.text,
+                        email: emailController.text,
+                        gender: dropdownValue);
+                    try {
+                      final jsonData = jsonEncode(
+                          form.toJson()); //converts the data to json format
+                      final response = await http.post(
+                        Uri.parse('http://localhost:5000/member/SignUp'),
+                        headers: {'Content-Type': 'application/json'},
+                        body: jsonData,
+                      );
+                      print(response.statusCode);
+                      if (response.statusCode == 200) {
+                        //       // Item added successfully
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Select_Role()),
+                        );
+                        print(json.decode(response.body));
+                      }
+                    } catch (error) {
+                      print(error);
+                    }
+                    // }
+                    // {
+                    //   SignUpFOrm form = SignUpFOrm(
+                    //       fname: fnameController.text,
+                    //       lname: lnameController.text,
+                    //       password: passwordController.text,
+                    //       phone: phoneController.text,
+                    //       cnic: cnicController.text,
+                    //       email: emailController.text,
+                    //       gender: " ");
+                    //   try {
+                    //     final jsonData = jsonEncode(
+                    //         form.toJson()); //converts the data to json format
+                    //     final response = await http.post(
+                    //       Uri.parse('http://localhost:5000/member/SignUp'),
+                    //       headers: {'Content-Type': 'application/json'},
+                    //       body: jsonData,
+                    //     );
+                    //     print(response.statusCode);
+
+                    //     if (response.statusCode == 200) {
+                    //       // Item added successfully
+                    //       // Navigator.push(
+                    //       //   context,
+                    //       //   MaterialPageRoute(
+                    //       //       builder: (context) => const CarDetails()),
+                    //       // );
+                    //       print(json.decode(response.body));
+                    //     }
+                    //   } catch (error) {
+                    //     print(error);
+                    //   }
+                    // }
+                  })),
+          Center(
+              child:
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Text(
               'Already have an account?',
               style: TextStyle(
                 color: Colors.black, // Will work,
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
+                fontSize: 14,
               ),
-            )),
-        SizedBox(
-            child: TextButton(
-          onPressed: () async {
-            //API
-
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => const LogIn()),
-            // );
-          },
-          child: const Text(
-            'Log In',
-            style: TextStyle(
-              color: Colors.blue, // Will work,
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              decoration: TextDecoration.underline,
             ),
-          ),
-        )),
-      ])),
+            TextButton(
+              onPressed: () async {
+                //API
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LogIn()),
+                );
+              },
+              child: const Text(
+                'Log In',
+                style: TextStyle(
+                  color: Colors.blue, // Will work,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ])),
+          const SizedBox(
+            width: 40,
+            height: 10,
+          )
+        ]),
+      ),
     );
   }
 }

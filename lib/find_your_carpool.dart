@@ -23,9 +23,9 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Find Your Nearest Ride'),
+        title: const Text('Find Your Nearest Ride'),
         centerTitle: true,
-        backgroundColor: Color(0xFF05998C),
+        backgroundColor: const Color(0xFF05998C),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -36,10 +36,10 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
               Text(
                 'Find Your Nearest Ride',
                 style: TextStyle(
-                    color: Color(0xFF05998C),
-                    fontSize: 50.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Palanquin Dark'),
+                  color: Color(0xFF05998C),
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               SizedBox(height: 16),
               Container(
@@ -64,9 +64,9 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                       child: Text(
                         'Where are you?',
                         style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.normal,
-                            fontFamily: 'Palanquin'),
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.normal,
+                        ),
                       ),
                     ),
                     SizedBox(height: 10.0),
@@ -129,9 +129,9 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                       child: Text(
                         'Where do you want to go?',
                         style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.normal,
-                            fontFamily: 'Palanquin'),
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.normal,
+                        ),
                       ),
                     ),
                     SizedBox(height: 10.0),
@@ -260,10 +260,10 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                   child: Text(
                     'Request',
                     style: TextStyle(
-                        color: _isRequestPressed ? Colors.white : Colors.black,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.normal,
-                        fontFamily: 'Palanquin'),
+                      color: _isRequestPressed ? Colors.white : Colors.black,
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
                   style: ElevatedButton.styleFrom(
                     //button
@@ -279,7 +279,7 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                   ),
                 ),
               ]),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               if (_isAvailablePressed)
                 AvailableList()
               else if (_isRequestPressed)
