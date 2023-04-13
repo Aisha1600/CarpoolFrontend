@@ -48,11 +48,11 @@ class _MyHomePageState extends State<MyHomePage> {
           height: 50,
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: ElevatedButton(
-            child: const Text('car details'),
+            child: const Text('Log In'),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const CarDetails()),
+                MaterialPageRoute(builder: (context) => const LogIn()),
               );
             },
           )),

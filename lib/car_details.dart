@@ -6,32 +6,27 @@ import 'package:http/http.dart' as http;
 class CarDetailForm {
   late final String name;
   late final String model;
-  late final String makeyear;
+  late final String make_year;
   late final int member_id; //this is temporary
-  late final String rengo;
-  late final String color;
-  late final String Licenseno;
-  late final String Licensevalid; //should be datetime though
+  late final String car_regno;
+  late final String car_color;
 
-  CarDetailForm(
-      {required this.name,
-      required this.model,
-      required this.makeyear,
-      required this.member_id, //temp
-      required this.rengo,
-      required this.color,
-      required this.Licenseno,
-      required this.Licensevalid});
+  CarDetailForm({
+    required this.name,
+    required this.model,
+    required this.make_year,
+    required this.member_id, //temp
+    required this.car_regno,
+    required this.car_color,
+  });
   Map<String, dynamic> toJson() {
     return {
       'name': name,
       'model': model,
-      'makeyear': makeyear,
+      'make_year': make_year,
       'member_id': member_id, //temp
-      'rengo': rengo,
-      'color': color,
-      'Licenseno': Licenseno,
-      'Licensevalid': Licensevalid
+      'car_regno': car_regno,
+      'car_color': car_color,
     };
   }
 }
@@ -49,8 +44,8 @@ class _CarDetails extends State<CarDetails> {
   TextEditingController makeyearController = TextEditingController();
   TextEditingController rengoController = TextEditingController();
   TextEditingController colorController = TextEditingController();
-  TextEditingController LicensenoController = TextEditingController();
-  TextEditingController LicensevalidController = TextEditingController();
+  // TextEditingController LicensenoController = TextEditingController();
+  // TextEditingController LicensevalidController = TextEditingController();
   String title = "Carpool Application";
 
   @override
@@ -98,16 +93,6 @@ class _CarDetails extends State<CarDetails> {
             controller: makeyearController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'Make', //this needs to be removed its not in db
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
-          child: TextField(
-            controller: makeyearController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
               labelText: 'Make Year',
             ),
           ),
@@ -133,26 +118,6 @@ class _CarDetails extends State<CarDetails> {
           ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
-          child: TextField(
-            controller: LicensenoController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'License Number',
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
-          child: TextField(
-            controller: LicensevalidController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'License Valid Until',
-            ),
-          ),
-        ),
-        Container(
             height: 60,
             padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
             child: ElevatedButton(
@@ -166,14 +131,13 @@ class _CarDetails extends State<CarDetails> {
               onPressed: () async {
                 //API INTEGRATION
                 CarDetailForm form = CarDetailForm(
-                    member_id: 2, //temp
-                    name: nameController.text,
-                    model: modelController.text,
-                    makeyear: makeyearController.text,
-                    rengo: rengoController.text,
-                    color: colorController.text,
-                    Licenseno: LicensenoController.text,
-                    Licensevalid: LicensevalidController.text);
+                  member_id: 2, //temp
+                  name: nameController.text,
+                  model: modelController.text,
+                  make_year: makeyearController.text,
+                  car_regno: rengoController.text,
+                  car_color: colorController.text,
+                );
                 try {
                   final jsonData = jsonEncode(form.toJson());
                   print(jsonData);

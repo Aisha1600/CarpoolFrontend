@@ -15,8 +15,8 @@ class LoginForm {
   });
   Map<String, dynamic> toJson() {
     return {
-      'password': password,
       'email': email,
+      'password': password,
     };
   }
 }
