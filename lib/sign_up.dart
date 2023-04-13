@@ -194,7 +194,6 @@ class _SignUp extends State<SignUp> {
                     email: emailController.text,
                     gender: dropdownValue);
                 try {
-                  final client = http.Client();
                   final jsonData = jsonEncode(form.toJson());
                   print(jsonData);
                   print(json.decode(jsonData));
