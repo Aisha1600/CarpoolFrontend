@@ -1,4 +1,5 @@
 import 'package:carpoolfront/forgot_password.dart';
+import 'package:carpoolfront/offer_carpool.dart';
 import 'package:carpoolfront/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -13,10 +14,7 @@ class LoginForm {
     required this.password,
     required this.email,
   });
-  LoginForm({
-    required this.password,
-    required this.email,
-  });
+
   Map<String, dynamic> toJson() {
     return {
       'email': email,
@@ -32,7 +30,6 @@ class LogIn extends StatefulWidget {
   State<LogIn> createState() => _LogIn();
 }
 
-
 class _LogIn extends State<LogIn> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -41,11 +38,11 @@ class _LogIn extends State<LogIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
-        child: ListView(children: <Widget>[
+        appBar: AppBar(
+          title: Text(title),
+        ),
+        body: Center(
+            child: ListView(children: <Widget>[
           Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.all(13),
@@ -79,46 +76,6 @@ class _LogIn extends State<LogIn> {
                 labelText: 'Password',
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-              ),
-            ),
-          ),
-          SizedBox(
-              child: TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ForgotPassword()),
-              );
-            },
-          Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(13),
-              child: const Text(
-                'Log In',
-                style: TextStyle(
-                  color: Color(0xFF05998c), // Will work,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                ),
-              )),
-          Container(
-            padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
-            child: TextField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Email',
-              ),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
-            child: TextField(
-              obscureText: true,
-              controller: passwordController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Password',
               ),
             ),
           ),
@@ -126,39 +83,16 @@ class _LogIn extends State<LogIn> {
               child: TextButton(
             //changes here
             onPressed: () async {
-              // LoginForm form = LoginForm(
-              //   email: nameController.text,
-              //   password: passwordController.text);
-              //   try {
-
-              //       final jsonData = jsonEncode(form.toJson());
-              //       print(jsonData);
-              //       print(json.decode(jsonData));
-              //       final response = await http.post(
-              //         //URL LOCAL HOST NEEDS TO BE CHANGED
-              //         Uri.parse('http://localhost:5000/member/login'),
-              //         headers: {'Content-Type': 'application/json'},
-              //         body: jsonData,
-              //       );
-              //    print(response.statusCode);
-              //     if (response.statusCode == 200) {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const ForgotPassword()),
               );
-              //   print(json.decode(response.body));
-              //    }
-              //  } catch (error) {
-              //     print(error);
-              //   }
             },
             child: const Text(
               'Forgot Password?',
               style: TextStyle(
-                color: Colors.blue, // Will work,
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-              ),
+                  color: Colors.grey, // Will work,
+                  fontSize: 13),
             ),
           )),
           Container(
@@ -184,69 +118,23 @@ class _LogIn extends State<LogIn> {
                       Navigator.push(
                         context, // fix navigation for login
                         MaterialPageRoute(
-                            builder: (context) => const ForgotPassword()),
+                            builder: (context) => const OfferCarpool()),
                       );
                       print(json.decode(response.body));
                     }
                   } catch (error) {
                     print(error);
                   }
-
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => const ForgotPassword()),
-                  // );
                 },
                 child: const Text(
                   'Log In',
                   style: TextStyle(
-                    color: Color(0xFF05998c), // Will work,
+                    color: Colors.white, // Will work,
                     fontWeight: FontWeight.bold,
-                    fontSize: 30,
+                    fontSize: 20,
                   ),
                 )),
           ),
-          Container(
-              padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
-              child: TextField(
-                controller: emailController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Email',
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-                ),
-              )),
-          Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.all(8),
-            child: const Text(
-              'Forgot Password?',
-              style: TextStyle(
-                color: Colors.grey, // Will work,
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Container(
-              height: 60,
-              padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
-              child: ElevatedButton(
-                child: const Text(
-                  'Log In',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: Colors.white),
-                ),
-                onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => const ForgotPassword()),
-                  // );
-                },
-              )),
           Center(
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -278,9 +166,7 @@ class _LogIn extends State<LogIn> {
           const SizedBox(
             width: 40,
             height: 10,
-          )
-        ]),
-      ),
-    );
+          ),
+        ])));
   }
 }
