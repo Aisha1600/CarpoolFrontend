@@ -7,13 +7,10 @@ import 'package:http/http.dart' as http;
 // ignore: unnecessary_import
 
 class LoginForm {
-  late final String password;
   late final String email;
+  late final String password;
 
-  LoginForm({
-    required this.password,
-    required this.email,
-  });
+  LoginForm({required this.email, required this.password});
 
   Map<String, dynamic> toJson() {
     return {
