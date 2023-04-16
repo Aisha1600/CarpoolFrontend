@@ -1,6 +1,21 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 // ignore: unnecessary_import
-//need to change where the API is being handled 
+//need to change where the API is being handled
+class UpdatePassword {
+  late final String password;
+
+  UpdatePassword({required this.password});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'password': password,
+    };
+  }
+}
+
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({Key? key}) : super(key: key);
 
@@ -41,6 +56,7 @@ class _ForgotPassword extends State<ForgotPassword> {
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'New Password',
+              errorText: 'Passwords do not match',
               contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
             ),
           ),
@@ -65,11 +81,35 @@ class _ForgotPassword extends State<ForgotPassword> {
                 'Update Password',
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
-              onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => const ()),
-                // );
+              onPressed: () async {
+                if (newPasswordController.value ==
+                    confirmPasswordController.value) {
+                  UpdatePassword newpassword =
+                      UpdatePassword(password: newPasswordController.text);
+                  try {
+                    final jsonData = jsonEncode(newpassword.toJson());
+                    print(jsonData);
+                    print(json.decode(jsonData));
+                    final response = await http.put(
+                      //URL LOCAL HOST NEEDS TO BE CHANGED
+                      Uri.parse(
+                          'http://localhost:5000/member/UpdatePassword/2'),
+                      headers: {'Content-Type': 'application/json'},
+                      body: jsonData,
+                    );
+                    print(response.statusCode);
+                    if (response.statusCode == 200) {
+                      // Navigator.push(
+                      //   context, // fix navigation for login
+                      //   MaterialPageRoute(
+                      //       builder: (context) => const OfferCarpool()),
+                      // );
+                      print(json.decode(response.body));
+                    }
+                  } catch (error) {
+                    print(error);
+                  }
+                } else {}
               },
             )),
       ])),
