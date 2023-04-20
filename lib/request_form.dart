@@ -88,8 +88,8 @@ class _RequestFormState extends State<RequestForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    width: 150,
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    width: 100,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(50),
@@ -121,7 +121,7 @@ class _RequestFormState extends State<RequestForm> {
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    width: 150,
+                    width: 100,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(50),
@@ -158,7 +158,7 @@ class _RequestFormState extends State<RequestForm> {
           Row(
             children: [
               Text(
-                'Seats Available',
+                'Seats Required',
                 style: TextStyle(
                     fontSize: 15.0,
                     fontWeight: FontWeight.bold,
@@ -218,7 +218,7 @@ class _RequestFormState extends State<RequestForm> {
                     fontFamily: 'Palanquin'),
               ),
               SizedBox(
-                width: 40,
+                width: 20,
               ),
               GestureDetector(
                 onTap: () {
@@ -226,7 +226,10 @@ class _RequestFormState extends State<RequestForm> {
                     _selectedGender = 'male';
                   });
                 },
-                child: _buildOption('Male'),
+                child: _genderOption('Male'),
+              ),
+              SizedBox(
+                width: 20,
               ),
               GestureDetector(
                 onTap: () {
@@ -234,7 +237,10 @@ class _RequestFormState extends State<RequestForm> {
                     _selectedGender = 'female';
                   });
                 },
-                child: _buildOption('Female'),
+                child: _genderOption('Female'),
+              ),
+              SizedBox(
+                width: 20,
               ),
               GestureDetector(
                 onTap: () {
@@ -242,7 +248,47 @@ class _RequestFormState extends State<RequestForm> {
                     _selectedGender = 'none';
                   });
                 },
-                child: _buildOption('None'),
+                child: _genderOption('None'),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Row(
+            children: [
+              Text(
+                'Notes',
+                style: TextStyle(
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Palanquin'),
+              ),
+              SizedBox(
+                width: 40,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                width: 230,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 20, vertical: 17.5),
+                  ),
+                ),
               ),
             ],
           ),
@@ -251,13 +297,15 @@ class _RequestFormState extends State<RequestForm> {
     );
   }
 
-  Widget _buildOption(String label) {
+  Widget _genderOption(String label) {
     bool isSelected = _selectedGender == label.toLowerCase();
 
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 11, vertical: 10),
+      width: 60,
       decoration: BoxDecoration(
         color: isSelected ? Color(0xFF05998C) : Colors.white,
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
@@ -267,13 +315,12 @@ class _RequestFormState extends State<RequestForm> {
           ),
         ],
       ),
-      padding: EdgeInsets.all(8),
       child: Text(
         label,
         style: TextStyle(
             color: isSelected ? Colors.white : Colors.black,
-            fontSize: 15.0,
-            fontWeight: FontWeight.normal,
+            fontSize: 11.5,
+            fontWeight: FontWeight.bold,
             fontFamily: 'Palanquin'),
       ),
     );

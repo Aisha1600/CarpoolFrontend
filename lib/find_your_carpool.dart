@@ -239,7 +239,7 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                         _isAvailablePressed ? Color(0xFF05998C) : Colors.white,
                     onPrimary:
                         _isAvailablePressed ? Colors.white : Color(0xFF05998C),
-                    minimumSize: Size(200, 50),
+                    minimumSize: Size(170, 50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)),
                     elevation: 5,
@@ -271,7 +271,7 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                         _isRequestPressed ? Color(0xFF05998C) : Colors.white,
                     onPrimary:
                         _isRequestPressed ? Colors.white : Color(0xFF05998C),
-                    minimumSize: Size(190, 50),
+                    minimumSize: Size(170, 50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)),
                     elevation: 5,
@@ -283,7 +283,24 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
               if (_isAvailablePressed)
                 AvailableList()
               else if (_isRequestPressed)
-                RequestForm()
+                RequestForm(),
+              SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                  'Post Request',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: 'Palanquin'),
+                ),
+                style: ElevatedButton.styleFrom(
+                  fixedSize: Size.fromHeight(40),
+                ),
+              )
             ],
           ),
         ),

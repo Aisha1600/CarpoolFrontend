@@ -6,6 +6,8 @@ import 'sign_up.dart';
 import 'offer_carpool.dart';
 import 'request_form.dart';
 import 'log_in.dart';
+import 'ride_details_screen.dart';
+import 'ride_detail.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Carpool Application',
-      debugShowCheckedModeBanner: false,  
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.teal, fontFamily: 'PalanquinDark-Regular'),
       home: const MyHomePage(title: 'Carpool Application'),
@@ -51,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SignUp()),
+                MaterialPageRoute(builder: (context) => RideDetailsScreen()),
               );
             },
           )),
