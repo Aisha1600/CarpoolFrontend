@@ -640,7 +640,7 @@ class _PostOfferState extends State<PostOffer> {
                         final response = await http.post(
                           //URL LOCAL HOST NEEDS TO BE CHANGED
                           Uri.parse(
-                              'http://localhost:5000/member/2/preference'),
+                              'http://192.168.100.35:5000/member/2/preference'),
                           headers: {'Content-Type': 'application/json'},
                           body: jsonData2,
                         );

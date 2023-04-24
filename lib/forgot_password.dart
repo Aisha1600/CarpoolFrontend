@@ -93,7 +93,7 @@ class _ForgotPassword extends State<ForgotPassword> {
                     final response = await http.put(
                       //URL LOCAL HOST NEEDS TO BE CHANGED
                       Uri.parse(
-                          'http://localhost:5000/member/UpdatePassword/2'),
+                          'http://192.168.100.35:5000/member/UpdatePassword/2'),
                       headers: {'Content-Type': 'application/json'},
                       body: jsonData,
                     );

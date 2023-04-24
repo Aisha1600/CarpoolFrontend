@@ -261,7 +261,7 @@ class _SignUp extends State<SignUp> {
                       final jsonData = jsonEncode(
                           form.toJson()); //converts the data to json format
                       final response = await http.post(
-                        Uri.parse('http://localhost:5000/member/SignUp'),
+                        Uri.parse('http://192.168.100.35:5000/member/SignUp'),
                         headers: {'Content-Type': 'application/json'},
                         body: jsonData,
                       );

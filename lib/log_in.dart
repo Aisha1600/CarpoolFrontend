@@ -105,8 +105,9 @@ class _LogIn extends State<LogIn> {
                     print(jsonData);
                     print(json.decode(jsonData));
                     final response = await http.post(
-                      //URL LOCAL HOST NEEDS TO BE CHANGED
-                      Uri.parse('http://localhost:5000/member/login'),
+                      //URL NEEDS TO BE CHANGED TO THE IP ADDRESS
+                      //AND PORT NUMBER RUNNING THE SERVER
+                      Uri.parse('http://192.168.100.35:5000/member/loogin'),
                       headers: {'Content-Type': 'application/json'},
                       body: jsonData,
                     );
