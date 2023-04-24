@@ -1,6 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+class CreateOffer {
+  late final String destination_name;
+  late final String source_name;
+  late final DateTime created_on;
+  late final TimeOfDay travel_start_time;
+  late final int seats_offered;
+  late final int contribution_per_head;
+
+  CreateOffer(
+      {required this.destination_name,
+      required this.source_name,
+      required this.created_on,
+      required this.travel_start_time,
+      required this.seats_offered,
+      required this.contribution_per_head});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'destination_name': destination_name,
+      'source_name': source_name,
+      'created_on': created_on,
+      'travel_start_time': travel_start_time,
+      'seats_offered': seats_offered,
+      'contribution_per_head': contribution_per_head
+    };
+  }
+}
+
+class MemberPreferences {
+  late final String is_smoking_allowed;
+  late final String is_all_female;
+  late final String notes;
+
+  MemberPreferences(
+      {required this.is_smoking_allowed,
+      required this.is_all_female,
+      required this.notes});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'is_smoking_allowed': is_smoking_allowed,
+      'is_all_female': is_all_female,
+      'notes': notes,
+    };
+  }
+}
 
 class PostOffer extends StatefulWidget {
   const PostOffer({super.key});
@@ -12,13 +61,16 @@ class PostOffer extends StatefulWidget {
 class _PostOfferState extends State<PostOffer> {
   TextEditingController _fromController = TextEditingController();
   TextEditingController _toController = TextEditingController();
+  String is_all_female = '';
   DateTime _selectedDate = DateTime.now();
   TimeOfDay _selectedTime = TimeOfDay.now();
   bool _male = false;
   bool _female = false;
   bool _none = false;
   bool isSwitched = false;
+  String is_smoking_allowed = 'No';
   int _seats = 0;
+  String notes = '';
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -424,6 +476,7 @@ class _PostOfferState extends State<PostOffer> {
                             _male = true;
                             _female = false;
                             _none = false;
+                            is_all_female = 'No';
                           });
                         },
                         child: Text(
@@ -452,6 +505,7 @@ class _PostOfferState extends State<PostOffer> {
                             _male = false;
                             _female = true;
                             _none = false;
+                            is_all_female = 'Yes';
                           });
                         },
                         child: Text(
@@ -480,6 +534,7 @@ class _PostOfferState extends State<PostOffer> {
                             _male = false;
                             _female = false;
                             _none = true;
+                            is_all_female = 'No';
                           });
                         },
                         child: Text(
@@ -509,7 +564,7 @@ class _PostOfferState extends State<PostOffer> {
                   Row(
                     children: [
                       const Text(
-                        'Ride Paid',
+                        'Is smoking allowed?',
                         style: TextStyle(
                           fontSize: 15.0,
                           fontWeight: FontWeight.bold,
@@ -523,6 +578,12 @@ class _PostOfferState extends State<PostOffer> {
                         onChanged: (value) {
                           setState(() {
                             isSwitched = value;
+
+                            if (isSwitched == true) {
+                              is_smoking_allowed = 'Yes';
+                            } else {
+                              is_smoking_allowed = 'No';
+                            }
                           });
                         },
                         activeTrackColor: const Color(0xFF05998C),
@@ -533,17 +594,17 @@ class _PostOfferState extends State<PostOffer> {
                   const SizedBox(
                     height: 40,
                   ),
-                  // Row(
-                  //   children: [
-                  //     Text(
-                  //       'Notes',
-                  //       style: TextStyle(
-                  //         fontSize: 15.0,
-                  //         fontWeight: FontWeight.bold,
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
+                  Row(
+                    children: [
+                      Text(
+                        'Notes',
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -555,7 +616,47 @@ class _PostOfferState extends State<PostOffer> {
                       'Post Offer',
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
-                    onPressed: () {})),
+                    onPressed: () async {
+                      CreateOffer offer = CreateOffer(
+                          destination_name: _fromController.toString(),
+                          source_name: _toController.toString(),
+                          created_on: _selectedDate,
+                          travel_start_time: _selectedTime,
+                          seats_offered: _seats,
+                          contribution_per_head: 9);
+
+                      MemberPreferences preferences = MemberPreferences(
+                          is_smoking_allowed: is_smoking_allowed,
+                          is_all_female: is_all_female,
+                          notes: "These are some additional notes....");
+
+                      try {
+                        // final jsonData1 = jsonEncode(offer.toJson());
+                        // print(jsonData1);
+                        final jsonData2 = jsonEncode(preferences.toJson());
+                        print(jsonData2);
+                        // print(json.decode(jsonData1));
+                        print(json.decode(jsonData2));
+                        final response = await http.post(
+                          //URL LOCAL HOST NEEDS TO BE CHANGED
+                          Uri.parse(
+                              'http://localhost:5000/member/2/preference'),
+                          headers: {'Content-Type': 'application/json'},
+                          body: jsonData2,
+                        );
+                        print(response.statusCode);
+                        if (response.statusCode == 200) {
+                          // Navigator.push(
+                          //   context, // fix navigation for login
+                          //   MaterialPageRoute(
+                          //       builder: (context) => const OfferCarpool()),
+                          // );
+                          print(json.decode(response.body));
+                        }
+                      } catch (error) {
+                        print(error);
+                      }
+                    })),
           ]),
         ),
       ],

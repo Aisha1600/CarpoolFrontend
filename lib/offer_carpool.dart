@@ -13,13 +13,13 @@ class OfferCarpool extends StatefulWidget {
 class _OfferCarpoolState extends State<OfferCarpool> {
   bool _isAvailablePressed = false;
   bool _isRequestPressed = false;
-  String titleText = 'Post Offer';
+  String titleText = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Offer a Carpool'),
+          title: const Text('Carpool Application'),
           centerTitle: true,
           backgroundColor: const Color(0xFF05998C),
         ),
