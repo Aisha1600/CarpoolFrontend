@@ -107,29 +107,25 @@ class _LogIn extends State<LogIn> {
                     final response = await http.post(
                       //URL NEEDS TO BE CHANGED TO THE IP ADDRESS
                       //AND PORT NUMBER RUNNING THE SERVER
-                      Uri.parse('http://192.168.100.35:5000/member/loogin'),
+                      //this will make server accessible from mobile app
+                      //IP Address -> 192.168.100.35
+                      Uri.parse('http://192.168.100.35:3000/member/loogin'),
                       headers: {'Content-Type': 'application/json'},
                       body: jsonData,
                     );
                     print(response.statusCode);
                     if (response.statusCode == 200) {
-                      print(json.decode(response.body));
+                      print(response.body);
 
                       final responseBody = json.decode(response.body);
-
-                      // Get the JWT token from the response body
+                      // Gets the JWT token from the response body
                       final token = responseBody['token'];
 
-                      print(token);
-
+                      //Saves the JWT token in SharedPreferences
                       SharedPreferences prefs =
                           await SharedPreferences.getInstance();
                       prefs.setString('jwt_token', token);
 
-                      SharedPreferences pref =
-                          await SharedPreferences.getInstance();
-                      String? toke = prefs.getString('jwt_token');
-                      print(toke);
                       // Navigator.push(
                       //   context, // fix navigation for login
                       //   MaterialPageRoute(

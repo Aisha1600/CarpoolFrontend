@@ -29,6 +29,7 @@ class _ForgotPassword extends State<ForgotPassword> {
   TextEditingController confirmPasswordController = TextEditingController();
 
   String title = "Carpool Application";
+  String jwt_token = '';
 
   @override
   Widget build(BuildContext context) {
@@ -87,17 +88,19 @@ class _ForgotPassword extends State<ForgotPassword> {
                     confirmPasswordController.value) {
                   UpdatePassword newpassword =
                       UpdatePassword(password: newPasswordController.text);
-
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  String token = prefs.getString('jwt_token') ?? '';
+                  print(token);
                   try {
                     final jsonData = jsonEncode(newpassword.toJson());
                     print(jsonData);
                     print(json.decode(jsonData));
                     final response = await http.put(
-                      Uri.parse('http://192.168.100.35:5000/member/UpdatePass'),
+                      Uri.parse('http://192.168.100.35:3000/member/UpdatePass'),
                       headers: {
                         'Content-Type': 'application/json',
-                        'authorization':
-                            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY4MjM2NTM0MiwiZXhwIjoxNjgyNDAxMzQyfQ.YSttsoHqrUZwSeKRixljBhHkXQJ27b7NV8Zu3xjUHY8'
+                        'authorization': token
                       },
                       body: jsonData,
                     );
