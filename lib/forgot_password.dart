@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: unnecessary_import
 //need to change where the API is being handled
@@ -86,15 +87,18 @@ class _ForgotPassword extends State<ForgotPassword> {
                     confirmPasswordController.value) {
                   UpdatePassword newpassword =
                       UpdatePassword(password: newPasswordController.text);
+
                   try {
                     final jsonData = jsonEncode(newpassword.toJson());
                     print(jsonData);
                     print(json.decode(jsonData));
                     final response = await http.put(
-                      //URL LOCAL HOST NEEDS TO BE CHANGED
-                      Uri.parse(
-                          'http://192.168.100.35:5000/member/UpdatePassword/2'),
-                      headers: {'Content-Type': 'application/json'},
+                      Uri.parse('http://192.168.100.35:5000/member/UpdatePass'),
+                      headers: {
+                        'Content-Type': 'application/json',
+                        'authorization':
+                            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY4MjM2NTM0MiwiZXhwIjoxNjgyNDAxMzQyfQ.YSttsoHqrUZwSeKRixljBhHkXQJ27b7NV8Zu3xjUHY8'
+                      },
                       body: jsonData,
                     );
                     print(response.statusCode);

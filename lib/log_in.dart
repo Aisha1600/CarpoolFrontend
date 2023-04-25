@@ -3,8 +3,8 @@ import 'package:carpoolfront/offer_carpool.dart';
 import 'package:carpoolfront/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-// ignore: unnecessary_import
 
 class LoginForm {
   late final String email;
@@ -113,12 +113,28 @@ class _LogIn extends State<LogIn> {
                     );
                     print(response.statusCode);
                     if (response.statusCode == 200) {
-                      Navigator.push(
-                        context, // fix navigation for login
-                        MaterialPageRoute(
-                            builder: (context) => const OfferCarpool()),
-                      );
                       print(json.decode(response.body));
+
+                      final responseBody = json.decode(response.body);
+
+                      // Get the JWT token from the response body
+                      final token = responseBody['token'];
+
+                      print(token);
+
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      prefs.setString('jwt_token', token);
+
+                      SharedPreferences pref =
+                          await SharedPreferences.getInstance();
+                      String? toke = prefs.getString('jwt_token');
+                      print(toke);
+                      // Navigator.push(
+                      //   context, // fix navigation for login
+                      //   MaterialPageRoute(
+                      //       builder: (context) => const OfferCarpool()),
+                      // );
                     }
                   } catch (error) {
                     print(error);
