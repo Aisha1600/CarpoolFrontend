@@ -8,6 +8,7 @@ import 'request_form.dart';
 import 'log_in.dart';
 import 'ride_details_screen.dart';
 import 'ride_detail.dart';
+import 'map.dart';
 
 void main() {
   runApp(const MyApp());

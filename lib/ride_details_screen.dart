@@ -1,8 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:permission_handler/permission_handler.dart';
-//import 'package:permission/permission.dart';
 
 class RideDetailsScreen extends StatefulWidget {
   @override
@@ -10,26 +10,10 @@ class RideDetailsScreen extends StatefulWidget {
 }
 
 class _RideDetailsScreenState extends State<RideDetailsScreen> {
-  PermissionStatus _permissionStatus = PermissionStatus.granted;
-
+  Completer<GoogleMapController> _controller = Completer();
   @override
   void initState() {
     super.initState();
-    _checkLocationPermission();
-  }
-
-  Future<void> _checkLocationPermission() async {
-    final status = await Permission.locationWhenInUse.status;
-    setState(() {
-      _permissionStatus = status;
-    });
-  }
-
-  Future<void> _requestLocationPermission() async {
-    final status = await Permission.locationWhenInUse.request();
-    setState(() {
-      _permissionStatus = status;
-    });
   }
 
   @override
@@ -43,7 +27,10 @@ class _RideDetailsScreenState extends State<RideDetailsScreen> {
                 target: LatLng(37.422, -122.084),
                 zoom: 15,
               ),
-              myLocationEnabled: _permissionStatus == PermissionStatus.granted,
+              onMapCreated: (GoogleMapController controller) {
+                _controller.complete(controller);
+              },
+              myLocationEnabled: true,
             ),
           ),
           Positioned(
