@@ -2,7 +2,6 @@ import 'package:carpoolfront/car_details.dart';
 import 'package:carpoolfront/find_your_carpool.dart';
 import 'package:carpoolfront/forgot_password.dart';
 import 'package:carpoolfront/post_offer.dart';
-import 'package:carpoolfront/view_offers.dart';
 import 'Extra.dart';
 import 'available_list.dart';
 import 'package:flutter/material.dart';

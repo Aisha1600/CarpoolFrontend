@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-class ViewOffers extends StatefulWidget {
-  const ViewOffers({super.key});
+class OfferRequests extends StatefulWidget {
+  const OfferRequests({super.key});
 
   @override
-  State<ViewOffers> createState() => _ViewOffersState();
+  State<OfferRequests> createState() => _OffersRequestState();
 }
 
-class _ViewOffersState extends State<ViewOffers> {
+class _OffersRequestState extends State<OfferRequests> {
   String title = "Carpool Application";
   @override
   Widget build(BuildContext context) {

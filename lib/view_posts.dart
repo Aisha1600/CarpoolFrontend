@@ -1,6 +1,6 @@
 //may not be used for now
 
-import 'package:carpoolfront/view_offers.dart';
+import 'package:carpoolfront/offer_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -184,13 +184,7 @@ class _ViewPostsState extends State<ViewPosts> {
                   width: 10,
                 ),
                 InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ViewOffers()),
-                    );
-                  },
+                  onTap: () {},
                   child: Container(
                     width:
                         20, // adjust the width and height as per your requirements

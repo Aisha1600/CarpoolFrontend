@@ -1,4 +1,4 @@
-import 'package:carpoolfront/view_offers.dart';
+import 'package:carpoolfront/offer_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -676,7 +676,7 @@ class _PostOfferState extends State<PostOffer> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const ViewOffers()),
+                                builder: (context) => const OfferRequests()),
                           );
                         }
                       } catch (error) {
