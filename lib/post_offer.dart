@@ -7,8 +7,8 @@ import 'dart:convert';
 class CreateOffer {
   late final String destination_name;
   late final String source_name;
-  late final DateTime created_on;
-  late final TimeOfDay travel_start_time;
+  late final String created_on;
+  late final String travel_start_time;
   late final int seats_offered;
   late final int contribution_per_head;
 
@@ -617,11 +617,19 @@ class _PostOfferState extends State<PostOffer> {
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                     onPressed: () async {
+                      DateTime time = DateTime(
+                        DateTime.now().year,
+                        DateTime.now().month,
+                        DateTime.now().day,
+                        _selectedTime.hour,
+                        _selectedTime.minute,
+                      );
+
                       CreateOffer offer = CreateOffer(
-                          destination_name: _fromController.toString(),
-                          source_name: _toController.toString(),
-                          created_on: _selectedDate,
-                          travel_start_time: _selectedTime,
+                          destination_name: _fromController.text.toString(),
+                          source_name: _toController.text.toString(),
+                          created_on: _selectedDate.toIso8601String(),
+                          travel_start_time: time.toIso8601String(),
                           seats_offered: _seats,
                           contribution_per_head: 9);
 
@@ -631,27 +639,40 @@ class _PostOfferState extends State<PostOffer> {
                           notes: "These are some additional notes....");
 
                       try {
-                        // final jsonData1 = jsonEncode(offer.toJson());
-                        // print(jsonData1);
+                        final jsonData1 = jsonEncode(offer.toJson());
+                        print(jsonData1);
+                        print(json.decode(jsonData1));
+
                         final jsonData2 = jsonEncode(preferences.toJson());
                         print(jsonData2);
-                        // print(json.decode(jsonData1));
                         print(json.decode(jsonData2));
-                        final response = await http.post(
+
+                        final response1 = await http.post(
+                          Uri.parse(
+                              'http://localhost:4000/member_car/1/createRidee'),
+                          headers: {'Content-Type': 'application/json'},
+                          body: jsonData1,
+                        );
+
+                        final response2 = await http.post(
                           //URL LOCAL HOST NEEDS TO BE CHANGED
                           Uri.parse(
-                              'http://192.168.100.35:5000/member/2/preference'),
+                              'http://localhost:4000/member/2/preference'),
                           headers: {'Content-Type': 'application/json'},
                           body: jsonData2,
                         );
-                        print(response.statusCode);
-                        if (response.statusCode == 200) {
-                          // Navigator.push(
-                          //   context, // fix navigation for login
-                          //   MaterialPageRoute(
-                          //       builder: (context) => const OfferCarpool()),
-                          // );
-                          print(json.decode(response.body));
+
+                        print(response1.statusCode);
+                        print(response2.statusCode);
+
+                        if (response1.statusCode == 200) {
+                          print(json.decode(response1.body));
+                          print(response1.statusCode);
+                        }
+
+                        if (response2.statusCode == 200) {
+                          print(json.decode(response1.body));
+                          print(response1.statusCode);
                         }
                       } catch (error) {
                         print(error);

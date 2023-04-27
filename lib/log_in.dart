@@ -108,7 +108,7 @@ class _LogIn extends State<LogIn> {
                       //URL NEEDS TO BE CHANGED TO THE IP ADDRESS
                       //AND PORT NUMBER RUNNING THE SERVER
                       //this will make server accessible from mobile app
-                      //IP Address -> 192.168.100.35
+                      //KASHAF'S IP Address -> 192.168.100.35
                       Uri.parse('http://192.168.100.35:3000/member/loogin'),
                       headers: {'Content-Type': 'application/json'},
                       body: jsonData,
@@ -120,6 +120,7 @@ class _LogIn extends State<LogIn> {
                       final responseBody = json.decode(response.body);
                       // Gets the JWT token from the response body
                       final token = responseBody['token'];
+                      print('Token from API response body:{$token}');
 
                       //Saves the JWT token in SharedPreferences
                       SharedPreferences prefs =
