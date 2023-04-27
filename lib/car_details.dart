@@ -162,20 +162,6 @@ class _CarDetails extends State<CarDetails> {
                 }
               },
             )),
-        SizedBox(
-            width: 20,
-            height: 40,
-            child: TextButton(
-              onPressed: () {},
-              child: const Text(
-                'Skip Car Details for now >',
-                style: TextStyle(
-                  color: Color(0xFF05998c),
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            )),
       ])),
     );
   }

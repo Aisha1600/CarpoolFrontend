@@ -1,3 +1,4 @@
+import 'package:carpoolfront/view_offers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -665,14 +666,18 @@ class _PostOfferState extends State<PostOffer> {
                         print(response1.statusCode);
                         print(response2.statusCode);
 
-                        if (response1.statusCode == 200) {
+                        if (response1.statusCode == 200 &&
+                            response2.statusCode == 201) {
                           print(json.decode(response1.body));
                           print(response1.statusCode);
-                        }
+                          print(json.decode(response2.body));
+                          print(response2.statusCode);
 
-                        if (response2.statusCode == 200) {
-                          print(json.decode(response1.body));
-                          print(response1.statusCode);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ViewOffers()),
+                          );
                         }
                       } catch (error) {
                         print(error);

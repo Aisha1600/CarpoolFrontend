@@ -1,7 +1,6 @@
+import 'package:carpoolfront/available_requests.dart';
 import 'package:carpoolfront/post_offer.dart';
 import 'package:flutter/material.dart';
-import 'view_posts.dart';
-import 'post_offer.dart';
 
 class OfferCarpool extends StatefulWidget {
   const OfferCarpool({super.key});
@@ -44,7 +43,7 @@ class _OfferCarpoolState extends State<OfferCarpool> {
                   setState(() {
                     _isAvailablePressed = true;
                     _isRequestPressed = false;
-                    titleText = 'Post Offer';
+                    titleText = 'Post An Offer';
                   });
                 },
                 child: Text(
@@ -76,11 +75,11 @@ class _OfferCarpoolState extends State<OfferCarpool> {
                   setState(() {
                     _isAvailablePressed = false;
                     _isRequestPressed = true;
-                    titleText = 'View Your Posts';
+                    titleText = 'Available Carpool Requests';
                   });
                 },
                 child: Text(
-                  'View Posts',
+                  'Carpool Requests',
                   style: TextStyle(
                     color: _isRequestPressed ? Colors.white : Colors.black,
                     fontSize: 15.0,
@@ -104,7 +103,7 @@ class _OfferCarpoolState extends State<OfferCarpool> {
             if (_isAvailablePressed)
               const PostOffer()
             else if (_isRequestPressed)
-              const ViewPosts()
+              AvailableRequests()
           ]),
         )));
   }
