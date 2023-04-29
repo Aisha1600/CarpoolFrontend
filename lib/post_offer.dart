@@ -5,6 +5,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class CreateOffer {
   late final String destination_name;
   late final String source_name;
@@ -639,6 +641,11 @@ class _PostOfferState extends State<PostOffer> {
                           is_all_female: is_all_female,
                           notes: "These are some additional notes....");
 
+                      //getting the member token and decoding it to get member related data
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      String token = prefs.getString('jwt_token') ?? '';
+
                       try {
                         final jsonData1 = jsonEncode(offer.toJson());
                         print(jsonData1);
@@ -649,17 +656,22 @@ class _PostOfferState extends State<PostOffer> {
                         print(json.decode(jsonData2));
 
                         final response1 = await http.post(
-                          Uri.parse(
-                              'http://localhost:4000/member_car/1/createRidee'),
-                          headers: {'Content-Type': 'application/json'},
+                          Uri.parse('http://localhost:4000/ride/JRide'),
+                          headers: {
+                            'Content-Type': 'application/json',
+                            'authorization': token
+                          },
                           body: jsonData1,
                         );
 
                         final response2 = await http.post(
                           //URL LOCAL HOST NEEDS TO BE CHANGED
                           Uri.parse(
-                              'http://localhost:4000/member/2/preference'),
-                          headers: {'Content-Type': 'application/json'},
+                              'http://localhost:4000/preference/AddPreference'),
+                          headers: {
+                            'Content-Type': 'application/json',
+                            'authorization': token
+                          },
                           body: jsonData2,
                         );
 
@@ -670,8 +682,21 @@ class _PostOfferState extends State<PostOffer> {
                             response2.statusCode == 201) {
                           print(json.decode(response1.body));
                           print(response1.statusCode);
+
+                          final responseBody = json.decode(response1.body);
+                          // Gets and prints the ride JWT token from the response body of the /ride/JRide api
+                          final ride_token = responseBody['token'];
+                          print('Token from API response body:{$ride_token}');
+
+                          //Saves the ride JWT token in SharedPreferences
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          prefs.setString('ride_token', ride_token);
+                          print(json.decode(response1.body));
+
                           print(json.decode(response2.body));
-                          print(response2.statusCode);
+                          print(
+                              'Preference was added with response code {$response2.statusCode}');
 
                           Navigator.push(
                             context,

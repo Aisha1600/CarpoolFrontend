@@ -127,11 +127,11 @@ class _LogIn extends State<LogIn> {
                           await SharedPreferences.getInstance();
                       prefs.setString('jwt_token', token);
 
-                      // Navigator.push(
-                      //   context, // fix navigation for login
-                      //   MaterialPageRoute(
-                      //       builder: (context) => const OfferCarpool()),
-                      // );
+                      Navigator.push(
+                        context, // fix navigation for login
+                        MaterialPageRoute(
+                            builder: (context) => const OfferCarpool()),
+                      );
                     }
                   } catch (error) {
                     print(error);

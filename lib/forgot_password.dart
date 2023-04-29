@@ -58,7 +58,6 @@ class _ForgotPassword extends State<ForgotPassword> {
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'New Password',
-              errorText: 'Passwords do not match',
               contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
             ),
           ),

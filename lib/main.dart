@@ -50,11 +50,12 @@ class _MyHomePageState extends State<MyHomePage> {
           height: 50,
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: ElevatedButton(
-            child: const Text('Offer Carpool'),
+            child: const Text('SIGN UP'),
             onPressed: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const OfferCarpool()),
+                MaterialPageRoute(
+                    builder: (BuildContext context) => const SignUp()),
               );
             },
           )),
