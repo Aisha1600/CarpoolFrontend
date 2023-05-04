@@ -1,7 +1,10 @@
+import 'package:carpoolfront/log_in.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'offer_carpool.dart';
 
 // ignore: unnecessary_import
 //need to change where the API is being handled
@@ -75,47 +78,46 @@ class _ForgotPassword extends State<ForgotPassword> {
           ),
         ),
         Container(
-            height: 60,
-            padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+            height: 90,
+            padding: const EdgeInsets.fromLTRB(40, 20, 40, 10),
             child: ElevatedButton(
               child: const Text(
                 'Update Password',
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
               onPressed: () async {
-                if (newPasswordController.value ==
-                    confirmPasswordController.value) {
-                  UpdatePassword newpassword =
-                      UpdatePassword(password: newPasswordController.text);
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  String token = prefs.getString('jwt_token') ?? '';
-                  print(token);
-                  try {
-                    final jsonData = jsonEncode(newpassword.toJson());
-                    print(jsonData);
-                    print(json.decode(jsonData));
-                    final response = await http.put(
-                      Uri.parse('http://192.168.100.35:3000/member/UpdatePass'),
-                      headers: {
-                        'Content-Type': 'application/json',
-                        'authorization': token
-                      },
-                      body: jsonData,
-                    );
-                    print(response.statusCode);
-                    if (response.statusCode == 200) {
-                      // Navigator.push(
-                      //   context, // fix navigation for login
-                      //   MaterialPageRoute(
-                      //       builder: (context) => const OfferCarpool()),
-                      // );
-                      print(json.decode(response.body));
-                    }
-                  } catch (error) {
-                    print(error);
-                  }
-                } else {}
+                // if (newPasswordController.value ==
+                //     confirmPasswordController.value) {
+                //   UpdatePassword newpassword =
+                //       UpdatePassword(password: newPasswordController.text);
+                //   SharedPreferences prefs =
+                //       await SharedPreferences.getInstance();
+                //   String token = prefs.getString('jwt_token') ?? '';
+                //   print(token);
+                //   try {
+                //     final jsonData = jsonEncode(newpassword.toJson());
+                //     print(jsonData);
+                //     print(json.decode(jsonData));
+                //     final response = await http.put(
+                //       Uri.parse('http://192.168.100.35:3000/member/UpdatePass'),
+                //       headers: {
+                //         'Content-Type': 'application/json',
+                //         'authorization': token
+                //       },
+                //       body: jsonData,
+                //     );
+                //     print(response.statusCode);
+                //     if (response.statusCode == 200) {
+                Navigator.push(
+                  context, // fix navigation for login
+                  MaterialPageRoute(builder: (context) => const LogIn()),
+                );
+                //       print(json.decode(response.body));
+                //     }
+                //   } catch (error) {
+                //     print(error);
+                //   }
+                // } else {}
               },
             )),
       ])),

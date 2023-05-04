@@ -1,3 +1,4 @@
+import 'package:carpoolfront/offer_carpool.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -54,9 +55,9 @@ class _CarDetails extends State<CarDetails> {
           child: ListView(children: <Widget>[
         Container(
             alignment: Alignment.center,
-            padding: const EdgeInsets.all(13),
+            padding: const EdgeInsets.all(15),
             child: const Text(
-              'Enter Car Details',
+              'Register your Car',
               style: TextStyle(
                 color: Color(0xFF05998c), // Will work,
                 fontWeight: FontWeight.bold,
@@ -64,7 +65,7 @@ class _CarDetails extends State<CarDetails> {
               ),
             )),
         Container(
-          padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
+          padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
           child: TextField(
             controller: nameController,
             decoration: const InputDecoration(
@@ -74,7 +75,7 @@ class _CarDetails extends State<CarDetails> {
           ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
+          padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
           child: TextField(
             controller: modelController,
             decoration: const InputDecoration(
@@ -84,7 +85,7 @@ class _CarDetails extends State<CarDetails> {
           ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
+          padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
           child: TextField(
             controller: makeyearController,
             decoration: const InputDecoration(
@@ -94,7 +95,7 @@ class _CarDetails extends State<CarDetails> {
           ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
+          padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
           child: TextField(
             controller: rengoController,
             decoration: const InputDecoration(
@@ -104,7 +105,7 @@ class _CarDetails extends State<CarDetails> {
           ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
+          padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
           child: TextField(
             controller: colorController,
             decoration: const InputDecoration(
@@ -114,8 +115,8 @@ class _CarDetails extends State<CarDetails> {
           ),
         ),
         Container(
-            height: 60,
-            padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+            height: 90,
+            padding: const EdgeInsets.fromLTRB(40, 20, 40, 10),
             child: ElevatedButton(
               child: const Text(
                 'Register',
@@ -142,7 +143,8 @@ class _CarDetails extends State<CarDetails> {
                   print(json.decode(jsonData));
                   final response = await http.post(
                     //URL LOCAL HOST NEEDS TO BE CHANGED
-                    Uri.parse('http://localhost:4000/member_car/InsertCar'),
+                    Uri.parse(
+                        'http://192.168.100.35:4000/member_car/InsertCar'),
                     headers: {
                       'Content-Type': 'application/json',
                       'authorization': token
@@ -151,10 +153,10 @@ class _CarDetails extends State<CarDetails> {
                   );
                   print(response.statusCode);
                   if (response.statusCode == 200) {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const CarDetails()),
+                          builder: (context) => const OfferCarpool()),
                     );
                     print(json.decode(response.body));
                   }

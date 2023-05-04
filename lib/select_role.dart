@@ -25,14 +25,14 @@ class _Select_RoleState extends State<Select_Role> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(
-              height: 50,
+              height: 70,
             ),
             const Text(
               'How would you like to proceed?',
               style: TextStyle(fontSize: 20),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             Column(
               children: [
                 Container(
@@ -47,10 +47,10 @@ class _Select_RoleState extends State<Select_Role> {
                                 const FindYourCarpool()),
                       );
                     },
-                    child: const Text('Offer Carpools'),
+                    child: const Text('Avail Carpools'),
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 30),
                 Container(
                   width: 300,
                   height: 60,
@@ -68,7 +68,7 @@ class _Select_RoleState extends State<Select_Role> {
                           .white, // Change button background color to white
                       onPrimary: Colors.black, // Change text color to black
                     ),
-                    child: const Text('Avail Carpools'),
+                    child: const Text('Offer Carpools'),
                   ),
                 )
               ],

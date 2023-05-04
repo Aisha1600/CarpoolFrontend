@@ -40,6 +40,14 @@ dependencies:
   get: ^4.3.8
   shared_preferences: ^2.1.0
   intl: ^0.18.0
+  google_maps_flutter: ^2.2.5
+  cached_network_image: ^3.2.3
+  path_provider: ^2.0.5
+  permission_handler: ^10.2.0
+  permission: ^0.1.7
+  uuid: ^3.0.5
+  provider: ^6.0.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

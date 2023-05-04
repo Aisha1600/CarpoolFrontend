@@ -1,3 +1,4 @@
+import 'package:carpoolfront/license_info.dart';
 import 'package:carpoolfront/select_role.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -86,7 +87,7 @@ class _SignUp extends State<SignUp> {
     return null;
   }
 
-  String dropdownValue = 'Not Selected';
+  String dropdownValue = 'M';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,7 +133,7 @@ class _SignUp extends State<SignUp> {
             Container(
               padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
               child: TextField(
-                controller: fnameController,
+                controller: lnameController,
                 decoration: const InputDecoration(
                   labelText: 'Last Name',
                   labelStyle: TextStyle(fontFamily: 'PalanquinDark-Regular'),
@@ -239,7 +240,7 @@ class _SignUp extends State<SignUp> {
                 Container(
                     child: DropdownButton<String>(
                   value: dropdownValue,
-                  items: <String>['Not Selected', 'Male', 'Female', 'Other']
+                  items: <String>['M', 'F']
                       .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
@@ -266,40 +267,47 @@ class _SignUp extends State<SignUp> {
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                     onPressed: () async {
-                      SignUpFOrm form = SignUpFOrm(
-                          fname: fnameController.text,
-                          lname: lnameController.text,
-                          password: passwordController.text,
-                          phone: phoneController.text,
-                          cnic: cnicController.text,
-                          email: emailController.text,
-                          gender: dropdownValue);
-                      try {
-                        final jsonData = jsonEncode(
-                            form.toJson()); //converts the data to json format
-                        final response = await http.post(
-                          //192.168.100.35
-                          Uri.parse('http:localhost:4000/member/SignUp'),
-                          headers: {'Content-Type': 'application/json'},
-                          body: jsonData,
-                        );
-                        print(response.statusCode);
-                        if (response.statusCode == 200) {
-                          // Item added successfully
-                          final responseBody = json.decode(response.body);
-                          // Gets the JWT token from the response body
-                          final token = responseBody['token'];
-                          print('Token from API response body:{$token}');
+                      // SignUpFOrm form = SignUpFOrm(
+                      //     fname: fnameController.text,
+                      //     lname: lnameController.text,
+                      //     password: passwordController.text,
+                      //     phone: phoneController.text,
+                      //     cnic: cnicController.text,
+                      //     email: emailController.text,
+                      //     gender: dropdownValue.toString());
+                      // try {
+                      //   final jsonData = jsonEncode(
+                      //       form.toJson()); //converts the data to json format
+                      //   final response = await http.post(
+                      //     //192.168.100.35
+                      //     Uri.parse('http://192.168.100.35:4000/member/SignUp'),
+                      //     headers: {'Content-Type': 'application/json'},
+                      //     body: jsonData,
+                      //   );
+                      //   print(response.statusCode);
+                      //   if (response.statusCode == 201) {
+                      //     // Item added successfully
+                      //     final responseBody = json.decode(response.body);
+                      //     // Gets the JWT token from the response body
+                      //     final token = responseBody['token'];
+                      //     print('Token from API response body:{$token}');
 
-                          //Saves the JWT token in SharedPreferences
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          prefs.setString('jwt_token', token);
-                          print(json.decode(response.body));
-                        }
-                      } catch (error) {
-                        print(error);
-                      }
+                      //     //Saves the JWT token in SharedPreferences
+                      //     SharedPreferences prefs =
+                      //         await SharedPreferences.getInstance();
+                      //     prefs.setString('jwt_token', token);
+                      //     print(json.decode(response.body));
+
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Select_Role(),
+                        ),
+                      );
+                      //   }
+                      // } catch (error) {
+                      //   print(error);
+                      // }
                     })),
             Center(
                 child:

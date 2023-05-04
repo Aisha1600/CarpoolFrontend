@@ -22,7 +22,7 @@ class _OfferCarpoolState extends State<OfferCarpool> {
           centerTitle: true,
           backgroundColor: const Color(0xFF05998C),
         ),
-        body: SingleChildScrollView(
+        body: Center(
             child: Container(
           padding: EdgeInsets.all(16.0),
           child:
@@ -43,11 +43,11 @@ class _OfferCarpoolState extends State<OfferCarpool> {
                   setState(() {
                     _isAvailablePressed = true;
                     _isRequestPressed = false;
-                    titleText = 'Post An Offer';
+                    titleText = 'Post Carpool Offer';
                   });
                 },
                 child: Text(
-                  'Post Offer',
+                  'Post Carpool',
                   style: TextStyle(
                     color: _isAvailablePressed ? Colors.white : Colors.black,
                     fontSize: 15.0,
@@ -75,11 +75,11 @@ class _OfferCarpoolState extends State<OfferCarpool> {
                   setState(() {
                     _isAvailablePressed = false;
                     _isRequestPressed = true;
-                    titleText = 'Available Carpool Requests';
+                    titleText = 'Available Requests';
                   });
                 },
                 child: Text(
-                  'Carpool Requests',
+                  'Available Requests',
                   style: TextStyle(
                     color: _isRequestPressed ? Colors.white : Colors.black,
                     fontSize: 15.0,
