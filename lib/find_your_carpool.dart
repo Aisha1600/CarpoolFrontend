@@ -1,10 +1,9 @@
-import 'package:carpoolfront/available_offers.dart';
 import 'package:carpoolfront/available_requests.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
-import 'available_requests.dart';
+import 'available_list.dart';
 import 'request_form.dart';
 import 'list_places.dart';
 import 'package:provider/provider.dart';
@@ -353,6 +352,7 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                     ]),
                     const SizedBox(height: 20.0),
                     if (_isAvailablePressed)
+                      //needs to be changed
                       AvailableRequests()
                     else if (_isRequestPressed)
                       RequestForm(),
