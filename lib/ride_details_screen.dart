@@ -24,7 +24,7 @@ class _RideDetailsScreenState extends State<RideDetailsScreen> {
           Expanded(
             child: GoogleMap(
               initialCameraPosition: CameraPosition(
-                target: LatLng(37.422, -122.084),
+                target: LatLng(24.8607, 67.0011),
                 zoom: 15,
               ),
               onMapCreated: (GoogleMapController controller) {

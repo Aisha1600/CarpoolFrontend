@@ -7,8 +7,8 @@ import 'offer_carpool.dart';
 import 'request_form.dart';
 import 'log_in.dart';
 import 'ride_details_screen.dart';
-import 'ride_detail.dart';
 import 'map.dart';
+import 'request_history.dart';
 
 void main() {
   runApp(const MyApp());
@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => RideDetailsScreen()),
+                MaterialPageRoute(builder: (context) => FindYourCarpool()),
               );
             },
           )),
