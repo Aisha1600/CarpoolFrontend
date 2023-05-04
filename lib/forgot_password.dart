@@ -1,6 +1,22 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
 // ignore: unnecessary_import
-//need to change where the API is being handled 
+//need to change where the API is being handled
+class UpdatePassword {
+  late final String password;
+
+  UpdatePassword({required this.password});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'password': password,
+    };
+  }
+}
+
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({Key? key}) : super(key: key);
 
@@ -13,6 +29,7 @@ class _ForgotPassword extends State<ForgotPassword> {
   TextEditingController confirmPasswordController = TextEditingController();
 
   String title = "Carpool Application";
+  String jwt_token = '';
 
   @override
   Widget build(BuildContext context) {
@@ -65,11 +82,40 @@ class _ForgotPassword extends State<ForgotPassword> {
                 'Update Password',
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
-              onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => const ()),
-                // );
+              onPressed: () async {
+                if (newPasswordController.value ==
+                    confirmPasswordController.value) {
+                  UpdatePassword newpassword =
+                      UpdatePassword(password: newPasswordController.text);
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  String token = prefs.getString('jwt_token') ?? '';
+                  print(token);
+                  try {
+                    final jsonData = jsonEncode(newpassword.toJson());
+                    print(jsonData);
+                    print(json.decode(jsonData));
+                    final response = await http.put(
+                      Uri.parse('http://192.168.100.35:3000/member/UpdatePass'),
+                      headers: {
+                        'Content-Type': 'application/json',
+                        'authorization': token
+                      },
+                      body: jsonData,
+                    );
+                    print(response.statusCode);
+                    if (response.statusCode == 200) {
+                      // Navigator.push(
+                      //   context, // fix navigation for login
+                      //   MaterialPageRoute(
+                      //       builder: (context) => const OfferCarpool()),
+                      // );
+                      print(json.decode(response.body));
+                    }
+                  } catch (error) {
+                    print(error);
+                  }
+                } else {}
               },
             )),
       ])),

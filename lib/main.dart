@@ -1,4 +1,7 @@
+import 'package:carpoolfront/car_details.dart';
 import 'package:carpoolfront/find_your_carpool.dart';
+import 'package:carpoolfront/forgot_password.dart';
+import 'package:carpoolfront/post_offer.dart';
 import 'Extra.dart';
 import 'available_list.dart';
 import 'package:flutter/material.dart';
@@ -50,11 +53,12 @@ class _MyHomePageState extends State<MyHomePage> {
           height: 50,
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: ElevatedButton(
-            child: const Text('OFFER CARPOOL PAGE'),
+            child: const Text('SIGN UP'),
             onPressed: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => FindYourCarpool()),
+                MaterialPageRoute(
+                    builder: (BuildContext context) => const SignUp()),
               );
             },
           )),

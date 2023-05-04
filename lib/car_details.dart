@@ -1,43 +1,30 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 //for API integration
 class CarDetailForm {
   late final String name;
   late final String model;
-  late final String makeyear;
-  late final int member_id; //this is temporary
-  late final String rengo;
-  late final String color;
-  late final String Licenseno;
-  late final String Licensevalid; //should be datetime though
+  late final String make_year;
+  late final String car_regno;
+  late final String car_color;
 
-
-
-
-
-  CarDetailForm(
-      {
-      required this.name,
-      required this.model,
-       required this.makeyear,
-      required this.member_id, //temp
-       required this.rengo,
-      required this.color,
-       required this.Licenseno,
-      required this.Licensevalid
-       });
+  CarDetailForm({
+    required this.name,
+    required this.model,
+    required this.make_year,
+    required this.car_regno,
+    required this.car_color,
+  });
   Map<String, dynamic> toJson() {
     return {
       'name': name,
       'model': model,
-      'makeyear': makeyear,
-      'member_id': member_id, //temp
-      'rengo': rengo,
-      'color': color,
-      'Licenseno': Licenseno,
-       'Licensevalid': Licensevalid
+      'make_year': make_year,
+      'car_regno': car_regno,
+      'car_color': car_color,
     };
   }
 }
@@ -55,8 +42,6 @@ class _CarDetails extends State<CarDetails> {
   TextEditingController makeyearController = TextEditingController();
   TextEditingController rengoController = TextEditingController();
   TextEditingController colorController = TextEditingController();
-  TextEditingController LicensenoController = TextEditingController();
-  TextEditingController LicensevalidController = TextEditingController();
   String title = "Carpool Application";
 
   @override
@@ -91,7 +76,6 @@ class _CarDetails extends State<CarDetails> {
         Container(
           padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
           child: TextField(
-            obscureText: true,
             controller: modelController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -102,18 +86,6 @@ class _CarDetails extends State<CarDetails> {
         Container(
           padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
           child: TextField(
-            obscureText: true,
-            controller: makeyearController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Make', //this needs to be removed its not in db
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
-          child: TextField(
-            obscureText: true,
             controller: makeyearController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -124,7 +96,6 @@ class _CarDetails extends State<CarDetails> {
         Container(
           padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
           child: TextField(
-            obscureText: true,
             controller: rengoController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -135,7 +106,6 @@ class _CarDetails extends State<CarDetails> {
         Container(
           padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
           child: TextField(
-            obscureText: true,
             controller: colorController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -144,88 +114,54 @@ class _CarDetails extends State<CarDetails> {
           ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
-          child: TextField(
-            obscureText: true,
-            controller: LicensenoController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'License Number',
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
-          child: TextField(
-            obscureText: true,
-            controller: LicensevalidController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'License Valid Until',
-            ),
-          ),
-        ),
-        Container(
             height: 60,
             padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
             child: ElevatedButton(
               child: const Text(
-                'Next',
+                'Register',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                     color: Colors.white),
               ),
               onPressed: () async {
-               //API INTEGRATION
-               CarDetailForm form = CarDetailForm(
-              member_id: 9, //temp
-              name: nameController.text,
-              model: modelController.text,
-              makeyear: makeyearController.text,
-              rengo: rengoController.text,
-              color: colorController.text,
-              Licenseno: LicensenoController.text,
-              Licensevalid: LicensevalidController.text)
-              ;
-              try {
-                  
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                String token = prefs.getString('jwt_token') ?? '';
+                print(token);
+                //API INTEGRATION
+                CarDetailForm form = CarDetailForm(
+                  name: nameController.text,
+                  model: modelController.text,
+                  make_year: makeyearController.text,
+                  car_regno: rengoController.text,
+                  car_color: colorController.text,
+                );
+                try {
                   final jsonData = jsonEncode(form.toJson());
                   print(jsonData);
                   print(json.decode(jsonData));
                   final response = await http.post(
                     //URL LOCAL HOST NEEDS TO BE CHANGED
-                    Uri.parse('http://localhost:5000/member/9/car'),
-                    headers: {'Content-Type': 'application/json'},
+                    Uri.parse('http://localhost:4000/member_car/InsertCar'),
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'authorization': token
+                    },
                     body: jsonData,
                   );
                   print(response.statusCode);
-                   if (response.statusCode == 200) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const CarDetails()),
-                );
-                  print(json.decode(response.body));
+                  if (response.statusCode == 200) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CarDetails()),
+                    );
+                    print(json.decode(response.body));
                   }
-            } catch (error) {
+                } catch (error) {
                   print(error);
                 }
-          
               },
-            )),
-        SizedBox(
-            width: 20,
-            height: 40,
-            child: TextButton(
-              onPressed: () {},
-              child: const Text(
-                'Skip Car Details for now >',
-                style: TextStyle(
-                  color: Color(0xFF05998c),
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
             )),
       ])),
     );
