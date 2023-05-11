@@ -75,11 +75,10 @@ class _RequestFormState extends State<RequestForm> {
           Row(
             children: [
               Text(
-                'Time',
+                'Schedule',
                 style: TextStyle(
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Palanquin'),
+                  fontSize: 15.0,
+                ),
               ),
               SizedBox(
                 width: 20,
@@ -110,7 +109,6 @@ class _RequestFormState extends State<RequestForm> {
                           Text(
                             "$formattedDate",
                             // "${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}",
-                            style: TextStyle(fontFamily: 'Palanquin'),
                           ),
                         ],
                       ),
@@ -142,7 +140,6 @@ class _RequestFormState extends State<RequestForm> {
                           Text(
                             "$formattedTime",
                             //"${_selectedTime.hour}:${_selectedTime.minute}",
-                            style: TextStyle(fontFamily: 'Palanquin'),
                           ),
                         ],
                       ),
@@ -160,9 +157,8 @@ class _RequestFormState extends State<RequestForm> {
               Text(
                 'Seats Required',
                 style: TextStyle(
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Palanquin'),
+                  fontSize: 15.0,
+                ),
               ),
               SizedBox(
                 width: 40,
@@ -213,9 +209,8 @@ class _RequestFormState extends State<RequestForm> {
               Text(
                 'Preference',
                 style: TextStyle(
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Palanquin'),
+                  fontSize: 15.0,
+                ),
               ),
               SizedBox(
                 width: 20,
@@ -260,9 +255,8 @@ class _RequestFormState extends State<RequestForm> {
               Text(
                 'Notes',
                 style: TextStyle(
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Palanquin'),
+                  fontSize: 15.0,
+                ),
               ),
               SizedBox(
                 width: 40,
@@ -318,10 +312,9 @@ class _RequestFormState extends State<RequestForm> {
       child: Text(
         label,
         style: TextStyle(
-            color: isSelected ? Colors.white : Colors.black,
-            fontSize: 11.5,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Palanquin'),
+          color: isSelected ? Colors.white : Colors.black,
+          fontSize: 11.5,
+        ),
       ),
     );
   }

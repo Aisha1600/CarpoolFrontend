@@ -1,7 +1,10 @@
 import 'package:carpoolfront/car_details.dart';
 import 'package:carpoolfront/find_your_carpool.dart';
 import 'package:carpoolfront/forgot_password.dart';
+import 'package:carpoolfront/license_info.dart';
+import 'package:carpoolfront/new_login.dart';
 import 'package:carpoolfront/post_offer.dart';
+import 'package:carpoolfront/select_role.dart';
 import 'Extra.dart';
 import 'available_offers.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +15,7 @@ import 'log_in.dart';
 import 'ride_details_screen.dart';
 import 'map.dart';
 import 'request_history.dart';
+import 'new_signup.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,8 +30,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Carpool Application',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primarySwatch: Colors.teal, fontFamily: 'PalanquinDark-Regular'),
+      theme:
+          ThemeData(primarySwatch: Colors.teal, fontFamily: 'Roboto-Regular'),
       home: const MyHomePage(title: 'Carpool Application'),
     );
   }
@@ -46,9 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: Container(
           height: 50,
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),

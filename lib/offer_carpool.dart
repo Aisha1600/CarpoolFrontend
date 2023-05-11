@@ -1,4 +1,4 @@
-import 'package:carpoolfront/available_requests.dart';
+import 'package:carpoolfront/available_list.dart';
 import 'package:carpoolfront/post_offer.dart';
 import 'package:flutter/material.dart';
 
@@ -36,74 +36,81 @@ class _OfferCarpoolState extends State<OfferCarpool> {
               ),
             ),
             const SizedBox(height: 16),
-            Row(children: [
-              const SizedBox(height: 20.0),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    _isAvailablePressed = true;
-                    _isRequestPressed = false;
-                    titleText = 'Post Carpool Offer';
-                  });
-                },
-                child: Text(
-                  'Post Carpool',
-                  style: TextStyle(
-                    color: _isAvailablePressed ? Colors.white : Colors.black,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.normal,
+            Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 20.0),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _isAvailablePressed = true;
+                        _isRequestPressed = false;
+                        titleText = 'Post Carpool Offer';
+                      });
+                    },
+                    child: Text(
+                      'Post Carpool',
+                      style: TextStyle(
+                        color:
+                            _isAvailablePressed ? Colors.white : Colors.black,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: _isAvailablePressed
+                          ? Color(0xFF05998C)
+                          : Colors.white,
+                      onPrimary: _isAvailablePressed
+                          ? Colors.white
+                          : Color(0xFF05998C),
+                      minimumSize: Size(100, 50),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      elevation: 5,
+                      shadowColor: Colors.grey[500],
+                    ),
                   ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary:
-                      _isAvailablePressed ? Color(0xFF05998C) : Colors.white,
-                  onPrimary:
-                      _isAvailablePressed ? Colors.white : Color(0xFF05998C),
-                  minimumSize: Size(100, 50),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  elevation: 5,
-                  shadowColor: Colors.grey[500],
-                ),
-              ),
-              SizedBox(
-                height: 20.0,
-                width: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    _isAvailablePressed = false;
-                    _isRequestPressed = true;
-                    titleText = 'Available Requests';
-                  });
-                },
-                child: Text(
-                  'Available Requests',
-                  style: TextStyle(
-                    color: _isRequestPressed ? Colors.white : Colors.black,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.normal,
+                  SizedBox(
+                    height: 20.0,
+                    width: 20,
                   ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  //button
-                  primary: _isRequestPressed ? Color(0xFF05998C) : Colors.white,
-                  onPrimary:
-                      _isRequestPressed ? Colors.white : Color(0xFF05998C),
-                  minimumSize: Size(100, 50),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  elevation: 5,
-                  shadowColor: Colors.grey[500],
-                ),
-              ),
-            ]),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _isAvailablePressed = false;
+                        _isRequestPressed = true;
+                        titleText = 'Available Requests';
+                      });
+                    },
+                    child: Text(
+                      'Available Requests',
+                      style: TextStyle(
+                        color: _isRequestPressed ? Colors.white : Colors.black,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      //button
+                      primary:
+                          _isRequestPressed ? Color(0xFF05998C) : Colors.white,
+                      onPrimary:
+                          _isRequestPressed ? Colors.white : Color(0xFF05998C),
+                      minimumSize: Size(100, 50),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      elevation: 5,
+                      shadowColor: Colors.grey[500],
+                    ),
+                  ),
+                ]),
             const SizedBox(height: 20.0),
             if (_isAvailablePressed)
               const PostOffer()
             else if (_isRequestPressed)
-              AvailableRequests()
+              AvailableList()
           ]),
         )));
   }

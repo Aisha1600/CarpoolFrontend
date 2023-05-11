@@ -47,6 +47,8 @@ dependencies:
   permission: ^0.1.7
   uuid: ^3.0.5
   provider: ^6.0.5
+  transparent_image: ^2.0.1
+  
 
 dev_dependencies:
   flutter_test:
@@ -87,21 +89,25 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-   - family: PalanquinDark-Bold
+   - family: Roboto-Bold
      fonts:
-     - asset: assets\fonts\PalanquinDark-Bold.ttf
+     - asset: assets\fonts\Roboto-Bold.ttf
 
-   - family: PalanquinDark-Regular
+   - family: Roboto-Regular
      fonts:
-     - asset: assets\fonts\PalanquinDark-Regular.ttf
+     - asset: assets\fonts\Roboto-Regular.ttf
 
-   - family: PalanquinDark-Medium
+   - family: Roboto-Medium
      fonts:
-     - asset: assets\fonts\PalanquinDark-Medium.ttf
+     - asset: assets\fonts\Roboto-Medium.ttf
 
-   - family: PalanquinDark-SemiBold
+   - family: Roboto-Bold
      fonts:
-     - asset: assets\fonts\PalanquinDark-SemiBold.ttf
+     - asset: assets\fonts\Roboto-Bold.ttf
+
+   - family: Roboto-Light
+     fonts:
+     - asset: assets\fonts\Roboto-Light.ttf
 
   #   - family: Trajan Pro
   #     fonts:
