@@ -88,7 +88,7 @@ class _RequestFormState extends State<RequestForm> {
                 children: [
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    width: 100,
+                    width: 110,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(50),
@@ -109,13 +109,16 @@ class _RequestFormState extends State<RequestForm> {
                           Text(
                             "$formattedDate",
                             // "${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}",
+                            style: TextStyle(
+                              fontSize: 13.0,
+                            ),
                           ),
                         ],
                       ),
                     ),
                   ),
                   SizedBox(
-                    width: 20,
+                    width: 15,
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),

@@ -119,655 +119,644 @@ class _PostOfferState extends State<PostOffer> {
     String formattedDate = DateFormat('MMM d, yyy').format(_selectedDate);
     String formattedTime = DateFormat('hh:mm a')
         .format(DateTime(2023, 1, 1, _selectedTime.hour, _selectedTime.minute));
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.all(16.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 2,
-                blurRadius: 5,
-                offset: Offset(0, 3),
+    return SingleChildScrollView(
+      child: Expanded(
+        child: Column(
+          children: [
+            SizedBox(height: 16),
+            Container(
+              padding: EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+                color: Colors.white,
               ),
-            ],
-            color: Colors.white,
-          ),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            Transform.translate(
-              offset: Offset(40.0, 0.0),
-              child: Text(
-                'Where are you?',
-                style: TextStyle(
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            ),
-            SizedBox(height: 10.0),
-            Row(
-              children: [
-                Icon(
-                  Icons.location_on,
-                  color: Color(0xFF05998C),
-                ),
-                SizedBox(width: 10.0),
-                Expanded(
-                  child: Container(
-                    height: 35,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(50),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: TextField(
-                      controller: _fromController,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 17.5),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            Icons.backspace,
-                            color: Color(0xFF05998C),
-                          ),
-                          onPressed: () {
-                            final text = _fromController.value.text;
-                            if (text.isNotEmpty) {
-                              final newText =
-                                  text.substring(0, text.length - 1);
-                              _fromController.value = TextEditingValue(
-                                text: newText,
-                                selection: TextSelection.fromPosition(
-                                  TextPosition(offset: newText.length),
-                                ),
-                              );
-                            }
-                          },
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Transform.translate(
+                      offset: Offset(40.0, 0.0),
+                      child: Text(
+                        'Where are you?',
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.normal,
                         ),
                       ),
                     ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20.0),
-            Transform.translate(
-              offset: Offset(40.0, 0.0),
-              child: Text(
-                'Where do you want to go?',
-                style: TextStyle(
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            ),
-            SizedBox(height: 10.0),
-            Row(
-              children: [
-                Icon(
-                  Icons.location_on,
-                  color: Color(0xFF05998C),
-                ),
-                SizedBox(width: 10.0),
-                Expanded(
-                  child: Container(
-                    height: 35,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(50),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 3),
+                    SizedBox(height: 10.0),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.location_on,
+                          color: Color(0xFF05998C),
+                        ),
+                        SizedBox(width: 10.0),
+                        Expanded(
+                          child: Container(
+                            height: 35,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(50),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: TextField(
+                              controller: _fromController,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 17.5),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    Icons.backspace,
+                                    color: Color(0xFF05998C),
+                                  ),
+                                  onPressed: () {
+                                    final text = _fromController.value.text;
+                                    if (text.isNotEmpty) {
+                                      final newText =
+                                          text.substring(0, text.length - 1);
+                                      _fromController.value = TextEditingValue(
+                                        text: newText,
+                                        selection: TextSelection.fromPosition(
+                                          TextPosition(offset: newText.length),
+                                        ),
+                                      );
+                                    }
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
-                    child: TextField(
-                      controller: _toController,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 17.5),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            Icons.backspace,
-                            color: Color(0xFF05998C),
-                          ),
-                          onPressed: () {
-                            final text = _toController.value.text;
-                            if (text.isNotEmpty) {
-                              final newText =
-                                  text.substring(0, text.length - 1);
-                              _toController.value = TextEditingValue(
-                                text: newText,
-                                selection: TextSelection.fromPosition(
-                                  TextPosition(offset: newText.length),
-                                ),
-                              );
-                            }
-                          },
+                    SizedBox(height: 20.0),
+                    Transform.translate(
+                      offset: Offset(40.0, 0.0),
+                      child: Text(
+                        'Where do you want to go?',
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.normal,
                         ),
                       ),
                     ),
-                  ),
-                ),
-              ],
+                    SizedBox(height: 10.0),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.location_on,
+                          color: Color(0xFF05998C),
+                        ),
+                        SizedBox(width: 10.0),
+                        Expanded(
+                          child: Container(
+                            height: 35,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(50),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: TextField(
+                              controller: _toController,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 17.5),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    Icons.backspace,
+                                    color: Color(0xFF05998C),
+                                  ),
+                                  onPressed: () {
+                                    final text = _toController.value.text;
+                                    if (text.isNotEmpty) {
+                                      final newText =
+                                          text.substring(0, text.length - 1);
+                                      _toController.value = TextEditingValue(
+                                        text: newText,
+                                        selection: TextSelection.fromPosition(
+                                          TextPosition(offset: newText.length),
+                                        ),
+                                      );
+                                    }
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20.0),
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Handle button press
+                        },
+                        child: Text(
+                          'Search',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xFF05998C),
+                          minimumSize: Size(130, 50),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)),
+                          elevation: 5,
+                          shadowColor: Colors.grey[500],
+                        ),
+                      ),
+                    ),
+                  ]),
             ),
-            SizedBox(height: 20.0),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Handle button press
-                },
-                child: Text(
-                  'Search',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.normal,
+            const SizedBox(height: 20.0),
+            Container(
+              padding: EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: const Offset(0, 3),
                   ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF05998C),
-                  minimumSize: Size(130, 50),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  elevation: 5,
-                  shadowColor: Colors.grey[500],
-                ),
+                ],
+                color: Colors.white,
               ),
-            ),
-          ]),
-        ),
-        const SizedBox(height: 20.0),
-        Container(
-          padding: EdgeInsets.all(16.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 2,
-                blurRadius: 5,
-                offset: const Offset(0, 3),
-              ),
-            ],
-            color: Colors.white,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const Text(
-                    'Schedule',
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        width: 80,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(50),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 2,
-                              blurRadius: 5,
-                              offset: const Offset(0, 3),
+                      const Text(
+                        'Schedule',
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            width: 100,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(50),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: const Offset(0, 3),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        child: GestureDetector(
-                          onTap: () => _selectDate(context),
-                          child: Row(
-                            children: [
-                              //Text(),
-                              Text(
-                                "$formattedDate",
-                                // "${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}",
+                            child: GestureDetector(
+                              onTap: () => _selectDate(context),
+                              child: Row(
+                                children: [
+                                  //Text(),
+                                  Text(
+                                    "$formattedDate",
+                                    // "${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}",
+                                    style: TextStyle(
+                                      fontSize: 13.0,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        width: 80,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(50),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 2,
-                              blurRadius: 5,
-                              offset: Offset(0, 3),
                             ),
-                          ],
-                        ),
-                        child: GestureDetector(
-                          onTap: () => _selectTime(context),
-                          child: Row(
-                            children: [
-                              //Text("Time: "),
-                              Text(
-                                "$formattedTime",
-                                //"${_selectedTime.hour}:${_selectedTime.minute}",
-                              ),
-                            ],
                           ),
-                        ),
-                      ),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            width: 100,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(50),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: GestureDetector(
+                              onTap: () => _selectTime(context),
+                              child: Row(
+                                children: [
+                                  //Text("Time: "),
+                                  Text(
+                                    "$formattedTime",
+                                    //"${_selectedTime.hour}:${_selectedTime.minute}",
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
                     ],
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              Row(children: [
-                const Text(
-                  'Seats Available',
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                InkWell(
-                  onTap: () {
-                    _incrementSeats();
-                  },
-                  child: Container(
-                    width:
-                        30, // adjust the width and height as per your requirements
-                    height: 30,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color(0xFF05998C), // button background color
-                    ),
-                    child: const Icon(
-                      Icons.add, // plus icon
-                      color: Colors.white, // icon color
-                      size: 20, // icon size
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                  width: 20,
-                ),
-                Container(
-                  width: 35,
-                  height: 35,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5), // shadow color
-                        spreadRadius: 5, // spread radius
-                        blurRadius: 7, // blur radius
-                        offset: const Offset(0, 3), // offset
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(10), // border radius
-                    color: Colors.white, // container background color
-                  ),
-                  child: Text(
-                    '$_seats',
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                  width: 20,
-                ),
-                InkWell(
-                  onTap: () {
-                    _decrementSeats();
-                  },
-                  child: Container(
-                    width:
-                        30, // adjust the width and height as per your requirements
-                    height: 30,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color(0xFF05998C), // button background color
-                    ),
-                    child: const Icon(
-                      Icons.remove, // plus icon
-                      color: Colors.white, // icon color
-                      size: 20, // icon size
-                    ),
-                  ),
-                ),
-              ]),
-              const SizedBox(
-                height: 40,
-              ),
-              Row(
-                children: [
-                  const Text(
-                    'Preferances',
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
-                    ),
                   ),
                   const SizedBox(
-                    width: 5.4,
+                    height: 40,
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _male = true;
-                        _female = false;
-                        _none = false;
-                        is_all_female = 'No';
-                      });
-                    },
-                    child: Text(
-                      'Male',
+                  Row(children: [
+                    const Text(
+                      'Seats Available',
                       style: TextStyle(
-                        color: _male ? Colors.white : Colors.black,
-                        fontSize: 7.0,
-                        fontWeight: FontWeight.normal,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    style: ElevatedButton.styleFrom(
-                      primary: _male ? const Color(0xFF05998C) : Colors.white,
-                      onPrimary: _male ? Colors.white : const Color(0xFF05998C),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                      elevation: 5,
-                      shadowColor: Colors.grey[500],
+                    const SizedBox(
+                      width: 20,
                     ),
-                  ),
-                  const SizedBox(width: 1.0),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _male = false;
-                        _female = true;
-                        _none = false;
-                        is_all_female = 'Yes';
-                      });
-                    },
-                    child: Text(
-                      'Female',
-                      style: TextStyle(
-                          color: _female ? Colors.white : Colors.black,
-                          fontSize: 7.0,
-                          fontWeight: FontWeight.normal),
+                    InkWell(
+                      onTap: () {
+                        _incrementSeats();
+                      },
+                      child: Container(
+                        width:
+                            30, // adjust the width and height as per your requirements
+                        height: 30,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xFF05998C), // button background color
+                        ),
+                        child: const Icon(
+                          Icons.add, // plus icon
+                          color: Colors.white, // icon color
+                          size: 20, // icon size
+                        ),
+                      ),
                     ),
-                    style: ElevatedButton.styleFrom(
-                      //button
-                      primary: _female ? const Color(0xFF05998C) : Colors.white,
-                      onPrimary:
-                          _female ? Colors.white : const Color(0xFF05998C),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                      elevation: 5,
-                      shadowColor: Colors.grey[500],
+                    const SizedBox(
+                      height: 30,
+                      width: 20,
                     ),
-                  ),
-                  const SizedBox(width: 1.0),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _male = false;
-                        _female = false;
-                        _none = true;
-                        is_all_female = 'No';
-                      });
-                    },
-                    child: Text(
-                      'None',
-                      style: TextStyle(
-                          color: _none ? Colors.white : Colors.black,
-                          fontSize: 7.0,
-                          fontWeight: FontWeight.normal),
+                    Container(
+                        width: 35,
+                        height: 35,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color:
+                                  Colors.grey.withOpacity(0.5), // shadow color
+                              spreadRadius: 5, // spread radius
+                              blurRadius: 7, // blur radius
+                              offset: const Offset(0, 3), // offset
+                            ),
+                          ],
+                          borderRadius:
+                              BorderRadius.circular(10), // border radius
+                          color: Colors.white, // container background color
+                        ),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black,
+                          radius: 15,
+                          child: Text(
+                            '$_seats',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        )),
+                    const SizedBox(
+                      height: 30,
+                      width: 20,
                     ),
-                    style: ElevatedButton.styleFrom(
-                      //button
-                      primary: _none ? const Color(0xFF05998C) : Colors.white,
-                      onPrimary: _none ? Colors.white : const Color(0xFF05998C),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                      elevation: 5,
-                      shadowColor: Colors.grey[500],
+                    InkWell(
+                      onTap: () {
+                        _decrementSeats();
+                      },
+                      child: Container(
+                        width:
+                            30, // adjust the width and height as per your requirements
+                        height: 30,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xFF05998C), // button background color
+                        ),
+                        child: const Icon(
+                          Icons.remove, // plus icon
+                          color: Colors.white, // icon color
+                          size: 20, // icon size
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              Row(
-                children: [
-                  const Text(
-                    'Is smoking allowed?',
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  ]),
                   const SizedBox(
-                    width: 15,
+                    height: 40,
                   ),
-                  Switch(
-                    value: isSwitched,
-                    onChanged: (value) {
-                      setState(() {
-                        isSwitched = value;
+                  // Row(
+                  //   children: [
+                  //     const Text(
+                  //       'Preferances',
+                  //       style: TextStyle(
+                  //         fontSize: 15.0,
+                  //         fontWeight: FontWeight.bold,
+                  //       ),
+                  //     ),
+                  //     const SizedBox(
+                  //       width: 5.4,
+                  //     ),
+                  //     ElevatedButton(
+                  //       onPressed: () {
+                  //         setState(() {
+                  //           _male = true;
+                  //           _female = false;
+                  //           _none = false;
+                  //           is_all_female = 'No';
+                  //         });
+                  //       },
+                  //       child: Text(
+                  //         'Male',
+                  //         style: TextStyle(
+                  //           color: _male ? Colors.white : Colors.black,
+                  //           fontSize: 7.0,
+                  //           fontWeight: FontWeight.normal,
+                  //         ),
+                  //       ),
+                  //       style: ElevatedButton.styleFrom(
+                  //         primary: _male ? const Color(0xFF05998C) : Colors.white,
+                  //         onPrimary: _male ? Colors.white : const Color(0xFF05998C),
+                  //         shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(30)),
+                  //         elevation: 5,
+                  //         shadowColor: Colors.grey[500],
+                  //       ),
+                  //     ),
+                  //     const SizedBox(width: 1.0),
+                  //     ElevatedButton(
+                  //       onPressed: () {
+                  //         setState(() {
+                  //           _male = false;
+                  //           _female = true;
+                  //           _none = false;
+                  //           is_all_female = 'Yes';
+                  //         });
+                  //       },
+                  //       child: Text(
+                  //         'Female',
+                  //         style: TextStyle(
+                  //             color: _female ? Colors.white : Colors.black,
+                  //             fontSize: 7.0,
+                  //             fontWeight: FontWeight.normal),
+                  //       ),
+                  //       style: ElevatedButton.styleFrom(
+                  //         //button
+                  //         primary: _female ? const Color(0xFF05998C) : Colors.white,
+                  //         onPrimary:
+                  //             _female ? Colors.white : const Color(0xFF05998C),
+                  //         shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(30)),
+                  //         elevation: 5,
+                  //         shadowColor: Colors.grey[500],
+                  //       ),
+                  //     ),
+                  //     const SizedBox(width: 1.0),
+                  //     ElevatedButton(
+                  //       onPressed: () {
+                  //         setState(() {
+                  //           _male = false;
+                  //           _female = false;
+                  //           _none = true;
+                  //           is_all_female = 'No';
+                  //         });
+                  //       },
+                  //       child: Text(
+                  //         'None',
+                  //         style: TextStyle(
+                  //             color: _none ? Colors.white : Colors.black,
+                  //             fontSize: 7.0,
+                  //             fontWeight: FontWeight.normal),
+                  //       ),
+                  //       style: ElevatedButton.styleFrom(
+                  //         //button
+                  //         primary: _none ? const Color(0xFF05998C) : Colors.white,
+                  //         onPrimary: _none ? Colors.white : const Color(0xFF05998C),
+                  //         shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(30)),
+                  //         elevation: 5,
+                  //         shadowColor: Colors.grey[500],
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                  // const SizedBox(
+                  //   height: 40,
+                  // ),
+                  // Row(
+                  //   children: [
+                  //     const Text(
+                  //       'Is smoking allowed?',
+                  //       style: TextStyle(
+                  //         fontSize: 15.0,
+                  //         fontWeight: FontWeight.bold,
+                  //       ),
+                  //     ),
+                  //     const SizedBox(
+                  //       width: 15,
+                  //     ),
+                  //     Switch(
+                  //       value: isSwitched,
+                  //       onChanged: (value) {
+                  //         setState(() {
+                  //           isSwitched = value;
 
-                        if (isSwitched == true) {
-                          is_smoking_allowed = 'Yes';
-                        } else {
-                          is_smoking_allowed = 'No';
-                        }
-                      });
-                    },
-                    activeTrackColor: const Color(0xFF05998C),
-                    activeColor: Colors.white,
-                  ),
+                  //           if (isSwitched == true) {
+                  //             is_smoking_allowed = 'Yes';
+                  //           } else {
+                  //             is_smoking_allowed = 'No';
+                  //           }
+                  //         });
+                  //       },
+                  //       activeTrackColor: const Color(0xFF05998C),
+                  //       activeColor: Colors.white,
+                  //     ),
+                  //   ],
+                  // ),
+                  // const SizedBox(
+                  //   height: 40,
+                  // ),
+                  // Row(
+                  //   children: const [
+                  //     Text(
+                  //       'Notes',
+                  //       style: TextStyle(
+                  //         fontSize: 15.0,
+                  //         fontWeight: FontWeight.bold,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
-              const SizedBox(
-                height: 40,
-              ),
-              Row(
-                children: [
-                  Text(
-                    'Notes',
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
+            ),
+            const SizedBox(height: 20.0),
+            Container(
+                height: 90,
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                child: ElevatedButton(
+                    child: const Text(
+                      'Post Offer',
+                      style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    width: 230,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 17.5),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+                    onPressed: () async {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const OfferRequests()),
+                      );
+                      // DateTime time = DateTime(
+                      //   DateTime.now().year,
+                      //   DateTime.now().month,
+                      //   DateTime.now().day,
+                      //   _selectedTime.hour,
+                      //   _selectedTime.minute,
+                      // );
+
+                      // CreateOffer offer = CreateOffer(
+                      //     destination_name: _fromController.text.toString(),
+                      //     source_name: _toController.text.toString(),
+                      //     created_on: _selectedDate.toIso8601String(),
+                      //     travel_start_time: time.toIso8601String(),
+                      //     seats_offered: _seats,
+                      //     contribution_per_head: 9);
+
+                      // MemberPreferences preferences = MemberPreferences(
+                      //     is_smoking_allowed: is_smoking_allowed,
+                      //     is_all_female: is_all_female,
+                      //     notes: "These are some additional notes....");
+
+                      // //getting the member token and decoding it to get member related data
+                      // SharedPreferences prefs =
+                      //     await SharedPreferences.getInstance();
+                      // String token = prefs.getString('jwt_token') ?? '';
+
+                      // try {
+                      //   final member_car = await http.post(
+                      //     Uri.parse('http://192.168.100.35:4000/getMemberCarId'),
+                      //     headers: {
+                      //       'Content-Type': 'application/json',
+                      //       'authorization': token
+                      //     },
+                      //   );
+
+                      //   if (member_car.statusCode == 400) {
+                      //     Navigator.pushReplacement(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (context) => const CarDetails()),
+                      //     );
+                      //   } else if (member_car.statusCode == 200) {
+                      //     final jsonData1 = jsonEncode(offer.toJson());
+                      //     print(jsonData1);
+                      //     print(json.decode(jsonData1));
+
+                      //     final jsonData2 = jsonEncode(preferences.toJson());
+                      //     print(jsonData2);
+                      //     print(json.decode(jsonData2));
+
+                      //     final response1 = await http.post(
+                      //       Uri.parse('http://192.168.100.35:4000/JRide'),
+                      //       headers: {
+                      //         'Content-Type': 'application/json',
+                      //         'authorization': token
+                      //       },
+                      //       body: jsonData1,
+                      //     );
+
+                      //     final response2 = await http.post(
+                      //       //URL LOCAL HOST NEEDS TO BE CHANGED
+                      //       Uri.parse('http://192.168.100.35:4000/AddPreference'),
+                      //       headers: {
+                      //         'Content-Type': 'application/json',
+                      //         'authorization': token
+                      //       },
+                      //       body: jsonData2,
+                      //     );
+
+                      //     print(response1.statusCode);
+                      //     print(response2.statusCode);
+
+                      //     if (response1.statusCode == 200 &&
+                      //         response2.statusCode == 201) {
+                      //       print(json.decode(response1.body));
+                      //       print(response1.statusCode);
+
+                      //       final responseBody = json.decode(response1.body);
+                      //       // Gets and prints the ride JWT token from the response body of the /ride/JRide api
+                      //       final ride_token = responseBody['token'];
+                      //       print('Token from API response body:{$ride_token}');
+
+                      //       //Saves the ride JWT token in SharedPreferences
+                      //       SharedPreferences prefs =
+                      //           await SharedPreferences.getInstance();
+                      //       prefs.setString('ride_token', ride_token);
+                      //       print(json.decode(response1.body));
+
+                      //       print(json.decode(response2.body));
+                      //       print(
+                      //           'Preference was added with response code {$response2.statusCode}');
+
+                      //       Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (context) => const OfferRequests()),
+                      //       );
+                      //     }
+                      //   }
+                      // } catch (error) {
+                      //   print(error);
+                      // }
+                    })),
+          ],
         ),
-        const SizedBox(height: 20.0),
-        Container(
-            height: 90,
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-            child: ElevatedButton(
-                child: const Text(
-                  'Post Offer',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
-                onPressed: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const OfferRequests()),
-                  );
-                  // DateTime time = DateTime(
-                  //   DateTime.now().year,
-                  //   DateTime.now().month,
-                  //   DateTime.now().day,
-                  //   _selectedTime.hour,
-                  //   _selectedTime.minute,
-                  // );
-
-                  // CreateOffer offer = CreateOffer(
-                  //     destination_name: _fromController.text.toString(),
-                  //     source_name: _toController.text.toString(),
-                  //     created_on: _selectedDate.toIso8601String(),
-                  //     travel_start_time: time.toIso8601String(),
-                  //     seats_offered: _seats,
-                  //     contribution_per_head: 9);
-
-                  // MemberPreferences preferences = MemberPreferences(
-                  //     is_smoking_allowed: is_smoking_allowed,
-                  //     is_all_female: is_all_female,
-                  //     notes: "These are some additional notes....");
-
-                  // //getting the member token and decoding it to get member related data
-                  // SharedPreferences prefs =
-                  //     await SharedPreferences.getInstance();
-                  // String token = prefs.getString('jwt_token') ?? '';
-
-                  // try {
-                  //   final member_car = await http.post(
-                  //     Uri.parse('http://192.168.100.35:4000/getMemberCarId'),
-                  //     headers: {
-                  //       'Content-Type': 'application/json',
-                  //       'authorization': token
-                  //     },
-                  //   );
-
-                  //   if (member_car.statusCode == 400) {
-                  //     Navigator.pushReplacement(
-                  //       context,
-                  //       MaterialPageRoute(
-                  //           builder: (context) => const CarDetails()),
-                  //     );
-                  //   } else if (member_car.statusCode == 200) {
-                  //     final jsonData1 = jsonEncode(offer.toJson());
-                  //     print(jsonData1);
-                  //     print(json.decode(jsonData1));
-
-                  //     final jsonData2 = jsonEncode(preferences.toJson());
-                  //     print(jsonData2);
-                  //     print(json.decode(jsonData2));
-
-                  //     final response1 = await http.post(
-                  //       Uri.parse('http://192.168.100.35:4000/JRide'),
-                  //       headers: {
-                  //         'Content-Type': 'application/json',
-                  //         'authorization': token
-                  //       },
-                  //       body: jsonData1,
-                  //     );
-
-                  //     final response2 = await http.post(
-                  //       //URL LOCAL HOST NEEDS TO BE CHANGED
-                  //       Uri.parse('http://192.168.100.35:4000/AddPreference'),
-                  //       headers: {
-                  //         'Content-Type': 'application/json',
-                  //         'authorization': token
-                  //       },
-                  //       body: jsonData2,
-                  //     );
-
-                  //     print(response1.statusCode);
-                  //     print(response2.statusCode);
-
-                  //     if (response1.statusCode == 200 &&
-                  //         response2.statusCode == 201) {
-                  //       print(json.decode(response1.body));
-                  //       print(response1.statusCode);
-
-                  //       final responseBody = json.decode(response1.body);
-                  //       // Gets and prints the ride JWT token from the response body of the /ride/JRide api
-                  //       final ride_token = responseBody['token'];
-                  //       print('Token from API response body:{$ride_token}');
-
-                  //       //Saves the ride JWT token in SharedPreferences
-                  //       SharedPreferences prefs =
-                  //           await SharedPreferences.getInstance();
-                  //       prefs.setString('ride_token', ride_token);
-                  //       print(json.decode(response1.body));
-
-                  //       print(json.decode(response2.body));
-                  //       print(
-                  //           'Preference was added with response code {$response2.statusCode}');
-
-                  //       Navigator.push(
-                  //         context,
-                  //         MaterialPageRoute(
-                  //             builder: (context) => const OfferRequests()),
-                  //       );
-                  //     }
-                  //   }
-                  // } catch (error) {
-                  //   print(error);
-                  // }
-                })),
-      ],
+      ),
     );
   }
 }

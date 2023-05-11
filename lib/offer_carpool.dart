@@ -22,7 +22,7 @@ class _OfferCarpoolState extends State<OfferCarpool> {
           centerTitle: true,
           backgroundColor: const Color(0xFF05998C),
         ),
-        body: Center(
+        body: SingleChildScrollView(
             child: Container(
           padding: EdgeInsets.all(16.0),
           child:

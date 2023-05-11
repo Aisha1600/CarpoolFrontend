@@ -229,7 +229,7 @@ class _NewSignUpState extends State<NewSignUp> {
               //   ]),
               // ),
               Container(
-                  height: 90,
+                  height: 130,
                   width: 300,
                   padding: const EdgeInsets.fromLTRB(40, 20, 40, 10),
                   child: Column(
