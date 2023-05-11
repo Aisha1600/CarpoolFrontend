@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (BuildContext context) => const PostOffer()),
+                    builder: (BuildContext context) => const SignUp()),
               );
             },
           )),
