@@ -1,4 +1,4 @@
-import 'package:carpoolfront/available_requests.dart';
+import 'package:carpoolfront/ride_details_screen.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
@@ -353,7 +353,7 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                     const SizedBox(height: 20.0),
                     if (_isAvailablePressed)
                       //needs to be changed
-                      AvailableRequests()
+                      AvailableList()
                     else if (_isRequestPressed)
                       RequestForm(),
                     SizedBox(

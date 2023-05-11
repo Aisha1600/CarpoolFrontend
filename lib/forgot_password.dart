@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'new_login.dart';
 import 'offer_carpool.dart';
 
 // ignore: unnecessary_import
@@ -37,90 +38,160 @@ class _ForgotPassword extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
-          child: ListView(children: <Widget>[
-        Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.all(13),
-            child: const Text(
-              'Forgot Password',
+      // appBar: AppBar(
+      //   title: Text(title),
+      // ),
+      body: ListView(
+          padding: const EdgeInsets.only(top: 65.0, left: 18, right: 18),
+          children: <Widget>[
+            Container(
+                child: const Text(
+              'Update Password',
               style: TextStyle(
                 color: Color(0xFF05998c), // Will work,
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
+                fontSize: 26,
               ),
             )),
-        Container(
-          padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
-          child: TextField(
-            controller: newPasswordController,
-            obscureText: true,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'New Password',
-              contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+            const SizedBox(
+              height: 30,
             ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
-          child: TextField(
-            controller: confirmPasswordController,
-            obscureText: true,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Confirm Password',
-              contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-            ),
-          ),
-        ),
-        Container(
-            height: 90,
-            padding: const EdgeInsets.fromLTRB(40, 20, 40, 10),
-            child: ElevatedButton(
-              child: const Text(
-                'Update Password',
-                style: TextStyle(fontSize: 18, color: Colors.white),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+                color: Colors.white,
               ),
-              onPressed: () async {
-                // if (newPasswordController.value ==
-                //     confirmPasswordController.value) {
-                //   UpdatePassword newpassword =
-                //       UpdatePassword(password: newPasswordController.text);
-                //   SharedPreferences prefs =
-                //       await SharedPreferences.getInstance();
-                //   String token = prefs.getString('jwt_token') ?? '';
-                //   print(token);
-                //   try {
-                //     final jsonData = jsonEncode(newpassword.toJson());
-                //     print(jsonData);
-                //     print(json.decode(jsonData));
-                //     final response = await http.put(
-                //       Uri.parse('http://192.168.100.35:3000/member/UpdatePass'),
-                //       headers: {
-                //         'Content-Type': 'application/json',
-                //         'authorization': token
-                //       },
-                //       body: jsonData,
-                //     );
-                //     print(response.statusCode);
-                //     if (response.statusCode == 200) {
-                Navigator.push(
-                  context, // fix navigation for login
-                  MaterialPageRoute(builder: (context) => const LogIn()),
-                );
-                //       print(json.decode(response.body));
-                //     }
-                //   } catch (error) {
-                //     print(error);
-                //   }
-                // } else {}
-              },
-            )),
-      ])),
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: 'New Password',
+                  hintStyle: const TextStyle(
+                    fontSize: 12,
+                    color: Color.fromARGB(255, 1, 43, 38),
+                  ),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                  filled: true,
+                  fillColor:
+                      Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15.0,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: 'Confirm Password',
+                  hintStyle: const TextStyle(
+                    fontSize: 12,
+                    color: Color.fromARGB(255, 1, 43, 38),
+                  ),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                  filled: true,
+                  fillColor:
+                      Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 40.0,
+            ),
+            Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 4,
+                      blurRadius: 6,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                  color: Colors.white,
+                ),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.all(13),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                  ),
+                  child: const Text(
+                    'Update',
+                    style: TextStyle(
+                        //fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.white),
+                  ),
+                  onPressed: () async {
+                    if (newPasswordController.value ==
+                        confirmPasswordController.value) {
+                      UpdatePassword newpassword =
+                          UpdatePassword(password: newPasswordController.text);
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      String token = prefs.getString('jwt_token') ?? '';
+                      print(token);
+                      try {
+                        final jsonData = jsonEncode(newpassword.toJson());
+                        print(jsonData);
+                        print(json.decode(jsonData));
+                        final response = await http.put(
+                          Uri.parse(
+                              'http://192.168.100.35:3000/member/UpdatePass'),
+                          headers: {
+                            'Content-Type': 'application/json',
+                            'authorization': token
+                          },
+                          body: jsonData,
+                        );
+                        print(response.statusCode);
+                        if (response.statusCode == 200) {
+                          Navigator.push(
+                            context, // fix navigation for login
+                            MaterialPageRoute(
+                                builder: (context) => const NewLogIn()),
+                          );
+                          print(json.decode(response.body));
+                        }
+                      } catch (error) {
+                        print(error);
+                      }
+                    } else {}
+                  },
+                )),
+          ]),
     );
   }
 }
