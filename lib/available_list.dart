@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ride_details_screen.dart';
 
 class AvailableList extends StatelessWidget {
   AvailableList({Key? key});
@@ -90,7 +91,12 @@ class AvailableList extends StatelessWidget {
                     IconButton(
                       icon: Icon(Icons.arrow_forward_ios),
                       onPressed: () {
-                        // Handle arrow icon click
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  RideDetailsScreen()),
+                        );
                       },
                     ),
                   ],

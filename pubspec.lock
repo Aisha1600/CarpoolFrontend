@@ -296,7 +296,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.2"
-<<<<<<< HEAD
   path_provider:
     dependency: "direct main"
     description:
@@ -321,8 +320,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.11"
-=======
->>>>>>> 4acbc574bb8dfab0476b1ef473f363355b45ace6
   path_provider_linux:
     dependency: transitive
     description:
@@ -331,7 +328,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.10"
-<<<<<<< HEAD
   path_provider_macos:
     dependency: transitive
     description:
@@ -340,23 +336,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
-=======
->>>>>>> 4acbc574bb8dfab0476b1ef473f363355b45ace6
   path_provider_platform_interface:
     dependency: transitive
     description:
       name: path_provider_platform_interface
-<<<<<<< HEAD
       sha256: "2e14fc474b8acfc4111ac8eb0e37c2fe70234f9f8cd796f1560d03aa1689fa51"
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
-=======
-      sha256: "57585299a729335f1298b43245842678cb9f43a6310351b18fb577d6e33165ec"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.6"
->>>>>>> 4acbc574bb8dfab0476b1ef473f363355b45ace6
   path_provider_windows:
     dependency: transitive
     description:
@@ -373,7 +360,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.1"
-<<<<<<< HEAD
   permission:
     dependency: "direct main"
     description:
@@ -422,8 +408,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.2"
-=======
->>>>>>> 4acbc574bb8dfab0476b1ef473f363355b45ace6
   platform:
     dependency: transitive
     description:
@@ -464,7 +448,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.4"
-<<<<<<< HEAD
   provider:
     dependency: "direct main"
     description:
@@ -481,8 +464,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
-=======
->>>>>>> 4acbc574bb8dfab0476b1ef473f363355b45ace6
   sasl_scram:
     dependency: transitive
     description:
@@ -690,8 +671,4 @@ packages:
     version: "1.0.0"
 sdks:
   dart: ">=2.19.0 <3.0.0"
-<<<<<<< HEAD
   flutter: ">=3.3.0"
-=======
-  flutter: ">=3.0.0"
->>>>>>> 4acbc574bb8dfab0476b1ef473f363355b45ace6

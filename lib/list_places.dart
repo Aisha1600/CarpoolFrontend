@@ -11,4 +11,9 @@ class ListPlaces extends ChangeNotifier {
     searchResults = await placesService.getAutocomplete(searchTerm);
     notifyListeners();
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 }
