@@ -1,5 +1,6 @@
 import 'package:carpoolfront/forgot_password.dart';
 import 'package:carpoolfront/offer_carpool.dart';
+import 'package:carpoolfront/select_role.dart';
 import 'package:carpoolfront/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -93,49 +94,50 @@ class _LogIn extends State<LogIn> {
             ),
           )),
           Container(
-            height: 60,
-            padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+            height: 90,
+            padding: const EdgeInsets.fromLTRB(40, 20, 40, 10),
             child: ElevatedButton(
                 onPressed: () async {
-                  LoginForm form = LoginForm(
-                      email: emailController.text,
-                      password: passwordController.text);
-                  try {
-                    final jsonData = jsonEncode(form.toJson());
-                    print(jsonData);
-                    print(json.decode(jsonData));
-                    final response = await http.post(
-                      //URL NEEDS TO BE CHANGED TO THE IP ADDRESS
-                      //AND PORT NUMBER RUNNING THE SERVER
-                      //this will make server accessible from mobile app
-                      //KASHAF'S IP Address -> 192.168.100.35
-                      Uri.parse('http://192.168.100.35:3000/member/loogin'),
-                      headers: {'Content-Type': 'application/json'},
-                      body: jsonData,
-                    );
-                    print(response.statusCode);
-                    if (response.statusCode == 200) {
-                      print(response.body);
+                  // LoginForm form = LoginForm(
+                  //     email: emailController.text,
+                  //     password: passwordController.text);
+                  // try {
+                  //   final jsonData = jsonEncode(form.toJson());
+                  //   print(jsonData);
+                  //   print(json.decode(jsonData));
+                  //   final response = await http.post(
+                  //     //URL NEEDS TO BE CHANGED TO THE IP ADDRESS
+                  //     //AND PORT NUMBER RUNNING THE SERVER
+                  //     //this will make server accessible from mobile app
+                  //     //KASHAF'S IP Address -> 192.168.100.35
+                  //     Uri.parse('http://192.168.100.35:4000/member/login'),
+                  //     headers: {'Content-Type': 'application/json'},
+                  //     body: jsonData,
+                  //   );
+                  //   print(response.statusCode);
+                  //   if (response.statusCode == 200) {
+                  //     print(response.body);
 
-                      final responseBody = json.decode(response.body);
-                      // Gets the JWT token from the response body
-                      final token = responseBody['token'];
-                      print('Token from API response body:{$token}');
+                  //     final responseBody = json.decode(response.body);
+                  //     // Gets the JWT token from the response body
+                  //     final token = responseBody['token'];
+                  //     print('Token from API response body:{$token}');
 
-                      //Saves the JWT token in SharedPreferences
-                      SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                      prefs.setString('jwt_token', token);
+                  //     //Saves the JWT token in SharedPreferences
+                  //     SharedPreferences prefs =
+                  //         await SharedPreferences.getInstance();
+                  //     prefs.setString('jwt_token', token);
 
-                      Navigator.push(
-                        context, // fix navigation for login
-                        MaterialPageRoute(
-                            builder: (context) => const OfferCarpool()),
-                      );
-                    }
-                  } catch (error) {
-                    print(error);
-                  }
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Select_Role(),
+                    ),
+                  );
+                  //     }
+                  //   } catch (error) {
+                  //     print(error);
+                  //   }
                 },
                 child: const Text(
                   'Log In',

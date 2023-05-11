@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:carpoolfront/offer_carpool.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -8,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LicenseForm {
   late final int license_no;
-  late final DateTime license_valid_from;
+  late final String license_valid_from;
 
   LicenseForm({required this.license_no, required this.license_valid_from});
 
@@ -56,13 +57,13 @@ class _License_InfoState extends State<License_Info> {
             child: ListView(children: <Widget>[
           Container(
               alignment: Alignment.center,
-              padding: const EdgeInsets.all(13),
+              padding: const EdgeInsets.all(15),
               child: const Text(
-                'Enter your Driving License Information',
+                'Enter Driving License Information',
                 style: TextStyle(
                   color: Color(0xFF05998c), // Will work,
                   fontWeight: FontWeight.bold,
-                  fontSize: 30,
+                  fontSize: 20,
                 ),
               )),
           Container(
@@ -79,27 +80,29 @@ class _License_InfoState extends State<License_Info> {
             ),
           ),
           SizedBox(
-            width: 150,
-            child: TextFormField(
-              onTap: () => _selectDate(context),
-              decoration: InputDecoration(
-                hintText: "License Valid Until: ",
-              ),
-              initialValue: _selectedDate == null
-                  ? ' '
-                  : "${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}",
-              // child: Row(
-              //   children: [
-              //     Text(),
-              //     Text(
-              //         "${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}"),
-              //   ],
-              //),
-            ),
-          ),
+              width: 100,
+              child: Container(
+                padding: const EdgeInsets.all(30),
+                child: TextFormField(
+                  onTap: () => _selectDate(context),
+                  decoration: const InputDecoration(
+                    hintText: "License Valid Until:",
+                  ),
+                  initialValue: _selectedDate == null
+                      ? ' '
+                      : "${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}",
+                  // child: Row(
+                  //   children: [
+                  //     Text(),
+                  //     Text(
+                  //         "${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}"),
+                  //   ],
+                  //),
+                ),
+              )),
           Container(
-              height: 60,
-              padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+              height: 90,
+              padding: const EdgeInsets.fromLTRB(40, 20, 40, 10),
               child: ElevatedButton(
                 child: const Text(
                   'Register',
@@ -109,40 +112,41 @@ class _License_InfoState extends State<License_Info> {
                       color: Colors.white),
                 ),
                 onPressed: () async {
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  String token = prefs.getString('jwt_token') ?? '';
-                  print(token);
-                  // //API INTEGRATION
-                  LicenseForm form = LicenseForm(
-                    license_no: int.parse(LicensenoController.text.toString()),
-                    license_valid_from: _selectedDate,
+                  // SharedPreferences prefs =
+                  //     await SharedPreferences.getInstance();
+                  // String token = prefs.getString('jwt_token') ?? '';
+                  // print('Stored jwt token from storage is {$token}');
+                  // // //API INTEGRATION
+                  // LicenseForm form = LicenseForm(
+                  //   license_no: int.parse(LicensenoController.text.toString()),
+                  //   license_valid_from: _selectedDate.toIso8601String(),
+                  // );
+                  // try {
+                  //   final jsonData = jsonEncode(form.toJson());
+                  //   print(jsonData);
+                  //   print(json.decode(jsonData));
+                  //   final response = await http.put(
+                  //     //URL LOCAL HOST NEEDS TO BE CHANGED
+                  //     Uri.parse(
+                  //         'http://192.168.100.35:4000/member/InsertLicense'),
+                  //     headers: {
+                  //       'Content-Type': 'application/json',
+                  //       'authorization': token
+                  //     },
+                  //     body: jsonData,
+                  //   );
+                  //   print(response.statusCode);
+                  //   if (response.statusCode == 200) {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const OfferCarpool()),
                   );
-                  try {
-                    final jsonData = jsonEncode(form.toJson());
-                    print(jsonData);
-                    print(json.decode(jsonData));
-                    final response = await http.post(
-                      //URL LOCAL HOST NEEDS TO BE CHANGED
-                      Uri.parse('http://localhost:4000/member/InsertLicense'),
-                      headers: {
-                        'Content-Type': 'application/json',
-                        'authorization': token
-                      },
-                      body: jsonData,
-                    );
-                    print(response.statusCode);
-                    if (response.statusCode == 200) {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //       builder: (context) => const CarDetails()),
-                      // );
-                      print(json.decode(response.body));
-                    }
-                  } catch (error) {
-                    print(error);
-                  }
+                  //       print(json.decode(response.body));
+                  //     }
+                  //   } catch (error) {
+                  //     print(error);
+                  //   }
                 },
               )),
         ])));
