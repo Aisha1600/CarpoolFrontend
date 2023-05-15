@@ -5,6 +5,7 @@ import 'package:carpoolfront/offer_carpool.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'bottom_navbar.dart';
 
 class Select_Role extends StatefulWidget {
   const Select_Role({super.key});
@@ -14,6 +15,20 @@ class Select_Role extends StatefulWidget {
 }
 
 class _Select_RoleState extends State<Select_Role> {
+  int _selectedIndex = 0;
+
+  static List<Widget> _widgetOptions = <Widget>[
+    Select_Role(),
+    OfferCarpool(),
+    FindYourCarpool()
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +59,7 @@ class _Select_RoleState extends State<Select_Role> {
                     child: Stack(
                       children: [
                         Container(
-                          width: 200,
+                          width: 275,
                           height: 250,
                           decoration: const BoxDecoration(
                               color: Colors.white,
@@ -84,20 +99,12 @@ class _Select_RoleState extends State<Select_Role> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   elevation: 5,
-                                  shape: CircleBorder(),
+                                  //shape: CircleBorder(),
                                   padding: EdgeInsets.all(0),
                                   primary: Color.fromARGB(255, 255, 255, 255),
                                   //onPrimary: Colors.white,
                                   shadowColor: Colors.grey.withOpacity(0.8),
                                 ),
-                                // boxShadows: [
-                                //   BoxShadow(
-                                //     color: Colors.grey.withOpacity(0.5),
-                                //     spreadRadius: 2,
-                                //     blurRadius: 5,
-                                //     offset: Offset(0, 3),
-                                //   ),
-                                // ],
                                 child: const Center(
                                   child: Icon(
                                     Icons.favorite,
@@ -128,7 +135,7 @@ class _Select_RoleState extends State<Select_Role> {
                               },
                               style: ElevatedButton.styleFrom(
                                 elevation: 5,
-                                shape: CircleBorder(),
+                                //shape: CircleBorder(),
                                 padding: EdgeInsets.all(0),
                                 primary: Color(0xFF05998c),
                                 //onPrimary: Colors.white,
@@ -163,6 +170,24 @@ class _Select_RoleState extends State<Select_Role> {
           ],
         ),
       ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: const <BottomNavigationBarItem>[
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       label: 'Home',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.business),
+      //       label: 'Offer',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.school),
+      //       label: 'Find',
+      //     ),
+      //   ],
+      //   currentIndex: _selectedIndex,
+      //   onTap: _onItemTapped,
+      // ),
     );
   }
 }

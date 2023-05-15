@@ -150,7 +150,7 @@ class _NewLogInState extends State<NewLogIn> {
               )),
               const SizedBox(height: 4.0),
               Container(
-                  width: 300,
+                  width: 225,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30.0),
                     boxShadow: [
@@ -178,46 +178,46 @@ class _NewLogInState extends State<NewLogIn> {
                             color: Colors.white),
                       ),
                       onPressed: () async {
-                        LoginForm form = LoginForm(
-                            email: emailController.text,
-                            password: passwordController.text);
-                        try {
-                          final jsonData = jsonEncode(form.toJson());
-                          print(jsonData);
-                          print(json.decode(jsonData));
-                          final response = await http.post(
-                            //URL NEEDS TO BE CHANGED TO THE IP ADDRESS
-                            //AND PORT NUMBER RUNNING THE SERVER
-                            //this will make server accessible from mobile app
-                            //KASHAF'S IP Address -> 192.168.100.35
-                            Uri.parse(
-                                'http://192.168.100.35:4000/member/login'),
-                            headers: {'Content-Type': 'application/json'},
-                            body: jsonData,
-                          );
-                          print(response.statusCode);
-                          if (response.statusCode == 200) {
-                            print(response.body);
+                        // LoginForm form = LoginForm(
+                        //     email: emailController.text,
+                        //     password: passwordController.text);
+                        // try {
+                        //   final jsonData = jsonEncode(form.toJson());
+                        //   print(jsonData);
+                        //   print(json.decode(jsonData));
+                        //   final response = await http.post(
+                        //     //URL NEEDS TO BE CHANGED TO THE IP ADDRESS
+                        //     //AND PORT NUMBER RUNNING THE SERVER
+                        //     //this will make server accessible from mobile app
+                        //     //KASHAF'S IP Address -> 192.168.100.35
+                        //     Uri.parse(
+                        //         'http://192.168.100.35:4000/member/login'),
+                        //     headers: {'Content-Type': 'application/json'},
+                        //     body: jsonData,
+                        //   );
+                        //   print(response.statusCode);
+                        //   if (response.statusCode == 200) {
+                        //     print(response.body);
 
-                            final responseBody = json.decode(response.body);
-                            // Gets the JWT token from the response body
-                            final token = responseBody['token'];
-                            print('Token from API response body:{$token}');
+                        //     final responseBody = json.decode(response.body);
+                        //     // Gets the JWT token from the response body
+                        //     final token = responseBody['token'];
+                        //     print('Token from API response body:{$token}');
 
-                            //Saves the JWT token in SharedPreferences
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.setString('jwt_token', token);
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Select_Role(),
-                              ),
-                            );
-                          }
-                        } catch (error) {
-                          print(error);
-                        }
+                        //     //Saves the JWT token in SharedPreferences
+                        //     SharedPreferences prefs =
+                        //         await SharedPreferences.getInstance();
+                        //     prefs.setString('jwt_token', token);
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Select_Role(),
+                            ));
+                        //     );
+                        //   }
+                        // } catch (error) {
+                        //   print(error);
+                        //}
                       })),
               const SizedBox(height: 4.0),
               Center(

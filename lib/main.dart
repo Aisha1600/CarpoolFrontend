@@ -8,6 +8,7 @@ import 'package:carpoolfront/select_role.dart';
 import 'Extra.dart';
 import 'available_offers.dart';
 import 'package:flutter/material.dart';
+import 'bottom_navbar.dart';
 import 'sign_up.dart';
 import 'offer_carpool.dart';
 import 'request_form.dart';
@@ -54,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
           height: 100,
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: ElevatedButton(
-            child: const Text('Car details'),
+            child: const Text('ENTERRRRR'),
             onPressed: () {
               Navigator.pushReplacement(
                 context,
