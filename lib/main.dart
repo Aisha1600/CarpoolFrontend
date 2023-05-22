@@ -1,3 +1,4 @@
+import 'package:carpoolfront/available_list.dart';
 import 'package:carpoolfront/car_details.dart';
 import 'package:carpoolfront/find_your_carpool.dart';
 import 'package:carpoolfront/forgot_password.dart';
@@ -59,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (BuildContext context) => NewSignUp()),
+                    builder: (BuildContext context) => FindYourCarpool()),
               );
             },
           )),
