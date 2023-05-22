@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:carpoolfront/bottom_navbar.dart';
 import 'package:carpoolfront/new_signup.dart';
 import 'package:carpoolfront/select_role.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +39,8 @@ class _NewLogInState extends State<NewLogIn> {
     return Scaffold(
         body: Stack(
       children: <Widget>[
-        Image.network(
-          'https://images.pexels.com/photos/11851449/pexels-photo-11851449.jpeg',
+        Image.asset(
+          'assets/bg.jpeg',
           fit: BoxFit.cover,
           height: double.infinity,
           width: double.infinity,
@@ -150,75 +151,72 @@ class _NewLogInState extends State<NewLogIn> {
               )),
               const SizedBox(height: 4.0),
               Container(
+                  height: 48,
                   width: 300,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30.0),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 4,
-                        blurRadius: 6,
+                        spreadRadius: 2,
+                        blurRadius: 5,
                         offset: Offset(0, 3),
                       ),
                     ],
                     color: Colors.white,
                   ),
                   child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.all(10),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.all(13),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
                       ),
-                      child: const Text(
-                        'Login',
-                        style: TextStyle(
-                            //fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            color: Colors.white),
-                      ),
-                      onPressed: () async {
-                        LoginForm form = LoginForm(
-                            email: emailController.text,
-                            password: passwordController.text);
-                        try {
-                          final jsonData = jsonEncode(form.toJson());
-                          print(jsonData);
-                          print(json.decode(jsonData));
-                          final response = await http.post(
-                            //URL NEEDS TO BE CHANGED TO THE IP ADDRESS
-                            //AND PORT NUMBER RUNNING THE SERVER
-                            //this will make server accessible from mobile app
-                            //KASHAF'S IP Address -> 192.168.100.35
-                            Uri.parse(
-                                'http://192.168.100.35:4000/member/login'),
-                            headers: {'Content-Type': 'application/json'},
-                            body: jsonData,
-                          );
-                          print(response.statusCode);
-                          if (response.statusCode == 200) {
-                            print(response.body);
-
-                            final responseBody = json.decode(response.body);
-                            // Gets the JWT token from the response body
-                            final token = responseBody['token'];
-                            print('Token from API response body:{$token}');
-
-                            //Saves the JWT token in SharedPreferences
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.setString('jwt_token', token);
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Select_Role(),
-                              ),
-                            );
-                          }
-                        } catch (error) {
-                          print(error);
-                        }
-                      })),
+                    ),
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(
+                          //fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.white),
+                    ),
+                    onPressed: () async {
+                      // SharedPreferences prefs =
+                      //     await SharedPreferences.getInstance();
+                      // String token = prefs.getString('jwt_token') ?? '';
+                      // print('Stored jwt token from storage is {$token}');
+                      // // //API INTEGRATION
+                      // LicenseForm form = LicenseForm(
+                      //   license_no: int.parse(LicensenoController.text.toString()),
+                      //   license_valid_from: _selectedDate.toIso8601String(),
+                      // );
+                      // try {
+                      //   final jsonData = jsonEncode(form.toJson());
+                      //   print(jsonData);
+                      //   print(json.decode(jsonData));
+                      //   final response = await http.put(
+                      //     //URL LOCAL HOST NEEDS TO BE CHANGED
+                      //     Uri.parse(
+                      //         'http://192.168.100.35:4000/member/InsertLicense'),
+                      //     headers: {
+                      //       'Content-Type': 'application/json',
+                      //       'authorization': token
+                      //     },
+                      //     body: jsonData,
+                      //   );
+                      //   print(response.statusCode);
+                      //   if (response.statusCode == 200) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const BottomNavbar()),
+                      );
+                      //     print(json.decode(response.body));
+                      //   }
+                      // } catch (error) {
+                      //   print(error);
+                      // }
+                    },
+                  )),
               const SizedBox(height: 4.0),
               Center(
                   child: Row(

@@ -1,5 +1,6 @@
 import 'package:carpoolfront/car_details.dart';
 import 'package:carpoolfront/offer_requests.dart';
+import 'package:carpoolfront/view_posts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -320,7 +321,7 @@ class _PostOfferState extends State<PostOffer> {
                         'Schedule',
                         style: TextStyle(
                           fontSize: 15.0,
-                          fontWeight: FontWeight.bold,
+                          //fontWeight: FontWeight.bold,
                         ),
                       ),
                       const SizedBox(
@@ -331,7 +332,7 @@ class _PostOfferState extends State<PostOffer> {
                         children: [
                           Container(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
+                                horizontal: 20, vertical: 20),
                             width: 100,
                             decoration: BoxDecoration(
                               color: Colors.white,
@@ -354,7 +355,7 @@ class _PostOfferState extends State<PostOffer> {
                                     "$formattedDate",
                                     // "${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}",
                                     style: TextStyle(
-                                      fontSize: 13.0,
+                                      fontSize: 11.0,
                                     ),
                                   ),
                                 ],
@@ -388,6 +389,9 @@ class _PostOfferState extends State<PostOffer> {
                                   Text(
                                     "$formattedTime",
                                     //"${_selectedTime.hour}:${_selectedTime.minute}",
+                                    style: TextStyle(
+                                      fontSize: 12.0,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -405,7 +409,7 @@ class _PostOfferState extends State<PostOffer> {
                       'Seats Available',
                       style: TextStyle(
                         fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
+                        //fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(
@@ -491,165 +495,218 @@ class _PostOfferState extends State<PostOffer> {
                   const SizedBox(
                     height: 40,
                   ),
-                  // Row(
-                  //   children: [
-                  //     const Text(
-                  //       'Preferances',
-                  //       style: TextStyle(
-                  //         fontSize: 15.0,
-                  //         fontWeight: FontWeight.bold,
-                  //       ),
-                  //     ),
-                  //     const SizedBox(
-                  //       width: 5.4,
-                  //     ),
-                  //     ElevatedButton(
-                  //       onPressed: () {
-                  //         setState(() {
-                  //           _male = true;
-                  //           _female = false;
-                  //           _none = false;
-                  //           is_all_female = 'No';
-                  //         });
-                  //       },
-                  //       child: Text(
-                  //         'Male',
-                  //         style: TextStyle(
-                  //           color: _male ? Colors.white : Colors.black,
-                  //           fontSize: 7.0,
-                  //           fontWeight: FontWeight.normal,
-                  //         ),
-                  //       ),
-                  //       style: ElevatedButton.styleFrom(
-                  //         primary: _male ? const Color(0xFF05998C) : Colors.white,
-                  //         onPrimary: _male ? Colors.white : const Color(0xFF05998C),
-                  //         shape: RoundedRectangleBorder(
-                  //             borderRadius: BorderRadius.circular(30)),
-                  //         elevation: 5,
-                  //         shadowColor: Colors.grey[500],
-                  //       ),
-                  //     ),
-                  //     const SizedBox(width: 1.0),
-                  //     ElevatedButton(
-                  //       onPressed: () {
-                  //         setState(() {
-                  //           _male = false;
-                  //           _female = true;
-                  //           _none = false;
-                  //           is_all_female = 'Yes';
-                  //         });
-                  //       },
-                  //       child: Text(
-                  //         'Female',
-                  //         style: TextStyle(
-                  //             color: _female ? Colors.white : Colors.black,
-                  //             fontSize: 7.0,
-                  //             fontWeight: FontWeight.normal),
-                  //       ),
-                  //       style: ElevatedButton.styleFrom(
-                  //         //button
-                  //         primary: _female ? const Color(0xFF05998C) : Colors.white,
-                  //         onPrimary:
-                  //             _female ? Colors.white : const Color(0xFF05998C),
-                  //         shape: RoundedRectangleBorder(
-                  //             borderRadius: BorderRadius.circular(30)),
-                  //         elevation: 5,
-                  //         shadowColor: Colors.grey[500],
-                  //       ),
-                  //     ),
-                  //     const SizedBox(width: 1.0),
-                  //     ElevatedButton(
-                  //       onPressed: () {
-                  //         setState(() {
-                  //           _male = false;
-                  //           _female = false;
-                  //           _none = true;
-                  //           is_all_female = 'No';
-                  //         });
-                  //       },
-                  //       child: Text(
-                  //         'None',
-                  //         style: TextStyle(
-                  //             color: _none ? Colors.white : Colors.black,
-                  //             fontSize: 7.0,
-                  //             fontWeight: FontWeight.normal),
-                  //       ),
-                  //       style: ElevatedButton.styleFrom(
-                  //         //button
-                  //         primary: _none ? const Color(0xFF05998C) : Colors.white,
-                  //         onPrimary: _none ? Colors.white : const Color(0xFF05998C),
-                  //         shape: RoundedRectangleBorder(
-                  //             borderRadius: BorderRadius.circular(30)),
-                  //         elevation: 5,
-                  //         shadowColor: Colors.grey[500],
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                  // const SizedBox(
-                  //   height: 40,
-                  // ),
-                  // Row(
-                  //   children: [
-                  //     const Text(
-                  //       'Is smoking allowed?',
-                  //       style: TextStyle(
-                  //         fontSize: 15.0,
-                  //         fontWeight: FontWeight.bold,
-                  //       ),
-                  //     ),
-                  //     const SizedBox(
-                  //       width: 15,
-                  //     ),
-                  //     Switch(
-                  //       value: isSwitched,
-                  //       onChanged: (value) {
-                  //         setState(() {
-                  //           isSwitched = value;
+                  Row(
+                    children: [
+                      const Text(
+                        'Preferances',
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          //fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5.4,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            _male = true;
+                            _female = false;
+                            _none = false;
+                            is_all_female = 'No';
+                          });
+                        },
+                        child: Text(
+                          'Male',
+                          style: TextStyle(
+                            color: _male ? Colors.white : Colors.black,
+                            fontSize: 10.0,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary:
+                              _male ? const Color(0xFF05998C) : Colors.white,
+                          onPrimary:
+                              _male ? Colors.white : const Color(0xFF05998C),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)),
+                          elevation: 5,
+                          shadowColor: Colors.grey[500],
+                        ),
+                      ),
+                      const SizedBox(width: 1.0),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            _male = false;
+                            _female = true;
+                            _none = false;
+                            is_all_female = 'Yes';
+                          });
+                        },
+                        child: Text(
+                          'Female',
+                          style: TextStyle(
+                              color: _female ? Colors.white : Colors.black,
+                              fontSize: 10.0,
+                              fontWeight: FontWeight.normal),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          //button
+                          primary:
+                              _female ? const Color(0xFF05998C) : Colors.white,
+                          onPrimary:
+                              _female ? Colors.white : const Color(0xFF05998C),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)),
+                          elevation: 5,
+                          shadowColor: Colors.grey[500],
+                        ),
+                      ),
+                      const SizedBox(width: 1.0),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            _male = false;
+                            _female = false;
+                            _none = true;
+                            is_all_female = 'No';
+                          });
+                        },
+                        child: Text(
+                          'None',
+                          style: TextStyle(
+                              color: _none ? Colors.white : Colors.black,
+                              fontSize: 10.0,
+                              fontWeight: FontWeight.normal),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          //button
+                          primary:
+                              _none ? const Color(0xFF05998C) : Colors.white,
+                          onPrimary:
+                              _none ? Colors.white : const Color(0xFF05998C),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)),
+                          elevation: 5,
+                          shadowColor: Colors.grey[500],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  Row(
+                    children: [
+                      const Text(
+                        'Is smoking allowed?',
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Switch(
+                        value: isSwitched,
+                        onChanged: (value) {
+                          setState(() {
+                            isSwitched = value;
 
-                  //           if (isSwitched == true) {
-                  //             is_smoking_allowed = 'Yes';
-                  //           } else {
-                  //             is_smoking_allowed = 'No';
-                  //           }
-                  //         });
-                  //       },
-                  //       activeTrackColor: const Color(0xFF05998C),
-                  //       activeColor: Colors.white,
-                  //     ),
-                  //   ],
-                  // ),
-                  // const SizedBox(
-                  //   height: 40,
-                  // ),
-                  // Row(
-                  //   children: const [
-                  //     Text(
-                  //       'Notes',
-                  //       style: TextStyle(
-                  //         fontSize: 15.0,
-                  //         fontWeight: FontWeight.bold,
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
+                            if (isSwitched == true) {
+                              is_smoking_allowed = 'Yes';
+                            } else {
+                              is_smoking_allowed = 'No';
+                            }
+                          });
+                        },
+                        activeTrackColor: const Color(0xFF05998C),
+                        activeColor: Colors.white,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'Notes',
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        width: 200,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 17.5),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
             const SizedBox(height: 20.0),
             Container(
-                height: 90,
-                padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                height: 48,
+                width: 300,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 4,
+                      blurRadius: 6,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                  color: Colors.white,
+                ),
                 child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.all(13),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                    ),
                     child: const Text(
                       'Post Offer',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                      style: TextStyle(
+                          //fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.white),
                     ),
                     onPressed: () async {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const OfferRequests()),
+                            builder: (context) => const CarDetails()),
                       );
                       // DateTime time = DateTime(
                       //   DateTime.now().year,
