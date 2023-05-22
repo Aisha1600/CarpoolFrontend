@@ -93,6 +93,7 @@ flutter:
         - assets/poster.png
         - assets/posters.png
         - assets/bg.jpeg
+        - assets/logo.gif
 
   fonts:
    - family: Roboto-Bold

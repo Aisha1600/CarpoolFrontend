@@ -37,7 +37,7 @@ class _ViewPostsState extends State<ViewPosts> {
           //title: Text('Loading Screen'),
           ),
       body: Container(
-        color: Colors.black.withOpacity(0.3),
+        color: Colors.black.withOpacity(0.5),
         child: Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

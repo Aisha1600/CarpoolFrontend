@@ -1,3 +1,4 @@
+import 'package:carpoolfront/offer_carpool.dart';
 import 'package:carpoolfront/ride.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -32,268 +33,233 @@ class _ContainerStackState extends State<ContainerStack> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-            child: Container(
-      padding: EdgeInsets.all(30),
-      color: Colors.black.withOpacity(0.3),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Visibility(
-              visible: _containerVisibility[1],
-              child: Column(children: [
-                Container(
-                  padding: EdgeInsets.all(16.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: Offset(0, 3),
-                      ),
-                    ],
-                    color: Colors.white,
-                  ),
-                  child: Column(children: [
-                    Row(
-                      children: const [
-                        Text(
-                          'Muhammed wants to carpool with you',
-                          style: TextStyle(
-                            color: Colors.black, // Will work,
-                            fontSize: 12,
+        backgroundColor: Color.fromARGB(255, 93, 93, 93),
+        body: Padding(
+          padding: EdgeInsets.all(40),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                      height: 45,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 4,
+                            blurRadius: 6,
+                            offset: Offset(0, 3),
                           ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Column(children: const [
-                          Text(
-                            'Pick Up',
-                            style: TextStyle(
-                              color: Colors.black, // Will work,
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
+                        ],
+                        color: Colors.white,
+                      ),
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.all(13),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
                             ),
                           ),
-                          SizedBox(
-                            height: 6,
+                          child: const Text(
+                            'Next',
+                            style: TextStyle(fontSize: 13, color: Colors.white),
                           ),
-                          Text(
-                            'Bahria Town',
-                            style: TextStyle(
-                              color: Colors.black, // Will work,
-                              fontSize: 12,
-                              //fontWeight: FontWeight.bold),
+                          onPressed: () async {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) => Ride()),
+                            );
+                          })),
+                  SizedBox(
+                    width: 50,
+                  ),
+                  Container(
+                      height: 45,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 4,
+                            blurRadius: 6,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                        color: Colors.white,
+                      ),
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.all(13),
+                            primary: Colors.red,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
                             ),
                           ),
-                        ]),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Column(children: const [
-                          Text(
-                            'Drop off',
-                            style: TextStyle(
-                                color: Colors.black, // Will work,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold),
+                          child: const Text(
+                            'Cancel',
+                            style: TextStyle(fontSize: 13, color: Colors.white),
                           ),
-                          SizedBox(
-                            height: 6,
-                          ),
-                          Text(
-                            'Karachi University',
-                            style: TextStyle(
-                              color: Colors.black, // Will work,
-                              fontSize: 12,
-                              //fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ])
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _containerVisibility[1] = false;
-                            });
-                          },
-                          child: const Text('Accept'),
-                        ),
-                        const SizedBox(width: 10),
-                        ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _containerVisibility[1] = false;
-                            });
-                          },
-                          child: const Text('Reject'),
-                        ),
-                      ],
-                    ),
-                  ]),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-              ])),
-          Visibility(
-            visible: _containerVisibility[2],
-            child: Column(children: [
-              Container(
-                padding: EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                  color: Colors.white,
-                ),
-                child: Column(children: [
-                  Row(
-                    children: const [
-                      Text(
-                        'Aisha wants to carpool with you',
-                        style: TextStyle(
-                          color: Colors.black, // Will work,
-                          fontSize: 12,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Column(children: const [
-                        Text(
-                          'Pick up',
-                          style: TextStyle(
-                            color: Colors.black, // Will work,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 6,
-                        ),
-                        Text(
-                          'Dolmen Mall',
-                          style: TextStyle(
-                            color: Colors.black, // Will work,
-                            fontSize: 12,
-                            //fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ]),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Column(children: const [
-                        Text(
-                          'Drop off',
-                          style: TextStyle(
-                            color: Colors.black, // Will work,
-                            fontSize: 12,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 6,
-                        ),
-                        Text(
-                          'Shahra e Faisal',
-                          style: TextStyle(
-                            color: Colors.black, // Will work,
-                            fontSize: 12,
-                            //fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ])
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            _containerVisibility[2] = false;
-                          });
-                        },
-                        child: const Text('Accept'),
-                      ),
-                      const SizedBox(width: 10),
-                      ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            _containerVisibility[2] = false;
-                          });
-                        },
-                        child: const Text('Reject'),
-                      ),
-                    ],
-                  ),
-                ]),
+                          onPressed: () async {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => OfferCarpool()),
+                            );
+                          })),
+                ],
               ),
               const SizedBox(
-                height: 30,
+                height: 25,
               ),
-            ]),
-          ),
-          Visibility(
-            visible: _containerVisibility[3],
-            child: Column(children: [
-              Container(
-                padding: EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                  color: Colors.white,
-                ),
-                child: Center(
+              Visibility(
+                  visible: _containerVisibility[1],
                   child: Column(children: [
-                    Row(
-                      children: const [
-                        Text(
-                          'Muhammed wants a pick up from\nTower 7, Bahria Town to Karachi University',
-                          style: TextStyle(
-                            color: Colors.black, // Will work,
-                            fontSize: 12,
+                    Container(
+                      padding: EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: Offset(0, 3),
                           ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Column(
+                        ],
+                        color: Colors.white,
+                      ),
+                      child: Column(children: [
+                        Row(
                           children: const [
                             Text(
-                              'Amount',
+                              'Muhammed wants to carpool with you',
+                              style: TextStyle(
+                                color: Colors.black, // Will work,
+                                fontSize: 12,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Column(children: const [
+                              Text(
+                                'Pick Up',
+                                style: TextStyle(
+                                  color: Colors.black, // Will work,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 6,
+                              ),
+                              Text(
+                                'Bahria Town',
+                                style: TextStyle(
+                                  color: Colors.black, // Will work,
+                                  fontSize: 12,
+                                  //fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ]),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Column(children: const [
+                              Text(
+                                'Drop off',
+                                style: TextStyle(
+                                    color: Colors.black, // Will work,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 6,
+                              ),
+                              Text(
+                                'Karachi University',
+                                style: TextStyle(
+                                  color: Colors.black, // Will work,
+                                  fontSize: 12,
+                                  //fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ])
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  _containerVisibility[1] = false;
+                                });
+                              },
+                              child: const Text('Accept'),
+                            ),
+                            const SizedBox(width: 10),
+                            ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  _containerVisibility[1] = false;
+                                });
+                              },
+                              child: const Text('Reject'),
+                            ),
+                          ],
+                        ),
+                      ]),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                  ])),
+              Visibility(
+                visible: _containerVisibility[2],
+                child: Column(children: [
+                  Container(
+                    padding: EdgeInsets.all(16.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                      color: Colors.white,
+                    ),
+                    child: Column(children: [
+                      Row(
+                        children: const [
+                          Text(
+                            'Aisha wants to carpool with you',
+                            style: TextStyle(
+                              color: Colors.black, // Will work,
+                              fontSize: 12,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Column(children: const [
+                            Text(
+                              'Pick up',
                               style: TextStyle(
                                 color: Colors.black, // Will work,
                                 fontSize: 12,
@@ -304,21 +270,20 @@ class _ContainerStackState extends State<ContainerStack> {
                               height: 6,
                             ),
                             Text(
-                              '500',
+                              'Dolmen Mall',
                               style: TextStyle(
-                                  color: Colors.black, // Will work,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold),
+                                color: Colors.black, // Will work,
+                                fontSize: 12,
+                                //fontWeight: FontWeight.bold),
+                              ),
                             ),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Column(
-                          children: const [
+                          ]),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Column(children: const [
                             Text(
-                              'Time',
+                              'Drop off',
                               style: TextStyle(
                                 color: Colors.black, // Will work,
                                 fontSize: 12,
@@ -328,81 +293,158 @@ class _ContainerStackState extends State<ContainerStack> {
                               height: 6,
                             ),
                             Text(
-                              '5:30 pm',
+                              'Shahra e Faisal',
                               style: TextStyle(
-                                  color: Colors.black, // Will work,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold),
+                                color: Colors.black, // Will work,
+                                fontSize: 12,
+                                //fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ])
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _containerVisibility[2] = false;
+                              });
+                            },
+                            child: const Text('Accept'),
+                          ),
+                          const SizedBox(width: 10),
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _containerVisibility[2] = false;
+                              });
+                            },
+                            child: const Text('Reject'),
+                          ),
+                        ],
+                      ),
+                    ]),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                ]),
+              ),
+              Visibility(
+                visible: _containerVisibility[3],
+                child: Column(children: [
+                  Container(
+                    padding: EdgeInsets.all(16.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                      color: Colors.white,
+                    ),
+                    child: Center(
+                      child: Column(children: [
+                        Row(
+                          children: const [
+                            Text(
+                              'Muhammed wants a pick up from\nTower 7, Bahria Town to Karachi University',
+                              style: TextStyle(
+                                color: Colors.black, // Will work,
+                                fontSize: 12,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
                             ),
                           ],
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _containerVisibility[3] = false;
-                            });
-                          },
-                          child: const Text('Accept'),
                         ),
-                        const SizedBox(width: 10),
-                        ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _containerVisibility[3] = false;
-                            });
-                          },
-                          child: const Text('Reject'),
+                        Row(
+                          children: [
+                            Column(
+                              children: const [
+                                Text(
+                                  'Amount',
+                                  style: TextStyle(
+                                    color: Colors.black, // Will work,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 6,
+                                ),
+                                Text(
+                                  '500',
+                                  style: TextStyle(
+                                      color: Colors.black, // Will work,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Column(
+                              children: const [
+                                Text(
+                                  'Time',
+                                  style: TextStyle(
+                                    color: Colors.black, // Will work,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 6,
+                                ),
+                                Text(
+                                  '5:30 pm',
+                                  style: TextStyle(
+                                      color: Colors.black, // Will work,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            )
+                          ],
                         ),
-                      ],
+                        Row(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  _containerVisibility[3] = false;
+                                });
+                              },
+                              child: const Text('Accept'),
+                            ),
+                            const SizedBox(width: 10),
+                            ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  _containerVisibility[3] = false;
+                                });
+                              },
+                              child: const Text('Reject'),
+                            ),
+                          ],
+                        ),
+                      ]),
                     ),
-                  ]),
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-            ]),
-          ),
-          Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                  height: 45,
-                  width: 300,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30.0),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 4,
-                        blurRadius: 6,
-                        offset: Offset(0, 3),
-                      ),
-                    ],
-                    color: Colors.white,
                   ),
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.all(13),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                      ),
-                      child: const Text(
-                        'Proceed',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                      onPressed: () async {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => Ride()),
-                        );
-                      }))),
-        ],
-      ),
-    )));
+                  const SizedBox(
+                    height: 30,
+                  ),
+                ]),
+              ),
+            ],
+          ),
+        ));
   }
 }

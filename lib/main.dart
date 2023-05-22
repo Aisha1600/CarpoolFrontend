@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Timer(Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => NewSignUp()),
+        MaterialPageRoute(builder: (context) => ViewPosts()),
       );
     });
   }
@@ -73,12 +73,12 @@ class _MyHomePageState extends State<MyHomePage> {
             color: Color(0xFF05998c),
             child: Center(
               child: Container(
-                height: 40,
-                width: 40,
+                height: 80,
+                width: 80,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: Image.asset(
-                    'assets/pic.jpeg',
+                    'assets/logo.gif',
                     fit: BoxFit.cover,
                     height: 250,
                     width: double.infinity,
