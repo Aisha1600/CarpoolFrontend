@@ -48,18 +48,23 @@ class AvailableList extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(
+                      height: 20,
+                    ),
                     Container(
+                      padding: EdgeInsets.all(15),
                       width: 80,
-                      height: 80,
+                      height: 90,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.horizontal(
                           left: Radius.circular(8),
                           right: Radius.circular(0),
                         ),
-                        image: DecorationImage(
-                          image: NetworkImage(item['image']),
-                          fit: BoxFit.cover,
-                        ),
+                      ),
+                      child: Icon(
+                        Icons.person,
+                        color: Colors.black,
+                        size: 70,
                       ),
                     ),
                     Expanded(
@@ -88,17 +93,37 @@ class AvailableList extends StatelessWidget {
                         ],
                       ),
                     )),
-                    IconButton(
-                      icon: Icon(Icons.arrow_forward_ios),
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  RideDetailsScreen()),
-                        );
-                      },
-                    ),
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 70,
+                          ),
+                          CircleAvatar(
+                              radius: 15,
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                      size: 15,
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                RideDetailsScreen()),
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ))
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),

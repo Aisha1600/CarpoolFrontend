@@ -378,21 +378,6 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                   SizedBox(
                     height: 10,
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Post Request',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15.0,
-                        //fontWeight: FontWeight.w900,
-                        //fontFamily: 'Palanquin'
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: Size.fromHeight(40),
-                    ),
-                  )
                 ],
               ),
             ),
