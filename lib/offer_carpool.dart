@@ -18,8 +18,8 @@ class _OfferCarpoolState extends State<OfferCarpool> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Carpool Application'),
-          centerTitle: true,
+          // title: const Text('Carpool Application'),
+          // centerTitle: true,
           backgroundColor: const Color(0xFF05998C),
         ),
         body: SingleChildScrollView(
@@ -27,14 +27,6 @@ class _OfferCarpoolState extends State<OfferCarpool> {
           padding: EdgeInsets.all(16.0),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            Text(
-              '$titleText',
-              style: TextStyle(
-                color: Color(0xFF05998C),
-                fontSize: 30.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
             const SizedBox(height: 16),
             Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +38,7 @@ class _OfferCarpoolState extends State<OfferCarpool> {
                       setState(() {
                         _isAvailablePressed = true;
                         _isRequestPressed = false;
-                        titleText = 'Post Carpool Offer';
+                        //titleText = 'Post Carpool Offer';
                       });
                     },
                     child: Text(
@@ -81,7 +73,7 @@ class _OfferCarpoolState extends State<OfferCarpool> {
                       setState(() {
                         _isAvailablePressed = false;
                         _isRequestPressed = true;
-                        titleText = 'Available Requests';
+                        //titleText = 'Available Requests';
                       });
                     },
                     child: Text(

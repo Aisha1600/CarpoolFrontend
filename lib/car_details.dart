@@ -1,4 +1,5 @@
 import 'package:carpoolfront/offer_carpool.dart';
+import 'package:carpoolfront/view_posts.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -286,44 +287,44 @@ class _CarDetails extends State<CarDetails> {
                         color: Colors.white),
                   ),
                   onPressed: () async {
-                    SharedPreferences prefs =
-                        await SharedPreferences.getInstance();
-                    String token = prefs.getString('jwt_token') ?? '';
-                    print(token);
-                    //API INTEGRATION
-                    CarDetailForm form = CarDetailForm(
-                      name: nameController.text,
-                      model: modelController.text,
-                      make_year: makeyearController.text,
-                      car_regno: rengoController.text,
-                      car_color: colorController.text,
+                    // SharedPreferences prefs =
+                    //     await SharedPreferences.getInstance();
+                    // String token = prefs.getString('jwt_token') ?? '';
+                    // print(token);
+                    // //API INTEGRATION
+                    // CarDetailForm form = CarDetailForm(
+                    //   name: nameController.text,
+                    //   model: modelController.text,
+                    //   make_year: makeyearController.text,
+                    //   car_regno: rengoController.text,
+                    //   car_color: colorController.text,
+                    // );
+                    // try {
+                    //   final jsonData = jsonEncode(form.toJson());
+                    //   print(jsonData);
+                    //   print(json.decode(jsonData));
+                    //   final response = await http.post(
+                    //     //URL LOCAL HOST NEEDS TO BE CHANGED
+                    //     Uri.parse(
+                    //         'http://192.168.100.35:4000/member_car/InsertCar'),
+                    //     headers: {
+                    //       'Content-Type': 'application/json',
+                    //       'authorization': token
+                    //     },
+                    //     body: jsonData,
+                    //   );
+                    //   print(response.statusCode);
+                    //   if (response.statusCode == 200) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ViewPosts()),
                     );
-                    try {
-                      final jsonData = jsonEncode(form.toJson());
-                      print(jsonData);
-                      print(json.decode(jsonData));
-                      final response = await http.post(
-                        //URL LOCAL HOST NEEDS TO BE CHANGED
-                        Uri.parse(
-                            'http://192.168.100.35:4000/member_car/InsertCar'),
-                        headers: {
-                          'Content-Type': 'application/json',
-                          'authorization': token
-                        },
-                        body: jsonData,
-                      );
-                      print(response.statusCode);
-                      if (response.statusCode == 200) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const OfferCarpool()),
-                        );
-                        print(json.decode(response.body));
-                      }
-                    } catch (error) {
-                      print(error);
-                    }
+                    //     print(json.decode(response.body));
+                    //   }
+                    // } catch (error) {
+                    //   print(error);
+                    //  }
                   },
                 )),
           ])),

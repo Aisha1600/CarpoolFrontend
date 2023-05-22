@@ -1,10 +1,15 @@
+import 'dart:async';
+
 import 'package:carpoolfront/car_details.dart';
 import 'package:carpoolfront/find_your_carpool.dart';
 import 'package:carpoolfront/forgot_password.dart';
 import 'package:carpoolfront/license_info.dart';
 import 'package:carpoolfront/new_login.dart';
 import 'package:carpoolfront/post_offer.dart';
+import 'package:carpoolfront/profile.dart';
+import 'package:carpoolfront/ride.dart';
 import 'package:carpoolfront/select_role.dart';
+import 'package:carpoolfront/view_posts.dart';
 import 'Extra.dart';
 import 'available_offers.dart';
 import 'package:flutter/material.dart';
@@ -48,23 +53,38 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  void initState() {
+    super.initState();
+
+    // Simulating a 3-second delay before hiding the progress indicator
+    Timer(Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => NewSignUp()),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          height: 100,
-          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-          child: ElevatedButton(
-            child: const Text('ENTERRRRR'),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => NewSignUp()),
-              );
-            },
-          )),
-      // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        body: Container(
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+            color: Color(0xFF05998c),
+            child: Center(
+              child: Container(
+                height: 40,
+                width: 40,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Image.asset(
+                    'assets/pic.jpeg',
+                    fit: BoxFit.cover,
+                    height: 250,
+                    width: double.infinity,
+                  ),
+                ),
+              ),
+            )));
   }
 }

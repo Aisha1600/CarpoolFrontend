@@ -210,7 +210,8 @@ class _License_InfoState extends State<License_Info> {
                   //   if (response.statusCode == 200) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const CarDetails()),
+                    MaterialPageRoute(
+                        builder: (context) => const OfferCarpool()),
                   );
                   //     print(json.decode(response.body));
                   //   }

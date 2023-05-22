@@ -1,6 +1,8 @@
 import 'package:carpoolfront/find_your_carpool.dart';
 import 'package:carpoolfront/offer_carpool.dart';
 import 'package:carpoolfront/post_offer.dart';
+import 'package:carpoolfront/profile.dart';
+import 'package:carpoolfront/request_history.dart';
 import 'package:carpoolfront/select_role.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -18,8 +20,8 @@ class _BottomNavbarState extends State<BottomNavbar> {
 
   static List<Widget> _widgetOptions = <Widget>[
     Select_Role(),
-    OfferCarpool(),
-    FindYourCarpool()
+    Profile(),
+    RequestHistory(),
   ];
 
   void _onItemTapped(int index) {
@@ -39,12 +41,12 @@ class _BottomNavbarState extends State<BottomNavbar> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.arrow_circle_right),
-            label: 'Offer',
+            icon: Icon(Icons.person_2_sharp),
+            label: 'Profile',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.arrow_back_sharp),
-            label: 'Avail',
+            icon: Icon(Icons.history),
+            label: 'History',
           ),
         ],
         currentIndex: _selectedIndex,

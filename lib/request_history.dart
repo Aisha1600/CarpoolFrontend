@@ -6,21 +6,21 @@ class RequestHistory extends StatelessWidget {
   RequestHistory({super.key});
   final List<Map<String, dynamic>> data = [
     {
-      'from': 'Address 1',
-      'to': 'Address 2',
-      'time': '8.00 Am',
+      'from': 'I.I Churdrigarh Road',
+      'to': 'Darakshan Villas',
+      'time': '8.00 AM',
       'status': 'Expired'
     },
     {
-      'from': 'Address 3',
-      'to': 'Address 4',
-      'time': '8.00 Am',
+      'from': 'North Nazimabad',
+      'to': 'Lyari',
+      'time': '10.00 AM',
       'status': 'Expired'
     },
     {
-      'from': 'Address 5',
-      'to': 'Address 6',
-      'time': '8.00 Am',
+      'from': 'Shahra e Faisal',
+      'to': 'Darakshan Villas',
+      'time': '8.00 AM',
       'status': 'Expired'
     },
   ];
@@ -29,8 +29,9 @@ class RequestHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        //centerTitle: true,
         backgroundColor: const Color(0xFF05998C),
+        title: const Text('Request History'),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -38,15 +39,7 @@ class RequestHistory extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                'Request history',
-                style: TextStyle(
-                  color: Color(0xFF05998C),
-                  fontSize: 30.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Column(
                 children: [
                   for (final item in data)
@@ -102,7 +95,7 @@ class RequestHistory extends StatelessWidget {
                                   'Time: ${item['time']}',
                                   style: TextStyle(
                                     fontSize: 16,
-                                    // fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 SizedBox(height: 8),

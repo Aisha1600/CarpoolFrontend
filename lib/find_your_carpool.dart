@@ -383,10 +383,11 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                     child: Text(
                       'Post Request',
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15.0,
-                          fontWeight: FontWeight.w900,
-                          fontFamily: 'Palanquin'),
+                        color: Colors.white,
+                        fontSize: 15.0,
+                        //fontWeight: FontWeight.w900,
+                        //fontFamily: 'Palanquin'
+                      ),
                     ),
                     style: ElevatedButton.styleFrom(
                       fixedSize: Size.fromHeight(40),
