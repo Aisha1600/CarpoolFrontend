@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Timer(Duration(seconds: 4), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => NewLogIn()),
+        MaterialPageRoute(builder: (context) => BottomNavbar()),
       );
     });
   }

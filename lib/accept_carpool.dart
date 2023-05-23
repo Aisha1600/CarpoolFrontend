@@ -3,15 +3,16 @@ import 'package:carpoolfront/post_offer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'Rider.dart';
 
-class Rider extends StatefulWidget {
-  const Rider({super.key});
+class AcceptCarpool extends StatefulWidget {
+  const AcceptCarpool({super.key});
 
   @override
-  State<Rider> createState() => _RiderState();
+  State<AcceptCarpool> createState() => _AcceptCarpoolState();
 }
 
-class _RiderState extends State<Rider> {
+class _AcceptCarpoolState extends State<AcceptCarpool> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +42,7 @@ class _RiderState extends State<Rider> {
             const Align(
               alignment: Alignment.topLeft,
               child: Text(
-                'Your ride is on its way',
+                'Accept Carpool with Hanif?',
                 style: TextStyle(
                   color: Colors.black, // Will work,
                   fontSize: 20,
@@ -250,116 +251,46 @@ class _RiderState extends State<Rider> {
               ),
             ),
             SizedBox(height: 40.0),
-            Row(
-              children: [
-                Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Container(
-                        height: 45,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30.0),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 4,
-                              blurRadius: 6,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
-                          color: Colors.white,
+            Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                    height: 45,
+                    width: 300,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 4,
+                          blurRadius: 6,
+                          offset: Offset(0, 3),
                         ),
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.all(13),
-                              backgroundColor: Colors.red,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                            child: Center(
-                              child: Icon(
-                                Icons.alarm,
-                                color: Colors.white,
-                                //size: 20,
-                              ),
-                            ),
-                            onPressed: () async {}))),
-                SizedBox(
-                  width: 10,
-                ),
-                Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                        height: 45,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30.0),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 4,
-                              blurRadius: 6,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
-                          color: Colors.white,
+                      ],
+                      color: Colors.white,
+                    ),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.all(13),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
                         ),
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.all(13),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
+                        child: Center(
+                          child: Text(
+                            "Accept",
+                            style: TextStyle(
+                              color: Colors.white,
                             ),
-                            child: Center(
-                              child: Icon(
-                                Icons.call,
-                                color: Colors.white,
-                                //size: 20,
-                              ),
-                            ),
-                            onPressed: () async {}))),
-                SizedBox(
-                  width: 10,
-                ),
-                Align(
-                    alignment: Alignment.bottomRight,
-                    child: Container(
-                        height: 45,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30.0),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 4,
-                              blurRadius: 6,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
-                          color: Colors.white,
-                        ),
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.all(13),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Cancel",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
 
-                                //size: 20,
-                              ),
-                            ),
-                            onPressed: () async {}))),
-              ],
-            )
+                            //size: 20,
+                          ),
+                        ),
+                        onPressed: () async {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => Rider()),
+                          );
+                        }))),
           ]),
         ),
       )

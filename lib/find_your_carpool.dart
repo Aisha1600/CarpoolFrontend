@@ -9,6 +9,7 @@ import 'request_form.dart';
 import 'list_places.dart';
 import 'package:provider/provider.dart';
 import 'places_services.dart';
+import 'request_available_list.dart';
 
 class GetLatLng {
   final double latitude;
@@ -371,7 +372,7 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                   ]),
                   const SizedBox(height: 20.0),
                   if (_isAvailablePressed)
-                    AvailableList()
+                    RequestAvailableList()
                   else if (_isRequestPressed)
                     RequestForm(),
                   SizedBox(
