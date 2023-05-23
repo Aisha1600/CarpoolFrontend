@@ -287,6 +287,34 @@ class _CarDetails extends State<CarDetails> {
                         color: Colors.white),
                   ),
                   onPressed: () async {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Error'),
+                            content: Text(
+                                'Are your sure you want to post the carpool?'),
+                            actions: [
+                              TextButton(
+                                child: Text('No'),
+                                onPressed: () {
+                                  Navigator.pop(context); // Close the dialog
+                                },
+                              ),
+                              TextButton(
+                                child: Text('Yes'),
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ViewPosts()),
+                                  );
+                                },
+                              ),
+                            ],
+                          );
+                        });
                     // SharedPreferences prefs =
                     //     await SharedPreferences.getInstance();
                     // String token = prefs.getString('jwt_token') ?? '';
@@ -315,11 +343,11 @@ class _CarDetails extends State<CarDetails> {
                     //   );
                     //   print(response.statusCode);
                     //   if (response.statusCode == 200) {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ViewPosts()),
-                    );
+                    // Navigator.pushReplacement(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) => const ViewPosts()),
+                    // );
                     //     print(json.decode(response.body));
                     //   }
                     // } catch (error) {

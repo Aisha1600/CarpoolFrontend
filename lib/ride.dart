@@ -1,6 +1,9 @@
+import 'package:carpoolfront/offer_carpool.dart';
+import 'package:carpoolfront/post_offer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Ride extends StatefulWidget {
   const Ride({super.key});
@@ -10,9 +13,22 @@ class Ride extends StatefulWidget {
 }
 
 class _RideState extends State<Ride> {
-  bool isChecked = false;
+  bool isChecked1 = false;
+  bool isChecked2 = false;
+  bool isChecked3 = false;
+  bool isChecked4 = false;
   bool started = false;
   String end = 'Start';
+
+  _makingPhoneCall() async {
+    var url = Uri.parse("tel:03342340689");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +37,14 @@ class _RideState extends State<Ride> {
         Expanded(
           flex: 2,
           child: Container(
-            color: Colors.blue, // Replace with your desired image
+            color: Colors.blue,
+            child: Image.asset(
+              'assets/map.png',
+              fit: BoxFit.cover,
+              height: double.infinity,
+              width: double.infinity,
+              // repeat: ImageRepeat.repeat,
+            ), // Replace with your desired image
             // Add your image widget here
           ),
         ),
@@ -94,9 +117,15 @@ class _RideState extends State<Ride> {
                                 Row(
                                   children: [
                                     Checkbox(
-                                        value:
-                                            false, // Set the initial value of the checkbox
-                                        onChanged: null),
+                                      value:
+                                          isChecked1, // Set the initial value of the checkbox
+                                      onChanged: (bool? value) {
+                                        setState(() {
+                                          isChecked1 = value ??
+                                              false; // Update the state of the checkbox
+                                        });
+                                      },
+                                    ),
                                     SizedBox(width: 2.0),
                                     Text(
                                       'Marked as picked up',
@@ -116,9 +145,15 @@ class _RideState extends State<Ride> {
                                 Row(
                                   children: [
                                     Checkbox(
-                                        value:
-                                            false, // Set the initial value of the checkbox
-                                        onChanged: null),
+                                      value:
+                                          isChecked2, // Set the initial value of the checkbox
+                                      onChanged: (bool? value) {
+                                        setState(() {
+                                          isChecked2 = value ??
+                                              false; // Update the state of the checkbox
+                                        });
+                                      },
+                                    ),
                                     SizedBox(width: 2.0),
                                     Text(
                                       'Marked as picked up',
@@ -164,7 +199,9 @@ class _RideState extends State<Ride> {
                                         //size: 20,
                                       ),
                                     ),
-                                    onPressed: () async {}))),
+                                    onPressed: () async {
+                                      _makingPhoneCall();
+                                    }))),
                       ],
                     ),
                   ),
@@ -217,9 +254,15 @@ class _RideState extends State<Ride> {
                                 Row(
                                   children: [
                                     Checkbox(
-                                        value:
-                                            false, // Set the initial value of the checkbox
-                                        onChanged: null),
+                                      value:
+                                          isChecked3, // Set the initial value of the checkbox
+                                      onChanged: (bool? value) {
+                                        setState(() {
+                                          isChecked3 = value ??
+                                              false; // Update the state of the checkbox
+                                        });
+                                      },
+                                    ),
                                     SizedBox(width: 2.0),
                                     Text(
                                       'Marked as picked up',
@@ -239,9 +282,15 @@ class _RideState extends State<Ride> {
                                 Row(
                                   children: [
                                     Checkbox(
-                                        value:
-                                            false, // Set the initial value of the checkbox
-                                        onChanged: null),
+                                      value:
+                                          isChecked4, // Set the initial value of the checkbox
+                                      onChanged: (bool? value) {
+                                        setState(() {
+                                          isChecked4 = value ??
+                                              false; // Update the state of the checkbox
+                                        });
+                                      },
+                                    ),
                                     SizedBox(width: 2.0),
                                     Text(
                                       'Marked as picked up',
@@ -287,7 +336,9 @@ class _RideState extends State<Ride> {
                                         //size: 20,
                                       ),
                                     ),
-                                    onPressed: () async {}))),
+                                    onPressed: () async {
+                                      _makingPhoneCall();
+                                    }))),
                       ],
                     ),
                   ),
@@ -326,6 +377,71 @@ class _RideState extends State<Ride> {
                       setState(() {
                         started = true;
                         end = 'End';
+                        if (started == true && end == 'End') {
+                          if (isChecked1 != true ||
+                              isChecked2 != true ||
+                              isChecked3 != true ||
+                              isChecked4 != true) {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text('Error'),
+                                    content: Text(
+                                        'Cannot end ride until all passengers have been picked and dropped.'),
+                                    actions: [
+                                      TextButton(
+                                        child: Text('Cancel'),
+                                        onPressed: () {
+                                          Navigator.pop(
+                                              context); // Close the dialog
+                                        },
+                                      ),
+                                      TextButton(
+                                        child: Text('OK'),
+                                        onPressed: () {
+                                          // Perform action when OK button is pressed
+                                          Navigator.pop(
+                                              context); // Close the dialog
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                });
+                          } else {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text('Error'),
+                                    content: Text(
+                                        'Your ride has been marked as completed!'),
+                                    actions: [
+                                      TextButton(
+                                        child: Text('Cancel'),
+                                        onPressed: () {
+                                          Navigator.pop(
+                                              context); // Close the dialog
+                                        },
+                                      ),
+                                      TextButton(
+                                        child: Text('OK'),
+                                        onPressed: () {
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    OfferCarpool()),
+                                          );
+                                          // Perform action when OK button is pressed
+                                          // Close the dialog
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                });
+                          }
+                        }
                         //titleText = 'Available Requests';
                       });
                     }))),

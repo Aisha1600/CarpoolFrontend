@@ -39,6 +39,21 @@ class _NewLogInState extends State<NewLogIn> {
     return emailController.text.isEmpty || passwordController.text.isEmpty;
   }
 
+  bool _isEmailValid(String email) {
+    // Regular expression pattern for email validation
+    String pattern =
+        r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$';
+    RegExp regex = RegExp(pattern);
+
+    return regex.hasMatch(email);
+  }
+
+  bool _isPasswordValid(String password) {
+    int minLength = 8; // Minimum password length requirement
+
+    return password.length >= minLength;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,19 +72,16 @@ class _NewLogInState extends State<NewLogIn> {
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                height: 90,
-                width: 90,
-                color: Colors.white,
-                child: Image.network(
-                  'https://www.grouphealth.ca/wp-content/uploads/2018/05/placeholder-image.png',
+              ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Image.asset(
+                  'assets/logos.gif',
                   fit: BoxFit.cover,
-                  height: double.infinity,
-                  width: double.infinity,
-                  // repeat: ImageRepeat.repeat,
+                  height: 90,
+                  width: 90,
                 ),
               ),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 40.0),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.0),
@@ -119,6 +131,7 @@ class _NewLogInState extends State<NewLogIn> {
                 ),
                 child: TextField(
                   controller: passwordController,
+                  obscureText: true,
                   decoration: InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 14.0),
@@ -173,65 +186,78 @@ class _NewLogInState extends State<NewLogIn> {
                     color: Colors.white,
                   ),
                   child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.all(13),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(13),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
                       ),
-                    ),
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(
-                          //fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.white),
-                    ),
-                    onPressed: () async {
-                      if (_areFieldsEmpty()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Please fill in all the fields.'),
-                          ),
-                        );
-                      } else {
-                        // SharedPreferences prefs =
-                        //     await SharedPreferences.getInstance();
-                        // String token = prefs.getString('jwt_token') ?? '';
-                        // print('Stored jwt token from storage is {$token}');
-                        // // //API INTEGRATION
-                        // LicenseForm form = LicenseForm(
-                        //   license_no: int.parse(LicensenoController.text.toString()),
-                        //   license_valid_from: _selectedDate.toIso8601String(),
-                        // );
-                        // try {
-                        //   final jsonData = jsonEncode(form.toJson());
-                        //   print(jsonData);
-                        //   print(json.decode(jsonData));
-                        //   final response = await http.put(
-                        //     //URL LOCAL HOST NEEDS TO BE CHANGED
-                        //     Uri.parse(
-                        //         'http://192.168.100.35:4000/member/InsertLicense'),
-                        //     headers: {
-                        //       'Content-Type': 'application/json',
-                        //       'authorization': token
-                        //     },
-                        //     body: jsonData,
-                        //   );
-                        //   print(response.statusCode);
-                        //   if (response.statusCode == 200) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const BottomNavbar()),
-                        );
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(
+                            //fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.white),
+                      ),
+                      onPressed: () async {
+                        if (_areFieldsEmpty()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Please fill in all the fields.'),
+                            ),
+                          );
+                        } else if (!_isEmailValid(emailController.text)) {
+                          // Show an error message or display a Snackbar indicating that the email format is invalid
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content:
+                                  Text('Please enter a valid email address.'),
+                            ),
+                          );
+                        } else if (!_isPasswordValid(passwordController.text)) {
+                          // Show an error message or display a Snackbar indicating that the password is too short
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Password is incorrect.'),
+                            ),
+                          );
+                        } else
+                          // SharedPreferences prefs =
+                          //     await SharedPreferences.getInstance();
+                          // String token = prefs.getString('jwt_token') ?? '';
+                          // print('Stored jwt token from storage is {$token}');
+                          // // //API INTEGRATION
+                          // LicenseForm form = LicenseForm(
+                          //   license_no: int.parse(LicensenoController.text.toString()),
+                          //   license_valid_from: _selectedDate.toIso8601String(),
+                          // );
+                          // try {
+                          //   final jsonData = jsonEncode(form.toJson());
+                          //   print(jsonData);
+                          //   print(json.decode(jsonData));
+                          //   final response = await http.put(
+                          //     //URL LOCAL HOST NEEDS TO BE CHANGED
+                          //     Uri.parse(
+                          //         'http://192.168.100.35:4000/member/InsertLicense'),
+                          //     headers: {
+                          //       'Content-Type': 'application/json',
+                          //       'authorization': token
+                          //     },
+                          //     body: jsonData,
+                          //   );
+                          //   print(response.statusCode);
+                          //   if (response.statusCode == 200) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const BottomNavbar()),
+                          );
                         //     print(json.decode(response.body));
                         //   }
                         // } catch (error) {
                         //   print(error);
                         // }
-                      }
-                    },
-                  )),
+                      })),
               const SizedBox(height: 4.0),
               Center(
                   child: Row(

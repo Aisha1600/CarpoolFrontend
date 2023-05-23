@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:carpoolfront/request_sent.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -60,7 +61,7 @@ class _RideDetailsScreenState extends State<RideDetailsScreen> {
                             ),
                           ),
                           Text(
-                            '\$10',
+                            'Rs100',
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -114,20 +115,20 @@ class _RideDetailsScreenState extends State<RideDetailsScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          for (int i = 0; i < 5; i++)
-                            Container(
-                              width: 30,
-                              height: 30,
-                              margin: EdgeInsets.all(2),
-                              decoration: BoxDecoration(
-                                color: i < 3 ? Colors.white : Colors.green,
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: Colors.grey,
-                                  width: 1,
-                                ),
-                              ),
-                            ),
+                          // for (int i = 0; i < 5; i++)
+                          //   Container(
+                          //     width: 30,
+                          //     height: 30,
+                          //     margin: EdgeInsets.all(2),
+                          //     decoration: BoxDecoration(
+                          //       color: i < 3 ? Colors.white : Colors.green,
+                          //       shape: BoxShape.circle,
+                          //       border: Border.all(
+                          //         color: Colors.grey,
+                          //         width: 1,
+                          //       ),
+                          //     ),
+                          //   ),
                           Column(
                             children: [
                               Icon(Icons.calendar_today_outlined),
@@ -166,6 +167,72 @@ class _RideDetailsScreenState extends State<RideDetailsScreen> {
                           Text('4.5 (123)'),
                         ],
                       ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Center(
+                          child: Container(
+                              height: 48,
+                              width: 300,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 4,
+                                    blurRadius: 6,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
+                                color: Colors.white,
+                              ),
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    padding: EdgeInsets.all(13),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30.0),
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    'Send Offer',
+                                    style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: Colors.white),
+                                  ),
+                                  onPressed: () async {
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text('Message'),
+                                            content: Text(
+                                                'Your carpool offer has been sent.'),
+                                            actions: [
+                                              // TextButton(
+                                              //   child: Text('Cancel'),
+                                              //   onPressed: () {
+                                              //     Navigator.pop(
+                                              //         context); // Close the dialog
+                                              //   },
+                                              // ),
+                                              TextButton(
+                                                child: Text('OK'),
+                                                onPressed: () {
+                                                  Navigator.pushReplacement(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            RequestSent()),
+                                                  );
+                                                  // Perform action when OK button is pressed
+                                                  // Close the dialog
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        });
+                                  }))),
                     ],
                   ),
                 ),

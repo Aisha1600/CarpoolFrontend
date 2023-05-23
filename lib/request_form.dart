@@ -1,3 +1,4 @@
+import 'package:carpoolfront/view_posts.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -306,14 +307,39 @@ class _RequestFormState extends State<RequestForm> {
               height: 90,
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Message'),
+                          content: Text(
+                              'Your request has been posted and you will be notified about any offers on your request.'),
+                          actions: [
+                            // TextButton(
+                            //   child: Text('No'),
+                            //   onPressed: () {
+                            //     Navigator.pop(context); // Close the dialog
+                            //   },
+                            // ),
+                            TextButton(
+                              child: Text('Ok'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      });
+                },
                 child: Text(
                   'Post Request',
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.w900,
-                      fontFamily: 'Palanquin'),
+                    color: Colors.white,
+                    fontSize: 15.0,
+                    //fontWeight: FontWeight.w900,
+                    //fontFamily: 'Palanquin'
+                  ),
                 ),
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size.fromHeight(40),

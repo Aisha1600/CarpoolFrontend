@@ -35,7 +35,7 @@ class _ContainerStackState extends State<ContainerStack> {
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 93, 93, 93),
         body: Padding(
-          padding: EdgeInsets.all(40),
+          padding: EdgeInsets.fromLTRB(20, 60, 20, 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -69,10 +69,34 @@ class _ContainerStackState extends State<ContainerStack> {
                             style: TextStyle(fontSize: 13, color: Colors.white),
                           ),
                           onPressed: () async {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(builder: (context) => Ride()),
-                            );
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text('Message'),
+                                    content: Text(
+                                        'Are your sure you want to proceed with the carpool?'),
+                                    actions: [
+                                      TextButton(
+                                        child: Text('No'),
+                                        onPressed: () {
+                                          Navigator.pop(
+                                              context); // Close the dialog
+                                        },
+                                      ),
+                                      TextButton(
+                                        child: Text('Yes'),
+                                        onPressed: () {
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => Ride()),
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                });
                           })),
                   SizedBox(
                     width: 50,
@@ -105,11 +129,35 @@ class _ContainerStackState extends State<ContainerStack> {
                             style: TextStyle(fontSize: 13, color: Colors.white),
                           ),
                           onPressed: () async {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => OfferCarpool()),
-                            );
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text('Message'),
+                                    content: Text(
+                                        'Are your sure you want to cancel your carpool offer?'),
+                                    actions: [
+                                      TextButton(
+                                        child: Text('No'),
+                                        onPressed: () {
+                                          Navigator.pop(
+                                              context); // Close the dialog
+                                        },
+                                      ),
+                                      TextButton(
+                                        child: Text('Yes'),
+                                        onPressed: () {
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    OfferCarpool()),
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                });
                           })),
                 ],
               ),

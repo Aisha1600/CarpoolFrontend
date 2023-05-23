@@ -16,6 +16,7 @@ class _NewSignUpState extends State<NewSignUp> {
   TextEditingController fnameController = TextEditingController();
   TextEditingController lnameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmpasswordController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController cnicController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -45,51 +46,41 @@ class _NewSignUpState extends State<NewSignUp> {
     return password.length >= minLength;
   }
 
+  bool _isPasswordmatched(String password, String confirm) {
+    if (password == confirm)
+      return true;
+    else
+      return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Image.network(
-            //'https://cdn.dribbble.com/users/992933/screenshots/4608688/media/f046153ea09fd6e833184c5cd209aee9.gif',
-            'https://images.pexels.com/photos/11851449/pexels-photo-11851449.jpeg',
+          Image.asset(
+            'assets/bg.jpeg',
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,
             // repeat: ImageRepeat.repeat,
           ),
           Container(
-            height: 90,
-            width: 90,
-            color: Colors.white,
-            child: Image.asset(
-              'assets/bg.jpeg',
-              fit: BoxFit.cover,
-              height: double.infinity,
-              width: double.infinity,
-              // repeat: ImageRepeat.repeat,
-            ),
-          ),
-          const SizedBox(height: 20.0),
-          Container(
-              padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
+              padding: const EdgeInsets.fromLTRB(30, 90, 30, 10),
               color: Colors.black.withOpacity(0.6),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    height: 30,
-                    width: 30,
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.fromLTRB(0, 40, 0, 40),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
                     child: Image.asset(
-                      'assets/bg.jpeg',
+                      'assets/logos.gif',
                       fit: BoxFit.cover,
-                      height: double.infinity,
-                      width: double.infinity,
-                      // repeat: ImageRepeat.repeat,
+                      height: 90,
+                      width: 90,
                     ),
                   ),
+                  const SizedBox(height: 40.0),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30.0),
@@ -241,7 +232,7 @@ class _NewSignUpState extends State<NewSignUp> {
                       color: Colors.white,
                     ),
                     child: TextField(
-                      controller: passwordController,
+                      controller: confirmpasswordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
@@ -383,82 +374,90 @@ class _NewSignUpState extends State<NewSignUp> {
                         color: Colors.white,
                       ),
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.all(13),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.all(13),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
                           ),
-                        ),
-                        child: const Text(
-                          'Sign Up',
-                          style: TextStyle(
-                              //fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: Colors.white),
-                        ),
-                        onPressed: () async {
-                          if (_areFieldsEmpty()) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text('Please fill in all the fields.'),
-                              ),
-                            );
-                          } else if (!_isEmailValid(emailController.text)) {
-                            // Show an error message or display a Snackbar indicating that the email format is invalid
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content:
-                                    Text('Please enter a valid email address.'),
-                              ),
-                            );
-                          } else if (!_isPasswordValid(
-                              passwordController.text)) {
-                            // Show an error message or display a Snackbar indicating that the password is too short
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                    'Password should be at least 8 characters long.'),
-                              ),
-                            );
-                          } else {
-                            // SharedPreferences prefs =
-                            //     await SharedPreferences.getInstance();
-                            // String token = prefs.getString('jwt_token') ?? '';
-                            // print('Stored jwt token from storage is {$token}');
-                            // // //API INTEGRATION
-                            // LicenseForm form = LicenseForm(
-                            //   license_no: int.parse(LicensenoController.text.toString()),
-                            //   license_valid_from: _selectedDate.toIso8601String(),
-                            // );
-                            // try {
-                            //   final jsonData = jsonEncode(form.toJson());
-                            //   print(jsonData);
-                            //   print(json.decode(jsonData));
-                            //   final response = await http.put(
-                            //     //URL LOCAL HOST NEEDS TO BE CHANGED
-                            //     Uri.parse(
-                            //         'http://192.168.100.35:4000/member/InsertLicense'),
-                            //     headers: {
-                            //       'Content-Type': 'application/json',
-                            //       'authorization': token
-                            //     },
-                            //     body: jsonData,
-                            //   );
-                            //   print(response.statusCode);
-                            //   if (response.statusCode == 200) {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const BottomNavbar()),
-                            );
+                          child: const Text(
+                            'Sign Up',
+                            style: TextStyle(
+                                //fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.white),
+                          ),
+                          onPressed: () async {
+                            if (_areFieldsEmpty()) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content:
+                                      Text('Please fill in all the fields.'),
+                                ),
+                              );
+                            } else if (!_isEmailValid(emailController.text)) {
+                              // Show an error message or display a Snackbar indicating that the email format is invalid
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      'Please enter a valid email address.'),
+                                ),
+                              );
+                            } else if (!_isPasswordValid(
+                                passwordController.text)) {
+                              // Show an error message or display a Snackbar indicating that the password is too short
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      'Password should be at least 8 characters long.'),
+                                ),
+                              );
+                            } else if (_isPasswordmatched(
+                                    passwordController.text,
+                                    confirmpasswordController.text) ==
+                                false) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Password do not match.'),
+                                ),
+                              );
+                            } else
+                              // SharedPreferences prefs =
+                              //     await SharedPreferences.getInstance();
+                              // String token = prefs.getString('jwt_token') ?? '';
+                              // print('Stored jwt token from storage is {$token}');
+                              // // //API INTEGRATION
+                              // LicenseForm form = LicenseForm(
+                              //   license_no: int.parse(LicensenoController.text.toString()),
+                              //   license_valid_from: _selectedDate.toIso8601String(),
+                              // );
+                              // try {
+                              //   final jsonData = jsonEncode(form.toJson());
+                              //   print(jsonData);
+                              //   print(json.decode(jsonData));
+                              //   final response = await http.put(
+                              //     //URL LOCAL HOST NEEDS TO BE CHANGED
+                              //     Uri.parse(
+                              //         'http://192.168.100.35:4000/member/InsertLicense'),
+                              //     headers: {
+                              //       'Content-Type': 'application/json',
+                              //       'authorization': token
+                              //     },
+                              //     body: jsonData,
+                              //   );
+                              //   print(response.statusCode);
+                              //   if (response.statusCode == 200) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const BottomNavbar()),
+                              );
                             //     print(json.decode(response.body));
                             //   }
                             // } catch (error) {
                             //   print(error);
                             // }
-                          }
-                        },
-                      )),
+                          })),
                   const SizedBox(height: 6.0),
                   Center(
                     child: Row(

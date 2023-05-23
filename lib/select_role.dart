@@ -44,7 +44,8 @@ class _Select_RoleState extends State<Select_Role> {
             Column(
               children: [
                 Container(
-                  width: 270,
+                  width: 300,
+                  height: 270,
                   margin: EdgeInsets.all(10),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
@@ -78,10 +79,14 @@ class _Select_RoleState extends State<Select_Role> {
                                   shadowColor: Colors.grey.withOpacity(0.8),
                                 ),
                                 child: const Center(
-                                  child: Icon(
-                                    Icons.favorite,
-                                    color: Color(0xFF05998c),
+                                  child: const Text(
+                                    'Offer Carpool',
+                                    style: TextStyle(color: Colors.black),
                                   ),
+                                  //Icon(
+                                  //   Icons.favorite,
+                                  //   color: Color(0xFF05998c),
+                                  // ),
                                 )),
                           ),
                           SizedBox(
@@ -113,10 +118,11 @@ class _Select_RoleState extends State<Select_Role> {
                                 shadowColor: Colors.grey.withOpacity(0.8),
                               ),
                               child: Center(
-                                child: Icon(
-                                  Icons.android,
-                                  color: Colors.white,
-                                ),
+                                child: const Text('Find Carpool'),
+                                // Icon(
+                                //   Icons.android,
+                                //   color: Colors.white,
+                                // ),
                               ),
                               //label: Text('Like'),
                             ),
@@ -162,11 +168,14 @@ class _Select_RoleState extends State<Select_Role> {
                               //   ),
                               // ],
                               child: Center(
-                                child: Icon(
-                                  Icons.android,
-                                  color: Colors.white,
+                                child: const Text(
+                                  'Rating and Reviews',
                                 ),
                               ),
+                              // Icon(
+                              //   Icons.android,
+                              //   color: Colors.white,
+                              // ),
                             ),
                           ),
                           SizedBox(
@@ -198,10 +207,14 @@ class _Select_RoleState extends State<Select_Role> {
                                   shadowColor: Colors.grey.withOpacity(0.8),
                                 ),
                                 child: const Center(
-                                  child: Icon(
-                                    Icons.favorite,
-                                    color: Color(0xFF05998c),
+                                  child: Text(
+                                    'Policies and Security',
+                                    style: TextStyle(color: Colors.black),
                                   ),
+                                  // Icon(
+                                  //   Icons.favorite,
+                                  //   color: Color(0xFF05998c),
+                                  // ),
                                 )),
                           ),
                           SizedBox(

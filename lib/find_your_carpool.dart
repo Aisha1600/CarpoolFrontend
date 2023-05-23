@@ -49,7 +49,6 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Find Your Nearest Ride'),
-        centerTitle: true,
         backgroundColor: const Color(0xFF05998C),
       ),
       body: Builder(
@@ -60,14 +59,14 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    'Find Your Nearest Ride',
-                    style: TextStyle(
-                      color: Color(0xFF05998C),
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  // Text(
+                  //   'Find Your Nearest Ride',
+                  //   style: TextStyle(
+                  //     color: Color(0xFF05998C),
+                  //     fontSize: 30.0,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
                   SizedBox(height: 16),
                   Container(
                     padding: EdgeInsets.all(16.0),

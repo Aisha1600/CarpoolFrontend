@@ -332,7 +332,7 @@ class _PostOfferState extends State<PostOffer> {
                         children: [
                           Container(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 20),
+                                horizontal: 10, vertical: 10),
                             width: 100,
                             decoration: BoxDecoration(
                               color: Colors.white,
@@ -604,7 +604,7 @@ class _PostOfferState extends State<PostOffer> {
                         'Is smoking allowed?',
                         style: TextStyle(
                           fontSize: 15.0,
-                          fontWeight: FontWeight.bold,
+                          //fontWeight: FontWeight.bold,
                         ),
                       ),
                       const SizedBox(
@@ -637,7 +637,7 @@ class _PostOfferState extends State<PostOffer> {
                         'Notes',
                         style: TextStyle(
                           fontSize: 15.0,
-                          fontWeight: FontWeight.bold,
+                          //fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(
@@ -703,11 +703,33 @@ class _PostOfferState extends State<PostOffer> {
                           color: Colors.white),
                     ),
                     onPressed: () async {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const CarDetails()),
-                      );
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Error'),
+                              content: Text('Please confirm your car details.'),
+                              actions: [
+                                TextButton(
+                                  child: Text('No'),
+                                  onPressed: () {
+                                    Navigator.pop(context); // Close the dialog
+                                  },
+                                ),
+                                TextButton(
+                                  child: Text('Yes'),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const CarDetails()),
+                                    );
+                                  },
+                                ),
+                              ],
+                            );
+                          });
                       // DateTime time = DateTime(
                       //   DateTime.now().year,
                       //   DateTime.now().month,

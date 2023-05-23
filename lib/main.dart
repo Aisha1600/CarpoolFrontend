@@ -34,11 +34,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Carpool Application',
+      title: 'Smartpool',
       debugShowCheckedModeBanner: false,
       theme:
           ThemeData(primarySwatch: Colors.teal, fontFamily: 'Roboto-Regular'),
-      home: const MyHomePage(title: 'Carpool Application'),
+      home: const MyHomePage(title: 'Smartpool'),
     );
   }
 }
@@ -57,10 +57,10 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
 
     // Simulating a 3-second delay before hiding the progress indicator
-    Timer(Duration(seconds: 3), () {
+    Timer(Duration(seconds: 4), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => ViewPosts()),
+        MaterialPageRoute(builder: (context) => NewLogIn()),
       );
     });
   }
@@ -73,12 +73,12 @@ class _MyHomePageState extends State<MyHomePage> {
             color: Color(0xFF05998c),
             child: Center(
               child: Container(
-                height: 80,
-                width: 80,
+                height: 300,
+                width: 300,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: Image.asset(
-                    'assets/logo.gif',
+                    'assets/logos.gif',
                     fit: BoxFit.cover,
                     height: 250,
                     width: double.infinity,

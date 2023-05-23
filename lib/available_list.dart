@@ -7,21 +7,21 @@ class AvailableList extends StatelessWidget {
   final List<Map<String, dynamic>> data = [
     {
       'image': 'https://picsum.photos/200/300',
-      'from': 'Address 1',
-      'to': 'Address 2',
-      'price': 20,
+      'from': 'DHA Phase 6',
+      'to': 'Regent Plaza',
+      'price': 200,
     },
     {
       'image': 'https://picsum.photos/200/300',
-      'from': 'Address 3',
-      'to': 'Address 4',
-      'price': 25,
+      'from': 'North Nazimabad',
+      'to': 'Lyari',
+      'price': 250,
     },
     {
       'image': 'https://picsum.photos/200/300',
-      'from': 'Address 5',
-      'to': 'Address 6',
-      'price': 30,
+      'from': 'Sohrab Goth',
+      'to': 'Karachi University',
+      'price': 150,
     },
   ];
 
@@ -74,19 +74,19 @@ class AvailableList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'From: ${item['from']}',
-                            style: TextStyle(fontSize: 16),
+                            'From   ${item['from']}',
+                            style: TextStyle(fontSize: 14),
                           ),
                           SizedBox(height: 8),
                           Text(
-                            'To: ${item['to']}',
-                            style: TextStyle(fontSize: 16),
+                            'To   ${item['to']}',
+                            style: TextStyle(fontSize: 14),
                           ),
                           SizedBox(height: 16),
                           Text(
-                            'Ride Amount: \$${item['price']}',
+                            'Ride Amount: Rs${item['price']}',
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 12,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
