@@ -1,7 +1,9 @@
+import 'package:carpoolfront/Rider.dart';
 import 'package:carpoolfront/offer_carpool.dart';
 import 'package:carpoolfront/ride.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'accept_carpool.dart';
 
 class ContainerStack extends StatefulWidget {
   @override
@@ -90,7 +92,8 @@ class _ContainerStackState extends State<ContainerStack> {
                                           Navigator.pushReplacement(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) => Ride()),
+                                                builder: (context) =>
+                                                    AcceptCarpool()),
                                           );
                                         },
                                       ),

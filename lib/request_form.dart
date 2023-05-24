@@ -325,7 +325,11 @@ class _RequestFormState extends State<RequestForm> {
                             TextButton(
                               child: Text('Ok'),
                               onPressed: () {
-                                Navigator.pop(context);
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ViewPosts()),
+                                );
                               },
                             ),
                           ],
@@ -343,6 +347,10 @@ class _RequestFormState extends State<RequestForm> {
                 ),
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size.fromHeight(40),
+                  padding: EdgeInsets.all(13),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
                 ),
               ))
         ]),
