@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class NewSignUp extends StatefulWidget {
-  const NewSignUp({super.key});
+  const NewSignUp({Key? key}) : super(key: key);
 
   @override
   State<NewSignUp> createState() => _NewSignUpState();
@@ -20,7 +20,7 @@ class _NewSignUpState extends State<NewSignUp> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController cnicController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  String dropdownValue = 'M';
+  String dropdownValue = 'Male';
 
   bool _areFieldsEmpty() {
     return fnameController.text.isEmpty ||
@@ -63,9 +63,9 @@ class _NewSignUpState extends State<NewSignUp> {
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,
-            // repeat: ImageRepeat.repeat,
           ),
-          Container(
+          SingleChildScrollView(
+            child: Container(
               padding: const EdgeInsets.fromLTRB(30, 90, 30, 10),
               color: Colors.black.withOpacity(0.6),
               child: Column(
@@ -114,7 +114,7 @@ class _NewSignUpState extends State<NewSignUp> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: 15.0),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30.0),
@@ -131,47 +131,13 @@ class _NewSignUpState extends State<NewSignUp> {
                     child: TextField(
                       controller: lnameController,
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 15.0),
                         hintText: 'Last Name',
                         hintStyle: const TextStyle(
                           fontSize: 12,
                           color: Color.fromARGB(255, 1, 43, 38),
                         ),
-                        filled: true,
-                        fillColor:
-                            Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 16.0),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                      color: Colors.white,
-                    ),
-                    child: TextField(
-                      controller: emailController,
-                      decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
                             vertical: 8.0, horizontal: 15.0),
-                        hintText: 'Email',
-                        hintStyle: TextStyle(
-                          fontSize: 12,
-                          color: Color.fromARGB(255, 1, 43, 38),
-                        ),
                         filled: true,
                         fillColor:
                             Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
@@ -182,7 +148,7 @@ class _NewSignUpState extends State<NewSignUp> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 15.0),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30.0),
@@ -200,13 +166,13 @@ class _NewSignUpState extends State<NewSignUp> {
                       controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 15.0),
                         hintText: 'Password',
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                           fontSize: 12,
                           color: Color.fromARGB(255, 1, 43, 38),
                         ),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 15.0),
                         filled: true,
                         fillColor:
                             Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
@@ -217,7 +183,7 @@ class _NewSignUpState extends State<NewSignUp> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 15.0),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30.0),
@@ -235,47 +201,13 @@ class _NewSignUpState extends State<NewSignUp> {
                       controller: confirmpasswordController,
                       obscureText: true,
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 15.0),
                         hintText: 'Confirm Password',
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                           fontSize: 12,
                           color: Color.fromARGB(255, 1, 43, 38),
                         ),
-                        filled: true,
-                        fillColor:
-                            Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 16.0),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                      color: Colors.white,
-                    ),
-                    child: TextField(
-                      controller: cnicController,
-                      decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
                             vertical: 8.0, horizontal: 15.0),
-                        hintText: 'CNIC',
-                        hintStyle: TextStyle(
-                          fontSize: 12,
-                          color: Color.fromARGB(255, 1, 43, 38),
-                        ),
                         filled: true,
                         fillColor:
                             Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
@@ -286,7 +218,7 @@ class _NewSignUpState extends State<NewSignUp> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 15.0),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30.0),
@@ -302,14 +234,15 @@ class _NewSignUpState extends State<NewSignUp> {
                     ),
                     child: TextField(
                       controller: phoneController,
+                      keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 15.0),
-                        hintText: 'Mobile Number',
-                        hintStyle: TextStyle(
+                        hintText: 'Phone Number',
+                        hintStyle: const TextStyle(
                           fontSize: 12,
                           color: Color.fromARGB(255, 1, 43, 38),
                         ),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 15.0),
                         filled: true,
                         fillColor:
                             Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
@@ -320,44 +253,119 @@ class _NewSignUpState extends State<NewSignUp> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20.0),
-                  // Container(
-                  //   padding: const EdgeInsets.fromLTRB(3, 10, 30, 10),
-                  //   child: Row(children: [
-                  //     const Text(
-                  //       'Gender',
-                  //       style: TextStyle(
-                  //         color: Color(0xFF05998c), // Will work,
-                  //         fontWeight: FontWeight.bold,
-                  //         fontSize: 16,
-                  //       ),
-                  //     ),
-                  //     const SizedBox(
-                  //       width: 20,
-                  //     ),
-                  //     Container(
-                  //         //color: Colors.white,
-                  //         child: DropdownButton<String>(
-                  //       value: dropdownValue,
-                  //       items: <String>['M', 'F']
-                  //           .map<DropdownMenuItem<String>>((String value) {
-                  //         return DropdownMenuItem<String>(
-                  //           value: value,
-                  //           child: Text(
-                  //             value,
-                  //             style: const TextStyle(
-                  //                 fontSize: 15, color: Colors.white),
-                  //           ),
-                  //         );
-                  //       }).toList(),
-                  //       onChanged: (String? newValue) {
-                  //         setState(() {
-                  //           dropdownValue = newValue!;
-                  //         });
-                  //       },
-                  //     )),
-                  //   ]),
-                  // ),
+                  const SizedBox(height: 15.0),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                      color: Colors.white,
+                    ),
+                    child: TextField(
+                      controller: cnicController,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        hintText: 'CNIC',
+                        hintStyle: const TextStyle(
+                          fontSize: 12,
+                          color: Color.fromARGB(255, 1, 43, 38),
+                        ),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 15.0),
+                        filled: true,
+                        fillColor:
+                            Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 15.0),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                      color: Colors.white,
+                    ),
+                    child: TextField(
+                      controller: emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        hintText: 'Email',
+                        hintStyle: const TextStyle(
+                          fontSize: 12,
+                          color: Color.fromARGB(255, 1, 43, 38),
+                        ),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 15.0),
+                        filled: true,
+                        fillColor:
+                            Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 15.0),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                      color: Colors.white,
+                    ),
+                    child: DropdownButtonFormField<String>(
+                      value: dropdownValue,
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconSize: 24,
+                      elevation: 16,
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 1, 43, 38),
+                      ),
+                      decoration: InputDecoration(
+                        enabledBorder: InputBorder.none,
+                        fillColor: Colors.transparent,
+                        filled: true,
+                      ),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownValue = newValue!;
+                        });
+                      },
+                      items: <String>['Male', 'Female']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  const SizedBox(height: 30.0),
                   Container(
                       height: 48,
                       width: 300,
@@ -408,17 +416,7 @@ class _NewSignUpState extends State<NewSignUp> {
                               // Show an error message or display a Snackbar indicating that the password is too short
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text(
-                                      'Password should be at least 8 characters long.'),
-                                ),
-                              );
-                            } else if (_isPasswordmatched(
-                                    passwordController.text,
-                                    confirmpasswordController.text) ==
-                                false) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Password do not match.'),
+                                  content: Text('Password is incorrect.'),
                                 ),
                               );
                             } else
@@ -458,41 +456,42 @@ class _NewSignUpState extends State<NewSignUp> {
                             //   print(error);
                             // }
                           })),
-                  const SizedBox(height: 6.0),
+                  const SizedBox(height: 4.0),
                   Center(
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'Already have an account?',
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                        const Text(
+                          'Already have an account?',
+                          style: TextStyle(
+                            color: Colors.white, // Will work,
+                            fontSize: 12,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            //API
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const NewLogIn()),
+                            );
+                          },
+                          child: const Text(
+                            'Log In',
                             style: TextStyle(
-                              color: Color.fromARGB(
-                                  255, 255, 255, 255), // Will work,
-                              fontSize: 12,
+                              color: Color(0xFF05998c), // Will work,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          TextButton(
-                            onPressed: () async {
-                              //API
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const NewLogIn()),
-                              );
-                            },
-                            child: const Text(
-                              'Log In',
-                              style: TextStyle(
-                                color: Color(0xFF05998c), // Will work,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ]),
-                  )
+                        ),
+                      ])),
+                  const SizedBox(height: 20.0),
                 ],
-              )),
+              ),
+            ),
+          ),
         ],
       ),
     );

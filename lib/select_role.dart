@@ -32,7 +32,7 @@ class _Select_RoleState extends State<Select_Role> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.withOpacity(0.1),
+      backgroundColor: Color(0xFFD6FFF0),
       appBar: AppBar(
           //title: Text('Loading Screen'),
           ),
@@ -102,7 +102,7 @@ class _Select_RoleState extends State<Select_Role> {
                             width: 120,
                             child: ElevatedButton(
                               onPressed: () {
-                                Navigator.pushReplacement(
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (BuildContext context) =>

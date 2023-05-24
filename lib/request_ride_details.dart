@@ -21,6 +21,7 @@ class _RequestRideDetailsScreenState extends State<RequestRideDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFD6FFF0),
       body: Column(
         children: [
           Expanded(

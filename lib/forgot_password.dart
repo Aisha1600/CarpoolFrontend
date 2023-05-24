@@ -38,6 +38,7 @@ class _ForgotPassword extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFD6FFF0),
       // appBar: AppBar(
       //   title: Text(title),
       // ),

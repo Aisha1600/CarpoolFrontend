@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:carpoolfront/car_details.dart';
+import 'package:carpoolfront/enter.dart';
 import 'package:carpoolfront/find_your_carpool.dart';
 import 'package:carpoolfront/forgot_password.dart';
 import 'package:carpoolfront/license_info.dart';
@@ -59,9 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // Simulating a 3-second delay before hiding the progress indicator
     Timer(Duration(seconds: 4), () {
       Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => BottomNavbar()),
-      );
+          context, MaterialPageRoute(builder: (context) => Enter()));
     });
   }
 
@@ -75,15 +74,28 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Container(
                 height: 300,
                 width: 300,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
-                  child: Image.asset(
-                    'assets/logos.gif',
-                    fit: BoxFit.cover,
-                    height: 250,
-                    width: double.infinity,
+                child: Column(children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(30),
+                    child: Image.asset(
+                      'assets/logos.gif',
+                      fit: BoxFit.cover,
+                      height: 250,
+                      width: double.infinity,
+                    ),
                   ),
-                ),
+                  SizedBox(
+                    height: 6,
+                  ),
+                  const Text(
+                    'SmartPool',
+                    style: TextStyle(
+                      color: Color(0xFFD6FFF0), // Will work,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ]),
               ),
             )));
   }

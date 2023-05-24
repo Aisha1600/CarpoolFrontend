@@ -719,7 +719,7 @@ class _PostOfferState extends State<PostOffer> {
                                 TextButton(
                                   child: Text('Yes'),
                                   onPressed: () {
-                                    Navigator.push(
+                                    Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>

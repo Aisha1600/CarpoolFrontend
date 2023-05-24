@@ -45,6 +45,8 @@ class _CarDetails extends State<CarDetails> {
   TextEditingController rengoController = TextEditingController();
   TextEditingController colorController = TextEditingController();
   String title = "Carpool Application";
+  String selectedValue = '';
+  String dropdownValue = 'Car Model';
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +54,7 @@ class _CarDetails extends State<CarDetails> {
       // appBar: AppBar(
       //   title: Text(title),
       // ),
+      backgroundColor: Color(0xFFD6FFF0),
       body: Center(
           child: ListView(
               padding: const EdgeInsets.only(top: 65.0, left: 18, right: 18),
@@ -80,6 +83,7 @@ class _CarDetails extends State<CarDetails> {
               height: 12,
             ),
             Container(
+              padding: EdgeInsets.symmetric(horizontal: 15.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30.0),
                 boxShadow: [
@@ -92,24 +96,53 @@ class _CarDetails extends State<CarDetails> {
                 ],
                 color: Colors.white,
               ),
-              child: TextField(
-                controller: modelController,
-                decoration: InputDecoration(
-                  hintText: 'Model',
-                  hintStyle: const TextStyle(
-                    fontSize: 12,
-                    color: Color.fromARGB(255, 1, 43, 38),
-                  ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 14.0),
-                  filled: true,
-                  fillColor:
-                      Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                    borderSide: BorderSide.none,
-                  ),
+              child: DropdownButtonFormField<String>(
+                value: dropdownValue,
+                icon: Icon(Icons.arrow_drop_down),
+                iconSize: 24,
+                elevation: 16,
+                style: TextStyle(
+                  color: Color.fromARGB(255, 1, 43, 38),
                 ),
+                decoration: InputDecoration(
+                  enabledBorder: InputBorder.none,
+                  fillColor: Colors.transparent,
+                  filled: true,
+                ),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    dropdownValue = newValue!;
+                  });
+                },
+                items: <String>[
+                  'Toyota Corolla',
+                  'Suzuki Cultus',
+                  'Suzuki Mehran',
+                  'Suzuki Cultus'
+                      'Suzuki Swift',
+                  'Suzuki Wagon R',
+                  'Suzuki Alto',
+                  'Toyota Corolla',
+                  'Toyota Hilux',
+                  'Toyota Fortuner',
+                  'Honda Civic',
+                  'Honda City',
+                  'Honda BR-V'
+                      'Honda Accord',
+                  'Hyundai Tucson',
+                  'Hyundai Santro',
+                  'Kia Sportage',
+                  'Kia Picanto',
+                  'FAW V2',
+                  'FAW X-PV',
+                  'Renault Duster',
+                  'Nissan Juke'
+                ].map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
               ),
             ),
             const SizedBox(
@@ -130,6 +163,7 @@ class _CarDetails extends State<CarDetails> {
               ),
               child: TextField(
                 controller: rengoController,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   hintText: 'Registration Number',
                   hintStyle: const TextStyle(
