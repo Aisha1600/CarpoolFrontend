@@ -279,7 +279,7 @@ class _RiderState extends State<Rider> {
                             ),
                             child: Center(
                               child: Icon(
-                                Icons.alarm,
+                                Icons.call,
                                 color: Colors.white,
                                 //size: 20,
                               ),
@@ -357,7 +357,32 @@ class _RiderState extends State<Rider> {
                                 //size: 20,
                               ),
                             ),
-                            onPressed: () async {}))),
+                            onPressed: () async {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Cancel Carpool?'),
+                                      content: Text(
+                                          'Your ride is already on its way'),
+                                      actions: [
+                                        ElevatedButton(
+                                          child: Text('Cancel Ride'),
+                                          onPressed: () {
+                                            Navigator.pop(
+                                                context); // Close the dialog
+                                          },
+                                        ),
+                                        ElevatedButton(
+                                          child: Text('Back'),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            }))),
               ],
             )
           ]),
