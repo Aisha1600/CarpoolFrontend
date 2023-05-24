@@ -152,28 +152,28 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                                     border: InputBorder.none,
                                     contentPadding: EdgeInsets.symmetric(
                                         horizontal: 10, vertical: 17.5),
-                                    suffixIcon: IconButton(
-                                      icon: Icon(
-                                        Icons.backspace,
-                                        color: Color(0xFF05998C),
-                                      ),
-                                      onPressed: () {
-                                        final text = _fromController.value.text;
-                                        if (text.isNotEmpty) {
-                                          final newText = text.substring(
-                                              0, text.length - 1);
-                                          _fromController.value =
-                                              TextEditingValue(
-                                            text: newText,
-                                            selection:
-                                                TextSelection.fromPosition(
-                                              TextPosition(
-                                                  offset: newText.length),
-                                            ),
-                                          );
-                                        }
-                                      },
-                                    ),
+                                    // suffixIcon: IconButton(
+                                    //   icon: Icon(
+                                    //     Icons.backspace,
+                                    //     color: Color(0xFF05998C),
+                                    //   ),
+                                    //   onPressed: () {
+                                    //     final text = _fromController.value.text;
+                                    //     if (text.isNotEmpty) {
+                                    //       final newText = text.substring(
+                                    //           0, text.length - 1);
+                                    //       _fromController.value =
+                                    //           TextEditingValue(
+                                    //         text: newText,
+                                    //         selection:
+                                    //             TextSelection.fromPosition(
+                                    //           TextPosition(
+                                    //               offset: newText.length),
+                                    //         ),
+                                    //       );
+                                    //     }
+                                    //   },
+                                    // ),
                                   ),
                                 ),
                               ),
@@ -244,29 +244,7 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     contentPadding: EdgeInsets.symmetric(
-                                        horizontal: 20, vertical: 17.5),
-                                    suffixIcon: IconButton(
-                                      icon: Icon(
-                                        Icons.backspace,
-                                        color: Color(0xFF05998C),
-                                      ),
-                                      onPressed: () {
-                                        final text = _toController.value.text;
-                                        if (text.isNotEmpty) {
-                                          final newText = text.substring(
-                                              0, text.length - 1);
-                                          _toController.value =
-                                              TextEditingValue(
-                                            text: newText,
-                                            selection:
-                                                TextSelection.fromPosition(
-                                              TextPosition(
-                                                  offset: newText.length),
-                                            ),
-                                          );
-                                        }
-                                      },
-                                    ),
+                                        horizontal: 10, vertical: 17.5),
                                   ),
                                 ),
                               ),

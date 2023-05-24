@@ -1,5 +1,7 @@
 import 'package:carpoolfront/car_details.dart';
 import 'package:carpoolfront/offer_requests.dart';
+import 'package:carpoolfront/places_services.dart';
+import 'package:carpoolfront/search_list.dart';
 import 'package:carpoolfront/view_posts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -9,6 +11,8 @@ import 'package:intl/intl.dart';
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'find_your_carpool.dart';
 
 class CreateOffer {
   late final String destination_name;
@@ -77,6 +81,9 @@ class _PostOfferState extends State<PostOffer> {
   String is_smoking_allowed = 'No';
   int _seats = 0;
   String notes = '';
+  final placesService = PlacesService();
+  var fromLatLng;
+  var toLatLng;
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -176,30 +183,37 @@ class _PostOfferState extends State<PostOffer> {
                               ],
                             ),
                             child: TextField(
+                              style: TextStyle(fontSize: 10),
                               controller: _fromController,
+                              onTap: () async {
+                                final result = await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (newContext) =>
+                                          const SearchList()),
+                                );
+                                if (result != null) {
+                                  String placeId = result.placeId;
+                                  LatLng latLng =
+                                      await placesService.fetchLatLng(placeId);
+                                  if (latLng != null) {
+                                    fromLatLng = GetLatLng(
+                                        latLng.latitude, latLng.longitude);
+                                  }
+                                  print(latLng.latitude);
+                                  print(latLng.longitude);
+                                  setState(() {
+                                    print(result.placeId);
+                                    print(result.place);
+                                    print('idk');
+                                    _fromController.text = result.place;
+                                  });
+                                }
+                              },
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 17.5),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    Icons.backspace,
-                                    color: Color(0xFF05998C),
-                                  ),
-                                  onPressed: () {
-                                    final text = _fromController.value.text;
-                                    if (text.isNotEmpty) {
-                                      final newText =
-                                          text.substring(0, text.length - 1);
-                                      _fromController.value = TextEditingValue(
-                                        text: newText,
-                                        selection: TextSelection.fromPosition(
-                                          TextPosition(offset: newText.length),
-                                        ),
-                                      );
-                                    }
-                                  },
-                                ),
                               ),
                             ),
                           ),
@@ -241,30 +255,54 @@ class _PostOfferState extends State<PostOffer> {
                               ],
                             ),
                             child: TextField(
+                              style: TextStyle(fontSize: 10),
                               controller: _toController,
+                              onTap: () async {
+                                final result = await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (newContext) => SearchList()),
+                                );
+                                if (result != null) {
+                                  String placeId = result.placeId;
+                                  LatLng latLng =
+                                      await placesService.fetchLatLng(placeId);
+                                  if (latLng != null) {
+                                    toLatLng = GetLatLng(
+                                        latLng.latitude, latLng.longitude);
+                                  }
+                                  print(toLatLng.latitude);
+                                  print(latLng.longitude);
+                                  setState(() {
+                                    print(result.placeId);
+                                    print(result.place);
+                                    _toController.text = result.place;
+                                  });
+                                }
+                              },
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 17.5),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    Icons.backspace,
-                                    color: Color(0xFF05998C),
-                                  ),
-                                  onPressed: () {
-                                    final text = _toController.value.text;
-                                    if (text.isNotEmpty) {
-                                      final newText =
-                                          text.substring(0, text.length - 1);
-                                      _toController.value = TextEditingValue(
-                                        text: newText,
-                                        selection: TextSelection.fromPosition(
-                                          TextPosition(offset: newText.length),
-                                        ),
-                                      );
-                                    }
-                                  },
-                                ),
+                                    horizontal: 10, vertical: 17.5),
+                                // suffixIcon: IconButton(
+                                //   icon: Icon(
+                                //     Icons.backspace,
+                                //     color: Color(0xFF05998C),
+                                //   ),
+                                //   onPressed: () {
+                                //     final text = _toController.value.text;
+                                //     if (text.isNotEmpty) {
+                                //       final newText =
+                                //           text.substring(0, text.length - 1);
+                                //       _toController.value = TextEditingValue(
+                                //         text: newText,
+                                //         selection: TextSelection.fromPosition(
+                                //           TextPosition(offset: newText.length),
+                                //         ),
+                                //       );
+                                //     }
+                                //   },
+                                // ),
                               ),
                             ),
                           ),
