@@ -3,6 +3,7 @@ import 'package:carpoolfront/post_offer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Rider extends StatefulWidget {
   const Rider({super.key});
@@ -12,6 +13,15 @@ class Rider extends StatefulWidget {
 }
 
 class _RiderState extends State<Rider> {
+  _makingPhoneCall() async {
+    var url = Uri.parse("tel:03342340689");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +95,7 @@ class _RiderState extends State<Rider> {
                               ),
                             ],
                           ),
-                          SizedBox(width: 30.0),
+                          SizedBox(width: 25.0),
                           Container(
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,9 +146,9 @@ class _RiderState extends State<Rider> {
                                             Text(
                                               '5:30 pm',
                                               style: TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black),
+                                                  fontSize: 11,
+                                                  //fontWeight: FontWeight.bold,
+                                                  color: Colors.grey),
                                             ),
                                             SizedBox(
                                               height: 20,
@@ -147,8 +157,8 @@ class _RiderState extends State<Rider> {
                                               '6:15pm',
                                               style: TextStyle(
                                                   fontSize: 13,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black),
+                                                  //fontWeight: FontWeight.bold,
+                                                  color: Colors.grey),
                                             ),
                                           ]),
                                     ],
@@ -172,7 +182,7 @@ class _RiderState extends State<Rider> {
                                 Text(
                                   'Vehicle details',
                                   style: TextStyle(
-                                      fontSize: 17,
+                                      fontSize: 13,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black),
                                 ),
@@ -190,9 +200,9 @@ class _RiderState extends State<Rider> {
                                             Text(
                                               'Blue Alto',
                                               style: TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black),
+                                                  fontSize: 11,
+                                                  //fontWeight: FontWeight.bold,
+                                                  color: Colors.grey),
                                             ),
                                             SizedBox(
                                               height: 15,
@@ -216,8 +226,8 @@ class _RiderState extends State<Rider> {
                                               'BFG-662',
                                               style: TextStyle(
                                                   fontSize: 13,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black),
+                                                  //fontWeight: FontWeight.bold,
+                                                  color: Colors.grey),
                                             ),
                                             SizedBox(
                                               height: 20,
@@ -367,14 +377,14 @@ class _RiderState extends State<Rider> {
                                           content: Text(
                                               'Your ride is already on its way'),
                                           actions: [
-                                            ElevatedButton(
+                                            TextButton(
                                               child: Text('Cancel Ride'),
                                               onPressed: () {
                                                 Navigator.pop(
                                                     context); // Close the dialog
                                               },
                                             ),
-                                            ElevatedButton(
+                                            TextButton(
                                               child: Text('Back'),
                                               onPressed: () {
                                                 Navigator.pop(context);

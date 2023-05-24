@@ -37,16 +37,25 @@ class _BottomNavbarState extends State<BottomNavbar> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              Icons.home,
+              color: Color(0xFFFFBE08),
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_2_sharp),
+            icon: Icon(
+              Icons.person_2_sharp,
+              color: Color(0xFFFFBE08),
+            ),
             label: 'Profile',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: 'History',
+            icon: Icon(
+              Icons.history,
+              color: Color(0xFFFFBE08),
+            ),
+            label: 'Ride History',
           ),
         ],
         currentIndex: _selectedIndex,

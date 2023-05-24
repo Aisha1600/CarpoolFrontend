@@ -60,7 +60,7 @@ class _OfferCarpoolState extends State<OfferCarpool> {
                           : Color(0xFF05998C),
                       minimumSize: Size(100, 50),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(30)),
                       elevation: 5,
                       shadowColor: Colors.grey[500],
                     ),
@@ -93,7 +93,7 @@ class _OfferCarpoolState extends State<OfferCarpool> {
                           _isRequestPressed ? Colors.white : Color(0xFF05998C),
                       minimumSize: Size(100, 50),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(30)),
                       elevation: 5,
                       shadowColor: Colors.grey[500],
                     ),

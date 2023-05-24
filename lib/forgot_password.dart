@@ -189,7 +189,32 @@ class _ForgotPassword extends State<ForgotPassword> {
                       } catch (error) {
                         print(error);
                       }
-                    } else {}
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Message'),
+                              content: Text('Your passwords do not match.'),
+                              actions: [
+                                // TextButton(
+                                //   child: Text('Cancel'),
+                                //   onPressed: () {
+                                //     Navigator.pop(
+                                //         context); // Close the dialog
+                                //   },
+                                // ),
+                                TextButton(
+                                  child: Text('Ok'),
+                                  onPressed: () {
+                                    // Perform action when OK button is pressed
+                                    // Close the dialog
+                                  },
+                                ),
+                              ],
+                            );
+                          });
+                    }
                   },
                 )),
           ]),

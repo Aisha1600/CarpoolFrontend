@@ -1,9 +1,42 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:carpoolfront/bottom_navbar.dart';
 import 'package:carpoolfront/license_info.dart';
 import 'package:carpoolfront/new_login.dart';
 import 'package:carpoolfront/select_role.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class SignUpFOrm {
+  late final String fname;
+  late final String lname;
+  late final String password;
+  late final String phone;
+  late final String cnic;
+  late final String email;
+  late final String gender;
+
+  SignUpFOrm(
+      {required this.fname,
+      required this.lname,
+      required this.password,
+      required this.phone,
+      required this.cnic,
+      required this.email,
+      required this.gender});
+  Map<String, dynamic> toJson() {
+    return {
+      'f_name': fname,
+      'l_name': lname,
+      'password': password,
+      'contact_no': phone,
+      'cnic': cnic,
+      'email': email,
+      'gender': gender
+    };
+  }
+}
 
 class NewSignUp extends StatefulWidget {
   const NewSignUp({Key? key}) : super(key: key);
@@ -66,7 +99,7 @@ class _NewSignUpState extends State<NewSignUp> {
           ),
           SingleChildScrollView(
             child: Container(
-              padding: const EdgeInsets.fromLTRB(30, 90, 30, 10),
+              padding: const EdgeInsets.fromLTRB(30, 70, 30, 10),
               color: Colors.black.withOpacity(0.6),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -419,42 +452,53 @@ class _NewSignUpState extends State<NewSignUp> {
                                   content: Text('Password is incorrect.'),
                                 ),
                               );
-                            } else
-                              // SharedPreferences prefs =
-                              //     await SharedPreferences.getInstance();
-                              // String token = prefs.getString('jwt_token') ?? '';
-                              // print('Stored jwt token from storage is {$token}');
-                              // // //API INTEGRATION
-                              // LicenseForm form = LicenseForm(
-                              //   license_no: int.parse(LicensenoController.text.toString()),
-                              //   license_valid_from: _selectedDate.toIso8601String(),
-                              // );
-                              // try {
-                              //   final jsonData = jsonEncode(form.toJson());
-                              //   print(jsonData);
-                              //   print(json.decode(jsonData));
-                              //   final response = await http.put(
-                              //     //URL LOCAL HOST NEEDS TO BE CHANGED
-                              //     Uri.parse(
-                              //         'http://192.168.100.35:4000/member/InsertLicense'),
-                              //     headers: {
-                              //       'Content-Type': 'application/json',
-                              //       'authorization': token
-                              //     },
-                              //     body: jsonData,
-                              //   );
-                              //   print(response.statusCode);
-                              //   if (response.statusCode == 200) {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const BottomNavbar()),
-                              );
-                            //     print(json.decode(response.body));
-                            //   }
-                            // } catch (error) {
-                            //   print(error);
-                            // }
+                            } else {
+                              SignUpFOrm form = SignUpFOrm(
+                                  fname: fnameController.text,
+                                  lname: lnameController.text,
+                                  password: passwordController.text,
+                                  phone: phoneController.text,
+                                  cnic: cnicController.text,
+                                  email: emailController.text,
+                                  gender: dropdownValue.toString());
+                              try {
+                                final jsonData = jsonEncode(form
+                                    .toJson()); //converts the data to json format
+                                final response = await http.post(
+                                  //192.168.100.35
+                                  Uri.parse(
+                                      'http://192.168.100.35:4000/member/SignUp'),
+                                  headers: {'Content-Type': 'application/json'},
+                                  body: jsonData,
+                                );
+                                print(response.statusCode);
+                                if (response.statusCode == 201) {
+                                  // Item added successfully
+                                  final responseBody =
+                                      json.decode(response.body);
+                                  // Gets the JWT token from the response body
+                                  final token = responseBody['token'];
+                                  print(
+                                      'Token from API response body:{$token}');
+
+                                  //Saves the JWT token in SharedPreferences
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  prefs.setString('jwt_token', token);
+                                  print(json.decode(response.body));
+
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const BottomNavbar(),
+                                    ),
+                                  );
+                                }
+                              } catch (error) {
+                                print(error);
+                              }
+                            }
                           })),
                   const SizedBox(height: 4.0),
                   Center(
@@ -480,7 +524,7 @@ class _NewSignUpState extends State<NewSignUp> {
                           child: const Text(
                             'Log In',
                             style: TextStyle(
-                              color: Color(0xFF05998c), // Will work,
+                              color: Color(0xFFFFBE08), // Will work,
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
                             ),
