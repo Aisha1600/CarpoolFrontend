@@ -93,81 +93,9 @@ class _CarDetails extends State<CarDetails> {
                 color: Colors.white,
               ),
               child: TextField(
-                controller: nameController,
-                decoration: InputDecoration(
-                  hintText: 'Name',
-                  hintStyle: const TextStyle(
-                    fontSize: 12,
-                    color: Color.fromARGB(255, 1, 43, 38),
-                  ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 14.0),
-                  filled: true,
-                  fillColor:
-                      Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-                color: Colors.white,
-              ),
-              child: TextField(
                 controller: modelController,
                 decoration: InputDecoration(
                   hintText: 'Model',
-                  hintStyle: const TextStyle(
-                    fontSize: 12,
-                    color: Color.fromARGB(255, 1, 43, 38),
-                  ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 14.0),
-                  filled: true,
-                  fillColor:
-                      Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-                color: Colors.white,
-              ),
-              child: TextField(
-                controller: makeyearController,
-                decoration: InputDecoration(
-                  hintText: 'Make Year',
                   hintStyle: const TextStyle(
                     fontSize: 12,
                     color: Color.fromARGB(255, 1, 43, 38),
@@ -307,8 +235,9 @@ class _CarDetails extends State<CarDetails> {
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const ViewPosts()),
+                                        builder: (context) => const ViewPosts(
+                                              role: 'offerer',
+                                            )),
                                   );
                                 },
                               ),

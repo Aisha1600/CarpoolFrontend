@@ -304,9 +304,27 @@ class _RequestFormState extends State<RequestForm> {
             height: 20,
           ),
           Container(
-              height: 90,
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+              height: 48,
+              width: 300,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+                color: Colors.white,
+              ),
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.all(13),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
                 onPressed: () {
                   showDialog(
                       context: context,
@@ -314,18 +332,24 @@ class _RequestFormState extends State<RequestForm> {
                         return AlertDialog(
                           title: Text('Message'),
                           content: Text(
-                              'Your request has been posted and you will be notified about any offers on your request.'),
+                              'Are you sure you want to post the carpool request?'),
                           actions: [
-                            // TextButton(
-                            //   child: Text('No'),
-                            //   onPressed: () {
-                            //     Navigator.pop(context); // Close the dialog
-                            //   },
-                            // ),
                             TextButton(
-                              child: Text('Ok'),
+                              child: Text('No'),
                               onPressed: () {
-                                Navigator.pop(context);
+                                Navigator.pop(context); // Close the dialog
+                              },
+                            ),
+                            TextButton(
+                              child: Text('Yes'),
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const ViewPosts(
+                                            role: 'carpooler',
+                                          )),
+                                );
                               },
                             ),
                           ],
@@ -337,12 +361,7 @@ class _RequestFormState extends State<RequestForm> {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 15.0,
-                    //fontWeight: FontWeight.w900,
-                    //fontFamily: 'Palanquin'
                   ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  fixedSize: Size.fromHeight(40),
                 ),
               ))
         ]),

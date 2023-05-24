@@ -3,7 +3,13 @@ import 'package:carpoolfront/ride.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Rider.dart';
+
 class ContainerStack extends StatefulWidget {
+  final String role; // The string you want to pass
+
+  ContainerStack({required this.role});
+
   @override
   _ContainerStackState createState() => _ContainerStackState();
 }
@@ -69,34 +75,66 @@ class _ContainerStackState extends State<ContainerStack> {
                             style: TextStyle(fontSize: 13, color: Colors.white),
                           ),
                           onPressed: () async {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: Text('Message'),
-                                    content: Text(
-                                        'Are your sure you want to proceed with the carpool?'),
-                                    actions: [
-                                      TextButton(
-                                        child: Text('No'),
-                                        onPressed: () {
-                                          Navigator.pop(
-                                              context); // Close the dialog
-                                        },
-                                      ),
-                                      TextButton(
-                                        child: Text('Yes'),
-                                        onPressed: () {
-                                          Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => Ride()),
-                                          );
-                                        },
-                                      ),
-                                    ],
-                                  );
-                                });
+                            if (widget.role == 'carpooler') {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Message'),
+                                      content: Text(
+                                          'Are your sure you want to proceed with the carpool?'),
+                                      actions: [
+                                        TextButton(
+                                          child: Text('No'),
+                                          onPressed: () {
+                                            Navigator.pop(
+                                                context); // Close the dialog
+                                          },
+                                        ),
+                                        TextButton(
+                                          child: Text('Yes'),
+                                          onPressed: () {
+                                            Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Rider()),
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            } else if (widget.role == 'offerer') {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Message'),
+                                      content: Text(
+                                          'Are your sure you want to proceed with the carpool?'),
+                                      actions: [
+                                        TextButton(
+                                          child: Text('No'),
+                                          onPressed: () {
+                                            Navigator.pop(
+                                                context); // Close the dialog
+                                          },
+                                        ),
+                                        TextButton(
+                                          child: Text('Yes'),
+                                          onPressed: () {
+                                            Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => Ride()),
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            }
                           })),
                   SizedBox(
                     width: 50,

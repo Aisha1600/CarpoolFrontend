@@ -8,7 +8,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'bottom_navbar.dart';
 
 class ViewPosts extends StatefulWidget {
-  const ViewPosts({super.key});
+  final String role; // The string you want to pass
+  const ViewPosts({super.key, required this.role});
 
   @override
   State<ViewPosts> createState() => _ViewPostsState();
@@ -23,9 +24,10 @@ class _ViewPostsState extends State<ViewPosts> {
 
     // Simulating a 3-second delay before hiding the progress indicator
     Timer(Duration(seconds: 5), () {
+      String role = widget.role;
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => ContainerStack()),
+        MaterialPageRoute(builder: (context) => ContainerStack(role: role)),
       );
     });
   }
