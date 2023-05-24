@@ -84,7 +84,7 @@ class _RiderState extends State<Rider> {
                           ),
                         ],
                       ),
-                      SizedBox(width: 15.0),
+                      SizedBox(width: 30.0),
                       Container(
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
