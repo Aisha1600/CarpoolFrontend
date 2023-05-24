@@ -279,7 +279,7 @@ class _RiderState extends State<Rider> {
                             ),
                             child: Center(
                               child: Icon(
-                                Icons.alarm,
+                                Icons.call,
                                 color: Colors.white,
                                 //size: 20,
                               ),
