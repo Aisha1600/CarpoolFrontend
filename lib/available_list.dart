@@ -54,21 +54,25 @@ class AvailableList extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      padding: EdgeInsets.all(15),
-                      width: 80,
-                      height: 90,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.horizontal(
-                          left: Radius.circular(8),
-                          right: Radius.circular(0),
+                    Column(
+                      children: [
+                        Container(
+                          padding:
+                              EdgeInsets.only(top: 15, left: 15, right: 10),
+                          child: Icon(
+                            Icons.person,
+                            color: Colors.black,
+                            size: 70,
+                          ),
                         ),
-                      ),
-                      child: Icon(
-                        Icons.person,
-                        color: Colors.black,
-                        size: 70,
-                      ),
+                        SizedBox(height: 8),
+                        Text(
+                          '${item['name']}',
+                          style: TextStyle(
+                            fontSize: 13,
+                          ),
+                        ),
+                      ],
                     ),
                     Expanded(
                         child: Padding(
