@@ -75,13 +75,13 @@ class RequestAvailableList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'From   ${item['from']}',
-                            style: TextStyle(fontSize: 14),
+                            'Pick up:    ${item['from']}',
+                            style: TextStyle(fontSize: 13),
                           ),
                           SizedBox(height: 8),
                           Text(
-                            'To   ${item['to']}',
-                            style: TextStyle(fontSize: 14),
+                            'Drop off:   ${item['to']}',
+                            style: TextStyle(fontSize: 13),
                           ),
                           SizedBox(height: 16),
                           Text(
@@ -102,6 +102,7 @@ class RequestAvailableList extends StatelessWidget {
                             height: 70,
                           ),
                           CircleAvatar(
+                              backgroundColor: Color(0xFFFFBE08),
                               radius: 15,
                               child: Stack(
                                 alignment: Alignment.center,
@@ -110,6 +111,7 @@ class RequestAvailableList extends StatelessWidget {
                                     icon: Icon(
                                       Icons.arrow_forward_ios_outlined,
                                       size: 15,
+                                      color: Colors.white,
                                     ),
                                     onPressed: () {
                                       Navigator.pushReplacement(

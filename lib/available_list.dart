@@ -6,19 +6,19 @@ class AvailableList extends StatelessWidget {
 
   final List<Map<String, dynamic>> data = [
     {
-      'image': 'https://picsum.photos/200/300',
+      'name': 'Muhammad Munir',
       'from': 'DHA Phase 6',
       'to': 'Regent Plaza',
       'price': 200,
     },
     {
-      'image': 'https://picsum.photos/200/300',
+      'name': 'Hafeez Khan',
       'from': 'North Nazimabad',
       'to': 'Lyari',
       'price': 250,
     },
     {
-      'image': 'https://picsum.photos/200/300',
+      'name': 'Shafiq Khan',
       'from': 'Sohrab Goth',
       'to': 'Karachi University',
       'price': 150,
@@ -74,12 +74,12 @@ class AvailableList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'From   ${item['from']}',
+                            'Pick up:   ${item['from']}',
                             style: TextStyle(fontSize: 14),
                           ),
                           SizedBox(height: 8),
                           Text(
-                            'To   ${item['to']}',
+                            'Drop off:    ${item['to']}',
                             style: TextStyle(fontSize: 14),
                           ),
                           SizedBox(height: 16),
