@@ -387,7 +387,7 @@ class _RideState extends State<Ride> {
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: Text('Error'),
+                                    title: Text('Message'),
                                     content: Text(
                                         'Cannot end ride until all passengers have been picked and dropped.'),
                                     actions: [
@@ -414,17 +414,17 @@ class _RideState extends State<Ride> {
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: Text('Error'),
+                                    title: Text('Message'),
                                     content: Text(
                                         'Your ride has been marked as completed!'),
                                     actions: [
-                                      TextButton(
-                                        child: Text('Cancel'),
-                                        onPressed: () {
-                                          Navigator.pop(
-                                              context); // Close the dialog
-                                        },
-                                      ),
+                                      // TextButton(
+                                      //   child: Text('Cancel'),
+                                      //   onPressed: () {
+                                      //     Navigator.pop(
+                                      //         context); // Close the dialog
+                                      //   },
+                                      // ),
                                       TextButton(
                                         child: Text('OK'),
                                         onPressed: () {

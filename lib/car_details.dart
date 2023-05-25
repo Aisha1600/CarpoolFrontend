@@ -48,6 +48,12 @@ class _CarDetails extends State<CarDetails> {
   String selectedValue = '';
   String dropdownValue = 'Car Model';
 
+  bool _areFieldsEmpty() {
+    return selectedValue == 'Car Model' ||
+        rengoController.text.isEmpty ||
+        colorController.text.isEmpty;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,7 +104,10 @@ class _CarDetails extends State<CarDetails> {
               ),
               child: DropdownButtonFormField<String>(
                 value: dropdownValue,
-                icon: Icon(Icons.arrow_drop_down),
+                icon: Icon(
+                  Icons.arrow_drop_down,
+                  color: Color(0xFFFFBE08),
+                ),
                 iconSize: 24,
                 elevation: 16,
                 style: TextStyle(
@@ -141,7 +150,10 @@ class _CarDetails extends State<CarDetails> {
                 ].map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
-                    child: Text(value),
+                    child: Text(
+                      value,
+                      style: TextStyle(fontSize: 10),
+                    ),
                   );
                 }).toList(),
               ),
@@ -164,9 +176,9 @@ class _CarDetails extends State<CarDetails> {
               ),
               child: TextField(
                 controller: rengoController,
-                keyboardType: TextInputType.number,
+                //keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  hintText: 'Registration Number',
+                  hintText: 'Registration Number(number plate)',
                   hintStyle: const TextStyle(
                     fontSize: 12,
                     color: Color.fromARGB(255, 1, 43, 38),
@@ -236,89 +248,98 @@ class _CarDetails extends State<CarDetails> {
                   color: Colors.white,
                 ),
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(13),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.all(13),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
                     ),
-                  ),
-                  child: const Text(
-                    'Register',
-                    style: TextStyle(
-                        //fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Colors.white),
-                  ),
-                  onPressed: () async {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text('Error'),
-                            content: Text(
-                                'Are your sure you want to post the carpool?'),
-                            actions: [
-                              TextButton(
-                                child: Text('No'),
-                                onPressed: () {
-                                  Navigator.pop(context); // Close the dialog
-                                },
-                              ),
-                              TextButton(
-                                child: Text('Yes'),
-                                onPressed: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const ViewPosts(
-                                              role: 'offerer',
-                                            )),
-                                  );
-                                },
-                              ),
-                            ],
-                          );
-                        });
-                    // SharedPreferences prefs =
-                    //     await SharedPreferences.getInstance();
-                    // String token = prefs.getString('jwt_token') ?? '';
-                    // print(token);
-                    // //API INTEGRATION
-                    // CarDetailForm form = CarDetailForm(
-                    //   name: nameController.text,
-                    //   model: modelController.text,
-                    //   make_year: makeyearController.text,
-                    //   car_regno: rengoController.text,
-                    //   car_color: colorController.text,
-                    // );
-                    // try {
-                    //   final jsonData = jsonEncode(form.toJson());
-                    //   print(jsonData);
-                    //   print(json.decode(jsonData));
-                    //   final response = await http.post(
-                    //     //URL LOCAL HOST NEEDS TO BE CHANGED
-                    //     Uri.parse(
-                    //         'http://192.168.100.35:4000/member_car/InsertCar'),
-                    //     headers: {
-                    //       'Content-Type': 'application/json',
-                    //       'authorization': token
-                    //     },
-                    //     body: jsonData,
-                    //   );
-                    //   print(response.statusCode);
-                    //   if (response.statusCode == 200) {
-                    // Navigator.pushReplacement(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //       builder: (context) => const ViewPosts()),
-                    // );
-                    //     print(json.decode(response.body));
-                    //   }
-                    // } catch (error) {
-                    //   print(error);
-                    //  }
-                  },
-                )),
+                    child: const Text(
+                      'Register',
+                      style: TextStyle(
+                          //fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.white),
+                    ),
+                    onPressed: () async {
+                      if (_areFieldsEmpty()) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Please fill in all the fields.'),
+                          ),
+                        );
+                      } else {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text('Message'),
+                                content: Text(
+                                    'Are your sure you want to post the carpool?'),
+                                actions: [
+                                  TextButton(
+                                    child: Text('No'),
+                                    onPressed: () {
+                                      Navigator.pop(
+                                          context); // Close the dialog
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: Text('Yes'),
+                                    onPressed: () {
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const ViewPosts(
+                                                  role: 'offerer',
+                                                )),
+                                      );
+                                    },
+                                  ),
+                                ],
+                              );
+                            });
+                        // SharedPreferences prefs =
+                        //     await SharedPreferences.getInstance();
+                        // String token = prefs.getString('jwt_token') ?? '';
+                        // print(token);
+                        // //API INTEGRATION
+                        // CarDetailForm form = CarDetailForm(
+                        //   name: nameController.text,
+                        //   model: modelController.text,
+                        //   make_year: makeyearController.text,
+                        //   car_regno: rengoController.text,
+                        //   car_color: colorController.text,
+                        // );
+                        // try {
+                        //   final jsonData = jsonEncode(form.toJson());
+                        //   print(jsonData);
+                        //   print(json.decode(jsonData));
+                        //   final response = await http.post(
+                        //     //URL LOCAL HOST NEEDS TO BE CHANGED
+                        //     Uri.parse(
+                        //         'http://192.168.100.35:4000/member_car/InsertCar'),
+                        //     headers: {
+                        //       'Content-Type': 'application/json',
+                        //       'authorization': token
+                        //     },
+                        //     body: jsonData,
+                        //   );
+                        //   print(response.statusCode);
+                        //   if (response.statusCode == 200) {
+                        // Navigator.pushReplacement(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const ViewPosts()),
+                        // );
+                        //     print(json.decode(response.body));
+                        //   }
+                        // } catch (error) {
+                        //   print(error);
+                        //  }
+                      }
+                    })),
           ])),
     );
   }

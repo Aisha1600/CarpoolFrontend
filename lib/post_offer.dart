@@ -154,7 +154,7 @@ class _PostOfferState extends State<PostOffer> {
                       child: Text(
                         'Where are you?',
                         style: TextStyle(
-                          fontSize: 15.0,
+                          fontSize: 12.0,
                           fontWeight: FontWeight.normal,
                         ),
                       ),
@@ -169,7 +169,7 @@ class _PostOfferState extends State<PostOffer> {
                         SizedBox(width: 10.0),
                         Expanded(
                           child: Container(
-                            height: 35,
+                            height: 40,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(50),
@@ -213,7 +213,7 @@ class _PostOfferState extends State<PostOffer> {
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 17.5),
+                                    horizontal: 2, vertical: 5),
                               ),
                             ),
                           ),
@@ -226,7 +226,7 @@ class _PostOfferState extends State<PostOffer> {
                       child: Text(
                         'Where do you want to go?',
                         style: TextStyle(
-                          fontSize: 15.0,
+                          fontSize: 12.0,
                           fontWeight: FontWeight.normal,
                         ),
                       ),
@@ -241,7 +241,7 @@ class _PostOfferState extends State<PostOffer> {
                         SizedBox(width: 10.0),
                         Expanded(
                           child: Container(
-                            height: 35,
+                            height: 40,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(50),
@@ -283,7 +283,7 @@ class _PostOfferState extends State<PostOffer> {
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 17.5),
+                                    horizontal: 2, vertical: 5),
                                 // suffixIcon: IconButton(
                                 //   icon: Icon(
                                 //     Icons.backspace,
@@ -325,7 +325,7 @@ class _PostOfferState extends State<PostOffer> {
                         ),
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xFF05998C),
-                          minimumSize: Size(130, 50),
+                          minimumSize: Size(100, 40),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
                           elevation: 5,
@@ -358,7 +358,7 @@ class _PostOfferState extends State<PostOffer> {
                       const Text(
                         'Schedule',
                         style: TextStyle(
-                          fontSize: 15.0,
+                          fontSize: 12.0,
                           //fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -446,7 +446,7 @@ class _PostOfferState extends State<PostOffer> {
                     const Text(
                       'Seats Available',
                       style: TextStyle(
-                        fontSize: 15.0,
+                        fontSize: 12.0,
                         //fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -463,7 +463,7 @@ class _PostOfferState extends State<PostOffer> {
                         height: 30,
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Color(0xFF05998C), // button background color
+                          color: Color(0xFFFFBE08), // button background color
                         ),
                         child: const Icon(
                           Icons.add, // plus icon
@@ -496,12 +496,12 @@ class _PostOfferState extends State<PostOffer> {
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
                           foregroundColor: Colors.black,
-                          radius: 15,
+                          radius: 30,
                           child: Text(
                             '$_seats',
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                              fontSize: 15.0,
+                              fontSize: 12.0,
                               fontWeight: FontWeight.normal,
                             ),
                           ),
@@ -520,7 +520,7 @@ class _PostOfferState extends State<PostOffer> {
                         height: 30,
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Color(0xFF05998C), // button background color
+                          color: Color(0xFFFFBE08), // button background color
                         ),
                         child: const Icon(
                           Icons.remove, // plus icon
@@ -538,7 +538,7 @@ class _PostOfferState extends State<PostOffer> {
                       const Text(
                         'Preferances',
                         style: TextStyle(
-                          fontSize: 15.0,
+                          fontSize: 12.0,
                           //fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -563,10 +563,8 @@ class _PostOfferState extends State<PostOffer> {
                           ),
                         ),
                         style: ElevatedButton.styleFrom(
-                          primary:
-                              _male ? const Color(0xFF05998C) : Colors.white,
-                          onPrimary:
-                              _male ? Colors.white : const Color(0xFF05998C),
+                          primary: _male ? Color(0xFFFFBE08) : Colors.white,
+                          onPrimary: _male ? Colors.white : Color(0xFFFFBE08),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
                           elevation: 5,
@@ -592,10 +590,8 @@ class _PostOfferState extends State<PostOffer> {
                         ),
                         style: ElevatedButton.styleFrom(
                           //button
-                          primary:
-                              _female ? const Color(0xFF05998C) : Colors.white,
-                          onPrimary:
-                              _female ? Colors.white : const Color(0xFF05998C),
+                          primary: _female ? Color(0xFFFFBE08) : Colors.white,
+                          onPrimary: _female ? Colors.white : Color(0xFFFFBE08),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
                           elevation: 5,
@@ -621,10 +617,8 @@ class _PostOfferState extends State<PostOffer> {
                         ),
                         style: ElevatedButton.styleFrom(
                           //button
-                          primary:
-                              _none ? const Color(0xFF05998C) : Colors.white,
-                          onPrimary:
-                              _none ? Colors.white : const Color(0xFF05998C),
+                          primary: _none ? Color(0xFFFFBE08) : Colors.white,
+                          onPrimary: _none ? Colors.white : Color(0xFFFFBE08),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
                           elevation: 5,
@@ -641,7 +635,7 @@ class _PostOfferState extends State<PostOffer> {
                       const Text(
                         'Is smoking allowed?',
                         style: TextStyle(
-                          fontSize: 15.0,
+                          fontSize: 12.0,
                           //fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -661,7 +655,7 @@ class _PostOfferState extends State<PostOffer> {
                             }
                           });
                         },
-                        activeTrackColor: const Color(0xFF05998C),
+                        activeTrackColor: Color(0xFFFFBE08),
                         activeColor: Colors.white,
                       ),
                     ],
@@ -674,7 +668,7 @@ class _PostOfferState extends State<PostOffer> {
                       Text(
                         'Notes',
                         style: TextStyle(
-                          fontSize: 15.0,
+                          fontSize: 12.0,
                           //fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -741,135 +735,111 @@ class _PostOfferState extends State<PostOffer> {
                           color: Colors.white),
                     ),
                     onPressed: () async {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('Error'),
-                              content: Text('Please confirm your car details.'),
-                              actions: [
-                                TextButton(
-                                  child: Text('No'),
-                                  onPressed: () {
-                                    Navigator.pop(context); // Close the dialog
-                                  },
-                                ),
-                                TextButton(
-                                  child: Text('Yes'),
-                                  onPressed: () {
-                                    Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const CarDetails()),
-                                    );
-                                  },
-                                ),
-                              ],
+                      DateTime time = DateTime(
+                        DateTime.now().year,
+                        DateTime.now().month,
+                        DateTime.now().day,
+                        _selectedTime.hour,
+                        _selectedTime.minute,
+                      );
+
+                      CreateOffer offer = CreateOffer(
+                          destination_name: _fromController.text.toString(),
+                          source_name: _toController.text.toString(),
+                          created_on: _selectedDate.toIso8601String(),
+                          travel_start_time: time.toIso8601String(),
+                          seats_offered: _seats,
+                          contribution_per_head: 9);
+
+                      MemberPreferences preferences = MemberPreferences(
+                          is_smoking_allowed: is_smoking_allowed,
+                          is_all_female: is_all_female,
+                          notes: "These are some additional notes....");
+
+                      //getting the member token and decoding it to get member related data
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      String token = prefs.getString('jwt_token') ?? '';
+
+                      try {
+                        final member_car = await http.post(
+                          Uri.parse(
+                              'http://192.168.100.35:4000/getMemberCarId'),
+                          headers: {
+                            'Content-Type': 'application/json',
+                            'authorization': token
+                          },
+                        );
+                        print(member_car.statusCode);
+                        if (member_car.statusCode == 404) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CarDetails()),
+                          );
+                        } else if (member_car.statusCode == 200) {
+                          final jsonData1 = jsonEncode(offer.toJson());
+                          print(jsonData1);
+                          print(json.decode(jsonData1));
+
+                          final jsonData2 = jsonEncode(preferences.toJson());
+                          print(jsonData2);
+                          print(json.decode(jsonData2));
+
+                          final response1 = await http.post(
+                            Uri.parse('http://192.168.100.35:4000/JRide'),
+                            headers: {
+                              'Content-Type': 'application/json',
+                              'authorization': token
+                            },
+                            body: jsonData1,
+                          );
+
+                          final response2 = await http.post(
+                            //URL LOCAL HOST NEEDS TO BE CHANGED
+                            Uri.parse(
+                                'http://192.168.100.35:4000/AddPreference'),
+                            headers: {
+                              'Content-Type': 'application/json',
+                              'authorization': token
+                            },
+                            body: jsonData2,
+                          );
+
+                          print(response1.statusCode);
+                          print(response2.statusCode);
+
+                          if (response1.statusCode == 200 &&
+                              response2.statusCode == 201) {
+                            print(json.decode(response1.body));
+                            print(response1.statusCode);
+
+                            final responseBody = json.decode(response1.body);
+                            // Gets and prints the ride JWT token from the response body of the /ride/JRide api
+                            final ride_token = responseBody['token'];
+                            print('Token from API response body:{$ride_token}');
+
+                            //Saves the ride JWT token in SharedPreferences
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString('ride_token', ride_token);
+                            print(json.decode(response1.body));
+
+                            print(json.decode(response2.body));
+                            print(
+                                'Preference was added with response code {$response2.statusCode}');
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ViewPosts(role: 'offerer')),
                             );
-                          });
-                      // DateTime time = DateTime(
-                      //   DateTime.now().year,
-                      //   DateTime.now().month,
-                      //   DateTime.now().day,
-                      //   _selectedTime.hour,
-                      //   _selectedTime.minute,
-                      // );
-
-                      // CreateOffer offer = CreateOffer(
-                      //     destination_name: _fromController.text.toString(),
-                      //     source_name: _toController.text.toString(),
-                      //     created_on: _selectedDate.toIso8601String(),
-                      //     travel_start_time: time.toIso8601String(),
-                      //     seats_offered: _seats,
-                      //     contribution_per_head: 9);
-
-                      // MemberPreferences preferences = MemberPreferences(
-                      //     is_smoking_allowed: is_smoking_allowed,
-                      //     is_all_female: is_all_female,
-                      //     notes: "These are some additional notes....");
-
-                      // //getting the member token and decoding it to get member related data
-                      // SharedPreferences prefs =
-                      //     await SharedPreferences.getInstance();
-                      // String token = prefs.getString('jwt_token') ?? '';
-
-                      // try {
-                      //   final member_car = await http.post(
-                      //     Uri.parse('http://192.168.100.35:4000/getMemberCarId'),
-                      //     headers: {
-                      //       'Content-Type': 'application/json',
-                      //       'authorization': token
-                      //     },
-                      //   );
-
-                      //   if (member_car.statusCode == 400) {
-                      //     Navigator.pushReplacement(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (context) => const CarDetails()),
-                      //     );
-                      //   } else if (member_car.statusCode == 200) {
-                      //     final jsonData1 = jsonEncode(offer.toJson());
-                      //     print(jsonData1);
-                      //     print(json.decode(jsonData1));
-
-                      //     final jsonData2 = jsonEncode(preferences.toJson());
-                      //     print(jsonData2);
-                      //     print(json.decode(jsonData2));
-
-                      //     final response1 = await http.post(
-                      //       Uri.parse('http://192.168.100.35:4000/JRide'),
-                      //       headers: {
-                      //         'Content-Type': 'application/json',
-                      //         'authorization': token
-                      //       },
-                      //       body: jsonData1,
-                      //     );
-
-                      //     final response2 = await http.post(
-                      //       //URL LOCAL HOST NEEDS TO BE CHANGED
-                      //       Uri.parse('http://192.168.100.35:4000/AddPreference'),
-                      //       headers: {
-                      //         'Content-Type': 'application/json',
-                      //         'authorization': token
-                      //       },
-                      //       body: jsonData2,
-                      //     );
-
-                      //     print(response1.statusCode);
-                      //     print(response2.statusCode);
-
-                      //     if (response1.statusCode == 200 &&
-                      //         response2.statusCode == 201) {
-                      //       print(json.decode(response1.body));
-                      //       print(response1.statusCode);
-
-                      //       final responseBody = json.decode(response1.body);
-                      //       // Gets and prints the ride JWT token from the response body of the /ride/JRide api
-                      //       final ride_token = responseBody['token'];
-                      //       print('Token from API response body:{$ride_token}');
-
-                      //       //Saves the ride JWT token in SharedPreferences
-                      //       SharedPreferences prefs =
-                      //           await SharedPreferences.getInstance();
-                      //       prefs.setString('ride_token', ride_token);
-                      //       print(json.decode(response1.body));
-
-                      //       print(json.decode(response2.body));
-                      //       print(
-                      //           'Preference was added with response code {$response2.statusCode}');
-
-                      //       Navigator.push(
-                      //         context,
-                      //         MaterialPageRoute(
-                      //             builder: (context) => const OfferRequests()),
-                      //       );
-                      //     }
-                      //   }
-                      // } catch (error) {
-                      //   print(error);
-                      // }
+                          }
+                        }
+                      } catch (error) {
+                        print(error);
+                      }
                     })),
           ],
         ),

@@ -1,86 +1,96 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'profileModel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({super.key});
-
   @override
-  State<Profile> createState() => _ProfileState();
+  _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
+  Map<String, dynamic> member = {};
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    //fetchMember();
+  }
+
+  // Future<List<ProfileModel>> fetchMember() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   String? token = prefs.getString('jwt_token') ?? '';
+  //   print(token);
+
+  //   try {
+  //     // Make the HTTP GET request to retrieve member data
+  //     final response = await http.get(
+  //       Uri.parse(
+  //           'http://192.168.100.35:4000/member/displayProfile'), // Replace with your API endpoint
+  //       headers: {'Content-Type': 'application/json', 'authorization': token},
+  //     );
+
+  //     var member = <ProfileModel>[];
+
+  //     if (response.statusCode == 200) {
+  //       // If the request is successful (status code 200), parse the response body
+  //       final responseData = json.decode(response.body);
+  //       print(responseData);
+
+  //       // setState(() {
+  //       //   member = responseData;
+  //       //   isLoading = false;
+  //       // });
+  //     } else {
+  //       throw Exception('Failed to fetch member');
+  //     }
+  //   } catch (error) {
+  //     print(error);
+  //     setState(() {
+  //       isLoading = false;
+  //     });
+  //   }
+  //}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Profile'),
+        title: Text('Profile'),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 50.0,
-              backgroundImage: AssetImage('assets/profile_image.jpg'),
-            ),
-            SizedBox(height: 16.0),
-            Text(
-              'John Doe',
-              style: TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 8.0),
-            Text(
-              'Software Engineer',
-              style: TextStyle(
-                fontSize: 16.0,
-                color: Colors.grey,
-              ),
-            ),
-            SizedBox(height: 16.0),
-            ListTile(
-              leading: Icon(Icons.email),
-              title: Text('Email'),
-              subtitle: Text('johndoe@example.com'),
-            ),
-            ListTile(
-              leading: Icon(Icons.phone),
-              title: Text('Phone'),
-              subtitle: Text('+1 123-456-7890'),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text('Location'),
-              subtitle: Text('New York, USA'),
-            ),
-            Expanded(
-              child: ListView(
+      body: isLoading
+          ? Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ListTile(
-                    leading: Icon(Icons.work),
-                    title: Text('Company'),
-                    subtitle: Text('ABC Corporation'),
+                  // CircleAvatar(
+                  //   // Display member profile picture
+                  //   radius: 50,
+                  //   backgroundImage: NetworkImage(member['profile_picture']),
+                  // ),
+                  // SizedBox(height: 16.0),
+                  Text(
+                    'Name ${member['f_name']} ${member['l_name']} ',
+                    style: TextStyle(fontSize: 18),
                   ),
-                  ListTile(
-                    leading: Icon(Icons.school),
-                    title: Text('Education'),
-                    subtitle: Text('University of XYZ'),
+                  SizedBox(height: 8.0),
+                  Text(
+                    'Email ${member['email']}',
+                    style: TextStyle(fontSize: 16),
                   ),
-                  ListTile(
-                    leading: Icon(Icons.favorite),
-                    title: Text('Interests'),
-                    subtitle: Text('Reading, Traveling, Sports'),
-                  ),
+                  SizedBox(height: 8.0),
+                  // Text(
+                  //   'Bio: ${member['bio']}',
+                  //   style: TextStyle(fontSize: 16),
+                  // ),
+                  // Add more Text widgets to display other member information
                 ],
               ),
             ),
-          ],
-        ),
-      ),
     );
   }
 }

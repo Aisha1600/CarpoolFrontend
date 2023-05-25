@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:carpoolfront/bottom_navbar.dart';
 import 'package:carpoolfront/license_info.dart';
@@ -54,6 +55,7 @@ class _NewSignUpState extends State<NewSignUp> {
   TextEditingController cnicController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   String dropdownValue = 'Male';
+  String genderString = '';
 
   bool _areFieldsEmpty() {
     return fnameController.text.isEmpty ||
@@ -452,52 +454,92 @@ class _NewSignUpState extends State<NewSignUp> {
                                   content: Text('Password is incorrect.'),
                                 ),
                               );
+                            } else if (cnicController.text.length != 13) {
+                              // Show an error message or display a Snackbar indicating that the password is too short
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('CNIC is invalid'),
+                                ),
+                              );
+                            } else if (phoneController.text.length != 11) {
+                              // Show an error message or display a Snackbar indicating that the password is too short
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Mobile Number is invalid'),
+                                ),
+                              );
                             } else {
-                              SignUpFOrm form = SignUpFOrm(
-                                  fname: fnameController.text,
-                                  lname: lnameController.text,
-                                  password: passwordController.text,
-                                  phone: phoneController.text,
-                                  cnic: cnicController.text,
-                                  email: emailController.text,
-                                  gender: dropdownValue.toString());
-                              try {
-                                final jsonData = jsonEncode(form
-                                    .toJson()); //converts the data to json format
-                                final response = await http.post(
-                                  //192.168.100.35
-                                  Uri.parse(
-                                      'http://192.168.100.35:4000/member/SignUp'),
-                                  headers: {'Content-Type': 'application/json'},
-                                  body: jsonData,
-                                );
-                                print(response.statusCode);
-                                if (response.statusCode == 201) {
-                                  // Item added successfully
-                                  final responseBody =
-                                      json.decode(response.body);
-                                  // Gets the JWT token from the response body
-                                  final token = responseBody['token'];
-                                  print(
-                                      'Token from API response body:{$token}');
-
-                                  //Saves the JWT token in SharedPreferences
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.setString('jwt_token', token);
-                                  print(json.decode(response.body));
-
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const BottomNavbar(),
-                                    ),
-                                  );
-                                }
-                              } catch (error) {
-                                print(error);
+                              if (dropdownValue.toString() == 'Male') {
+                                genderString = 'M';
+                              } else {
+                                genderString = 'F';
                               }
+                            }
+                            SignUpFOrm form = SignUpFOrm(
+                                fname: fnameController.text,
+                                lname: lnameController.text,
+                                password: passwordController.text,
+                                phone: phoneController.text,
+                                cnic: cnicController.text,
+                                email: emailController.text,
+                                gender: genderString);
+                            try {
+                              final jsonData = jsonEncode(form
+                                  .toJson()); //converts the data to json format
+                              final response = await http.post(
+                                //192.168.100.35
+                                Uri.parse(
+                                    'http://192.168.100.35:4000/member/SignUp'),
+                                headers: {'Content-Type': 'application/json'},
+                                body: jsonData,
+                              );
+                              print(response.statusCode);
+                              if (response.statusCode == 201) {
+                                // Item added successfully
+                                final responseBody = json.decode(response.body);
+                                // Gets the JWT token from the response body
+                                final token = responseBody['token'];
+                                print('Token from API response body:{$token}');
+
+                                //Saves the JWT token in SharedPreferences
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString('jwt_token', token);
+                                print(json.decode(response.body));
+
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text('Message'),
+                                        content: Text(
+                                            'You have been successfully signed up!'),
+                                        actions: [
+                                          //   TextButton(
+                                          //     child: Text('Cancel'),
+                                          //     onPressed: () {
+                                          //       Navigator.pop(
+                                          //           context); // Close the dialog
+                                          //     },
+                                          //   ),
+                                          TextButton(
+                                            child: Text('OK'),
+                                            onPressed: () {
+                                              // Perform action when OK button is pressed
+                                              Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const BottomNavbar()),
+                                              ); // Close the dialog
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    });
+                              }
+                            } catch (error) {
+                              print(error);
                             }
                           })),
                   const SizedBox(height: 4.0),

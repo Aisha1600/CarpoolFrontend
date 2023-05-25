@@ -35,6 +35,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFF05998c),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(

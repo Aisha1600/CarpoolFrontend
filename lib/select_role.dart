@@ -33,23 +33,37 @@ class _Select_RoleState extends State<Select_Role> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFD6FFF0),
-      appBar: AppBar(
-          //title: Text('Loading Screen'),
-          ),
+      // appBar: AppBar(
+      //     //title: Text('Loading Screen'),
+      //     ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            SizedBox(
+              height: 35,
+            ),
             Column(
               children: [
                 Container(
-                  width: 300,
-                  height: 270,
-                  margin: EdgeInsets.all(10),
+                  height: 300,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 4,
+                        blurRadius: 6,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                    color: Colors.white,
+                  ),
                   child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.asset('assets/posters.png')),
+                    borderRadius: BorderRadius.circular(30),
+                    child: Image.asset('assets/homeposter.jpeg'),
+                  ),
                 ),
                 const SizedBox(height: 30),
                 Row(
@@ -59,35 +73,33 @@ class _Select_RoleState extends State<Select_Role> {
                       Column(
                         children: [
                           SizedBox(
-                            height: 120,
-                            width: 120,
+                            height: 110,
+                            width: 110,
                             child: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            const License_Info()),
-                                  );
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  elevation: 5,
-                                  //shape: CircleBorder(),
-                                  padding: EdgeInsets.all(0),
-                                  primary: Color.fromARGB(255, 255, 255, 255),
-                                  //onPrimary: Colors.white,
-                                  shadowColor: Colors.grey.withOpacity(0.8),
-                                ),
-                                child: const Center(
-                                  child: const Text(
-                                    'Offer Carpool',
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                  //Icon(
-                                  //   Icons.favorite,
-                                  //   color: Color(0xFF05998c),
-                                  // ),
-                                )),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          const OfferCarpool()),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                elevation: 5,
+
+                                //shape: CircleBorder(),
+                                padding: EdgeInsets.all(0),
+                                primary: Color(0xFFFFBE08),
+                                //onPrimary: Colors.white,
+                                shadowColor: Colors.grey.withOpacity(0.8),
+                              ),
+                              //child: Center(
+                              child: Image.asset('assets/offer.png'),
+                              //Icon(
+                              //   Icons.favorite,
+                              //   color: Color(0xFF05998c),
+                              // ),
+                            ),
                           ),
                           SizedBox(
                             height: 30,
@@ -98,8 +110,8 @@ class _Select_RoleState extends State<Select_Role> {
                       Column(
                         children: [
                           SizedBox(
-                            height: 120,
-                            width: 120,
+                            height: 110,
+                            width: 110,
                             child: ElevatedButton(
                               onPressed: () {
                                 Navigator.push(
@@ -113,17 +125,17 @@ class _Select_RoleState extends State<Select_Role> {
                                 elevation: 5,
                                 //shape: CircleBorder(),
                                 padding: EdgeInsets.all(0),
-                                primary: Color(0xFF05998c),
+                                primary: Color(0xFFFFBE08),
                                 //onPrimary: Colors.white,
                                 shadowColor: Colors.grey.withOpacity(0.8),
                               ),
-                              child: Center(
-                                child: const Text('Find Carpool'),
-                                // Icon(
-                                //   Icons.android,
-                                //   color: Colors.white,
-                                // ),
-                              ),
+                              child: Image.asset('assets/find.png'),
+                              //child: const Text('Find Carpool'),
+                              // Icon(
+                              //   Icons.android,
+                              //   color: Colors.white,
+                              // ),
+                              //),
                               //label: Text('Like'),
                             ),
                           ),
@@ -140,8 +152,8 @@ class _Select_RoleState extends State<Select_Role> {
                       Column(
                         children: [
                           SizedBox(
-                            height: 120,
-                            width: 120,
+                            height: 110,
+                            width: 110,
                             child: ElevatedButton(
                               onPressed: () {
                                 // Navigator.pushReplacement(
@@ -155,7 +167,7 @@ class _Select_RoleState extends State<Select_Role> {
                                 elevation: 5,
                                 //shape: CircleBorder(),
                                 padding: EdgeInsets.all(0),
-                                primary: Color(0xFF05998c),
+                                primary: Color(0xFFFFBE08),
                                 //onPrimary: Colors.white,
                                 shadowColor: Colors.grey.withOpacity(0.8),
                               ),
@@ -167,11 +179,7 @@ class _Select_RoleState extends State<Select_Role> {
                               //     offset: Offset(0, 3),
                               //   ),
                               // ],
-                              child: Center(
-                                child: const Text(
-                                  'Rating and Reviews',
-                                ),
-                              ),
+                              child: Image.asset('assets/reviews.png'),
                               // Icon(
                               //   Icons.android,
                               //   color: Colors.white,
@@ -187,35 +195,27 @@ class _Select_RoleState extends State<Select_Role> {
                       Column(
                         children: [
                           SizedBox(
-                            height: 120,
-                            width: 120,
+                            height: 110,
+                            width: 110,
                             child: ElevatedButton(
-                                onPressed: () {
-                                  // Navigator.pushReplacement(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (BuildContext context) =>
-                                  //           const License_Info()),
-                                  // );
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  elevation: 5,
-                                  //shape: CircleBorder(),
-                                  padding: EdgeInsets.all(0),
-                                  primary: Color.fromARGB(255, 255, 255, 255),
-                                  //onPrimary: Colors.white,
-                                  shadowColor: Colors.grey.withOpacity(0.8),
-                                ),
-                                child: const Center(
-                                  child: Text(
-                                    'Policies and Security',
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                  // Icon(
-                                  //   Icons.favorite,
-                                  //   color: Color(0xFF05998c),
-                                  // ),
-                                )),
+                              onPressed: () {
+                                // Navigator.pushReplacement(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //       builder: (BuildContext context) =>
+                                //           const License_Info()),
+                                // );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                elevation: 5,
+                                //shape: CircleBorder(),
+                                padding: EdgeInsets.all(0),
+                                primary: Color(0xFFFFBE08),
+                                //onPrimary: Colors.white,
+                                shadowColor: Colors.grey.withOpacity(0.8),
+                              ),
+                              child: Image.asset('assets/policies.png'),
+                            ),
                           ),
                           SizedBox(
                             height: 30,

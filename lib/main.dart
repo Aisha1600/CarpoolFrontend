@@ -84,14 +84,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: double.infinity,
                     ),
                   ),
-                  SizedBox(
-                    height: 6,
-                  ),
                   const Text(
                     'SmartPool',
                     style: TextStyle(
                       color: Color(0xFFD6FFF0), // Will work,
-                      fontSize: 16,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

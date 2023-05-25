@@ -222,48 +222,56 @@ class _NewLogInState extends State<NewLogIn> {
                             ),
                           );
                         } else {
-                          // LoginForm form = LoginForm(
-                          //     email: emailController.text,
-                          //     password: passwordController.text);
-                          // try {
-                          //   final jsonData = jsonEncode(form.toJson());
-                          //   print(jsonData);
-                          //   print(json.decode(jsonData));
-                          //   final response = await http.post(
-                          //     //URL NEEDS TO BE CHANGED TO THE IP ADDRESS
-                          //     //AND PORT NUMBER RUNNING THE SERVER
-                          //     //this will make server accessible from mobile app
-                          //     //KASHAF'S IP Address -> 192.168.100.35
-                          //     Uri.parse(
-                          //         'http://192.168.100.35:4000/member/login'),
-                          //     headers: {'Content-Type': 'application/json'},
-                          //     body: jsonData,
-                          //   );
-                          //   print(response.statusCode);
-                          //   if (response.statusCode == 200) {
-                          //     print(response.body);
+                          LoginForm form = LoginForm(
+                              email: emailController.text,
+                              password: passwordController.text);
+                          try {
+                            final jsonData = jsonEncode(form.toJson());
+                            print(jsonData);
+                            print(json.decode(jsonData));
+                            final response = await http.post(
+                              //URL NEEDS TO BE CHANGED TO THE IP ADDRESS
+                              //AND PORT NUMBER RUNNING THE SERVER
+                              //this will make server accessible from mobile app
+                              //KASHAF'S IP Address -> 192.168.100.35
+                              Uri.parse(
+                                  'http://192.168.100.35:4000/member/login'),
+                              headers: {'Content-Type': 'application/json'},
+                              body: jsonData,
+                            );
+                            print(response.statusCode);
 
-                          //     final responseBody = json.decode(response.body);
-                          //     // Gets the JWT token from the response body
-                          //     final token = responseBody['token'];
-                          //     print('Token from API response body:{$token}');
+                            if (response.statusCode == 401) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      'Incorrect email address or password.'),
+                                ),
+                              );
+                            } else if (response.statusCode == 200) {
+                              print(response.body);
 
-                          //     //Saves the JWT token in SharedPreferences
-                          //     SharedPreferences prefs =
-                          //         await SharedPreferences.getInstance();
-                          //     prefs.setString('jwt_token', token);
+                              final responseBody = json.decode(response.body);
+                              // Gets the JWT token from the response body
+                              final token = responseBody['token'];
+                              print('Token from API response body:{$token}');
 
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const BottomNavbar(),
-                            ),
-                          );
+                              //Saves the JWT token in SharedPreferences
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.setString('jwt_token', token);
+
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const BottomNavbar(),
+                                ),
+                              );
+                            }
+                          } catch (error) {
+                            print(error);
+                          }
                         }
-                        //   // } catch (error) {
-                        //   //   print(error);
-                        //   // }
-                        // }
                       })),
               const SizedBox(height: 4.0),
               Center(
