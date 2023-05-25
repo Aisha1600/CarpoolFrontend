@@ -7,22 +7,25 @@ class RequestAvailableList extends StatelessWidget {
 
   final List<Map<String, dynamic>> data = [
     {
-      'image': 'https://picsum.photos/200/300',
+      'name': 'Muhammad',
       'from': 'DHA Phase 6',
       'to': 'Regent Plaza',
-      'price': 200,
+      'Schedule': '18 Nov,  4.30pm',
+      'Seats': 3,
     },
     {
-      'image': 'https://picsum.photos/200/300',
+      'name': 'Hafeez Khan',
       'from': 'North Nazimabad',
       'to': 'Lyari',
-      'price': 250,
+      'Schedule': '18 Nov,  4.30pm',
+      'Seats': 2,
     },
     {
-      'image': 'https://picsum.photos/200/300',
+      'name': 'Shafiq Khan',
       'from': 'Sohrab Goth',
       'to': 'Karachi University',
-      'price': 150,
+      'Schedule': '18 Nov,  4.30pm',
+      'Seats': 0,
     },
   ];
 
@@ -52,21 +55,25 @@ class RequestAvailableList extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      padding: EdgeInsets.all(15),
-                      width: 80,
-                      height: 90,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.horizontal(
-                          left: Radius.circular(8),
-                          right: Radius.circular(0),
+                    Column(
+                      children: [
+                        Container(
+                          padding:
+                              EdgeInsets.only(top: 15, left: 15, right: 10),
+                          child: Icon(
+                            Icons.person,
+                            color: Colors.black,
+                            size: 70,
+                          ),
                         ),
-                      ),
-                      child: Icon(
-                        Icons.person,
-                        color: Colors.black,
-                        size: 70,
-                      ),
+                        SizedBox(height: 8),
+                        Text(
+                          '${item['name']}',
+                          style: TextStyle(
+                            fontSize: 13,
+                          ),
+                        ),
+                      ],
                     ),
                     Expanded(
                         child: Padding(
@@ -75,17 +82,25 @@ class RequestAvailableList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'From   ${item['from']}',
-                            style: TextStyle(fontSize: 14),
+                            'Pick up:    ${item['from']}',
+                            style: TextStyle(fontSize: 13),
                           ),
                           SizedBox(height: 8),
                           Text(
-                            'To   ${item['to']}',
-                            style: TextStyle(fontSize: 14),
+                            'Drop off:   ${item['to']}',
+                            style: TextStyle(fontSize: 13),
                           ),
                           SizedBox(height: 16),
                           Text(
-                            'Ride Amount: Rs${item['price']}',
+                            'Schedule: ${item['Schedule']}',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'Seats Available: ${item['Seats']}',
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
@@ -95,36 +110,33 @@ class RequestAvailableList extends StatelessWidget {
                       ),
                     )),
                     Container(
+                      height: 160,
+                      alignment: Alignment.bottomRight,
                       padding: EdgeInsets.all(5),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 70,
-                          ),
-                          CircleAvatar(
-                              radius: 15,
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.arrow_forward_ios_outlined,
-                                      size: 15,
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                RequestRideDetailsScreen()),
-                                      );
-                                    },
-                                  ),
-                                ],
-                              ))
-                        ],
-                      ),
-                    )
+                      child: CircleAvatar(
+                          backgroundColor: Color(0xFFFFBE08),
+                          radius: 15,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              IconButton(
+                                icon: Icon(
+                                  Icons.arrow_forward_ios_outlined,
+                                  size: 15,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            RequestRideDetailsScreen()),
+                                  );
+                                },
+                              ),
+                            ],
+                          )),
+                    ),
                   ],
                 ),
               ),

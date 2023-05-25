@@ -42,7 +42,8 @@ class _ContainerStackState extends State<ContainerStack> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 93, 93, 93),
-        body: Padding(
+        body: SingleChildScrollView(
+            child: Padding(
           padding: EdgeInsets.fromLTRB(20, 60, 20, 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -221,90 +222,136 @@ class _ContainerStackState extends State<ContainerStack> {
                         ],
                         color: Colors.white,
                       ),
-                      child: Column(children: [
-                        Row(
+                      child: Row(children: [
+                        Column(
                           children: const [
-                            Text(
-                              'Muhammed wants to carpool with you',
-                              style: TextStyle(
-                                color: Colors.black, // Will work,
-                                fontSize: 12,
-                              ),
+                            Icon(
+                              Icons.person,
+                              color: Colors.black,
+                              size: 70,
                             ),
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            RichText(
+                                text: TextSpan(
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      //fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
+                                    children: [
+                                  TextSpan(
+                                    text: ' Muhammad',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        ' wants to carpool with you.\n Pick Up from',
+                                  ),
+                                  TextSpan(
+                                    text: " Tower 7, Bahria Town",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: "  \n Drop Off to ",
+                                  ),
+                                  TextSpan(
+                                    text: " Karachi University",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ])),
                             SizedBox(
-                              width: 10,
+                              height: 10,
                             ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Column(children: const [
-                              Text(
-                                'Pick Up',
-                                style: TextStyle(
-                                  color: Colors.black, // Will work,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
+                            Row(
+                              children: [
+                                Column(children: const [
+                                  Text(
+                                    'Date:',
+                                    style: TextStyle(
+                                      color: Colors.black, // Will work,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 6,
+                                  ),
+                                  Text(
+                                    ' 15 May',
+                                    style: TextStyle(
+                                      color: Colors.black, // Will work,
+                                      fontSize: 12,
+                                      //fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ]),
+                                const SizedBox(
+                                  width: 15,
                                 ),
-                              ),
-                              SizedBox(
-                                height: 6,
-                              ),
-                              Text(
-                                'Bahria Town',
-                                style: TextStyle(
-                                  color: Colors.black, // Will work,
-                                  fontSize: 12,
-                                  //fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ]),
+                                Column(children: const [
+                                  Text(
+                                    'Time:',
+                                    style: TextStyle(
+                                        color: Colors.black, // Will work,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 6,
+                                  ),
+                                  Text(
+                                    '2:45pm',
+                                    style: TextStyle(
+                                      color: Colors.black, // Will work,
+                                      fontSize: 12,
+                                      //fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ])
+                              ],
+                            ),
                             const SizedBox(
-                              width: 15,
+                              height: 10,
                             ),
-                            Column(children: const [
-                              Text(
-                                'Drop off',
-                                style: TextStyle(
-                                    color: Colors.black, // Will work,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 6,
-                              ),
-                              Text(
-                                'Karachi University',
-                                style: TextStyle(
-                                  color: Colors.black, // Will work,
-                                  fontSize: 12,
-                                  //fontWeight: FontWeight.bold),
+                            Row(
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _containerVisibility[1] = false;
+                                    });
+                                  },
+                                  child: const Text('Accept'),
                                 ),
-                              ),
-                            ])
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  _containerVisibility[1] = false;
-                                });
-                              },
-                              child: const Text('Accept'),
-                            ),
-                            const SizedBox(width: 10),
-                            ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  _containerVisibility[1] = false;
-                                });
-                              },
-                              child: const Text('Reject'),
+                                const SizedBox(width: 10),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.red,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _containerVisibility[1] = false;
+                                    });
+                                  },
+                                  child: const Text('Reject'),
+                                ),
+                              ],
                             ),
                           ],
-                        ),
+                        )
                       ]),
                     ),
                     const SizedBox(
@@ -328,90 +375,135 @@ class _ContainerStackState extends State<ContainerStack> {
                       ],
                       color: Colors.white,
                     ),
-                    child: Column(children: [
-                      Row(
+                    child: Row(children: [
+                      Column(
                         children: const [
-                          Text(
-                            'Aisha wants to carpool with you',
-                            style: TextStyle(
-                              color: Colors.black, // Will work,
-                              fontSize: 12,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
+                          Icon(
+                            Icons.person,
+                            color: Colors.black,
+                            size: 70,
                           ),
                         ],
                       ),
-                      Row(
-                        children: [
-                          Column(children: const [
-                            Text(
-                              'Pick up',
-                              style: TextStyle(
-                                color: Colors.black, // Will work,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            RichText(
+                                text: TextSpan(
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      //fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
+                                    children: [
+                                  TextSpan(
+                                    text: ' Aisha',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        ' wants to carpool with you.\n Pick Up from',
+                                  ),
+                                  TextSpan(
+                                    text: " Dolmen Mall",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: "  \n Drop Off to ",
+                                  ),
+                                  TextSpan(
+                                    text: " Shahra e Faisal",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ])),
                             SizedBox(
-                              height: 6,
+                              height: 10,
                             ),
-                            Text(
-                              'Dolmen Mall',
-                              style: TextStyle(
-                                color: Colors.black, // Will work,
-                                fontSize: 12,
-                                //fontWeight: FontWeight.bold),
-                              ),
+                            Row(
+                              children: [
+                                Column(children: const [
+                                  Text(
+                                    'Date:',
+                                    style: TextStyle(
+                                      color: Colors.black, // Will work,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 6,
+                                  ),
+                                  Text(
+                                    ' 15 May',
+                                    style: TextStyle(
+                                      color: Colors.black, // Will work,
+                                      fontSize: 12,
+                                      //fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ]),
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                Column(children: const [
+                                  Text(
+                                    'Time:',
+                                    style: TextStyle(
+                                        color: Colors.black, // Will work,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 6,
+                                  ),
+                                  Text(
+                                    '4:45pm',
+                                    style: TextStyle(
+                                      color: Colors.black, // Will work,
+                                      fontSize: 12,
+                                      //fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ])
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _containerVisibility[2] = false;
+                                    });
+                                  },
+                                  child: const Text('Accept'),
+                                ),
+                                const SizedBox(width: 10),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.red,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _containerVisibility[2] = false;
+                                    });
+                                  },
+                                  child: const Text('Reject'),
+                                ),
+                              ],
                             ),
                           ]),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          Column(children: const [
-                            Text(
-                              'Drop off',
-                              style: TextStyle(
-                                color: Colors.black, // Will work,
-                                fontSize: 12,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 6,
-                            ),
-                            Text(
-                              'Shahra e Faisal',
-                              style: TextStyle(
-                                color: Colors.black, // Will work,
-                                fontSize: 12,
-                                //fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ])
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                _containerVisibility[2] = false;
-                              });
-                            },
-                            child: const Text('Accept'),
-                          ),
-                          const SizedBox(width: 10),
-                          ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                _containerVisibility[2] = false;
-                              });
-                            },
-                            child: const Text('Reject'),
-                          ),
-                        ],
-                      ),
                     ]),
                   ),
                   const SizedBox(
@@ -436,31 +528,67 @@ class _ContainerStackState extends State<ContainerStack> {
                       ],
                       color: Colors.white,
                     ),
-                    child: Center(
-                      child: Column(children: [
-                        Row(
-                          children: const [
-                            Text(
-                              'Muhammed wants a pick up from\nTower 7, Bahria Town to Karachi University',
-                              style: TextStyle(
-                                color: Colors.black, // Will work,
-                                fontSize: 12,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Column(
-                              children: const [
+                    child: Row(children: [
+                      Column(
+                        children: const [
+                          Icon(
+                            Icons.person,
+                            color: Colors.black,
+                            size: 70,
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                              text: TextSpan(
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    //fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                  ),
+                                  children: [
+                                TextSpan(
+                                  text: ' Muhammad',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text:
+                                      ' wants to carpool with you.\n Pick Up from',
+                                ),
+                                TextSpan(
+                                  text: " Tower 7, Bahria Town",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: "  \n Drop Off to ",
+                                ),
+                                TextSpan(
+                                  text: " Karachi University",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ])),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Column(children: const [
                                 Text(
-                                  'Amount',
+                                  'Date:',
                                   style: TextStyle(
                                     color: Colors.black, // Will work,
-                                    fontSize: 12,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -468,63 +596,69 @@ class _ContainerStackState extends State<ContainerStack> {
                                   height: 6,
                                 ),
                                 Text(
-                                  '500',
-                                  style: TextStyle(
-                                      color: Colors.black, // Will work,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 15,
-                            ),
-                            Column(
-                              children: const [
-                                Text(
-                                  'Time',
+                                  ' 15 May',
                                   style: TextStyle(
                                     color: Colors.black, // Will work,
                                     fontSize: 12,
+                                    //fontWeight: FontWeight.bold),
                                   ),
+                                ),
+                              ]),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              Column(children: const [
+                                Text(
+                                  'Time:',
+                                  style: TextStyle(
+                                      color: Colors.black, // Will work,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(
                                   height: 6,
                                 ),
                                 Text(
-                                  '5:30 pm',
+                                  '2:45pm',
                                   style: TextStyle(
-                                      color: Colors.black, // Will work,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold),
+                                    color: Colors.black, // Will work,
+                                    fontSize: 12,
+                                    //fontWeight: FontWeight.bold),
+                                  ),
                                 ),
-                              ],
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  _containerVisibility[3] = false;
-                                });
-                              },
-                              child: const Text('Accept'),
-                            ),
-                            const SizedBox(width: 10),
-                            ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  _containerVisibility[3] = false;
-                                });
-                              },
-                              child: const Text('Reject'),
-                            ),
-                          ],
-                        ),
-                      ]),
-                    ),
+                              ])
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _containerVisibility[3] = false;
+                                  });
+                                },
+                                child: const Text('Accept'),
+                              ),
+                              const SizedBox(width: 10),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.red,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _containerVisibility[1] = false;
+                                  });
+                                },
+                                child: const Text('Reject'),
+                              ),
+                            ],
+                          ),
+                        ],
+                      )
+                    ]),
                   ),
                   const SizedBox(
                     height: 30,
@@ -533,6 +667,6 @@ class _ContainerStackState extends State<ContainerStack> {
               ),
             ],
           ),
-        ));
+        )));
   }
 }
