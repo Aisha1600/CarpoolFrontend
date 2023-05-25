@@ -3,6 +3,7 @@ import 'package:carpoolfront/post_offer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Rider extends StatefulWidget {
   const Rider({super.key});
@@ -12,323 +13,395 @@ class Rider extends StatefulWidget {
 }
 
 class _RiderState extends State<Rider> {
+  _makingPhoneCall() async {
+    var url = Uri.parse("tel:03342340689");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color(0xFFD6FFF0),
         body: Column(children: [
-      // Image Widget
-      Expanded(
-        flex: 2,
-        child: Container(
-          color: Colors.blue,
-          child: Image.asset(
-            'assets/map.png',
-            fit: BoxFit.cover,
-            height: double.infinity,
-            width: double.infinity,
-            // repeat: ImageRepeat.repeat,
-          ), // Replace with your desired image
-          // Add your image widget here
-        ),
-      ),
-      // Scrollable Container
-      Expanded(
-        flex: 3,
-        child: Container(
-            color: Colors.white,
-            padding: EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                const Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    'Your ride is on its way',
-                    style: TextStyle(
-                      color: Colors.black, // Will work,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+          // Image Widget
+          Expanded(
+            flex: 2,
+            child: Container(
+              color: Colors.blue,
+              child: Image.asset(
+                'assets/map.png',
+                fit: BoxFit.cover,
+                height: double.infinity,
+                width: double.infinity,
+                // repeat: ImageRepeat.repeat,
+              ), // Replace with your desired image
+              // Add your image widget here
+            ),
+          ),
+          // Scrollable Container
+          Expanded(
+            flex: 3,
+            child: Container(
+                color: Colors.white,
+                padding: EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    const Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'Your ride is on its way',
+                        style: TextStyle(
+                          color: Colors.black, // Will work,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                SizedBox(height: 18),
-                Container(
-                  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
+                    SizedBox(height: 18),
+                    Container(
+                      padding: EdgeInsets.all(16.0),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Column(
-                            children: const [
-                              CircleAvatar(
-                                radius: 25,
-                                backgroundImage: AssetImage(
-                                    'assets/bg.jpeg'), // Replace with your image asset
-                              ),
-                              SizedBox(height: 8.0),
-                              Text(
-                                'Driver',
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
-                              ),
-                              SizedBox(height: 8.0),
-                              Text(
-                                'Hanif Khan',
-                                style: TextStyle(
-                                    fontSize: 11,
-                                    //fontWeight: FontWeight.bold,
-                                    color: Colors.black),
-                              ),
-                            ],
-                          ),
-                          SizedBox(width: 30.0),
-                          Container(
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                Container(
-                                  height: 80,
-                                  child: Row(
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'Pick up',
-                                            style: TextStyle(
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black),
-                                          ),
-                                          SizedBox(
-                                            height: 20,
-                                          ),
-                                          Text(
-                                            'ETA',
-                                            style: TextStyle(
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black),
-                                          ),
-                                          SizedBox(
-                                            height: 15,
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(width: 50),
-                                      VerticalDivider(
-                                        color: Colors.grey,
-                                        thickness: 2,
-                                        width: 5,
-                                      ),
-                                      SizedBox(
-                                        width: 40,
-                                      ),
-                                      Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              '5:30 pm',
-                                              style: TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black),
-                                            ),
-                                            SizedBox(
-                                              height: 20,
-                                            ),
-                                            Text(
-                                              '6:15pm',
-                                              style: TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black),
-                                            ),
-                                          ]),
-                                    ],
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Column(
+                                children: const [
+                                  CircleAvatar(
+                                    radius: 25,
+                                    backgroundImage: AssetImage(
+                                        'assets/bg.jpeg'), // Replace with your image asset
                                   ),
-                                ),
-
-                                // Divider(
-                                //     // thickness: 2,
-                                //     // height: 1,
-                                //     ),
-                                SizedBox(
-                                  height: 1,
-                                  width: 200,
-                                  child: Container(
-                                    color: Colors.grey,
+                                  SizedBox(height: 8.0),
+                                  Text(
+                                    'Driver',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Text(
-                                  'Vehicle details',
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                                SizedBox(
-                                  height: 30,
-                                ),
-                                Container(
-                                    height: 30,
-                                    child: Row(
+                                  SizedBox(height: 8.0),
+                                  Text(
+                                    'Hanif Khan',
+                                    style: TextStyle(
+                                        fontSize: 11,
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(width: 25.0),
+                              Container(
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
+                                    Container(
+                                      height: 80,
+                                      child: Row(
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'Pick up',
+                                                style: TextStyle(
+                                                    fontSize: 13,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.black),
+                                              ),
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                              Text(
+                                                'ETA',
+                                                style: TextStyle(
+                                                    fontSize: 13,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.black),
+                                              ),
+                                              SizedBox(
+                                                height: 15,
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(width: 50),
+                                          VerticalDivider(
+                                            color: Colors.grey,
+                                            thickness: 2,
+                                            width: 5,
+                                          ),
+                                          SizedBox(
+                                            width: 40,
+                                          ),
+                                          Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  'Blue Alto',
+                                                  '5:30 pm',
+                                                  style: TextStyle(
+                                                      fontSize: 11,
+                                                      //fontWeight: FontWeight.bold,
+                                                      color: Colors.grey),
+                                                ),
+                                                SizedBox(
+                                                  height: 20,
+                                                ),
+                                                Text(
+                                                  '6:15pm',
+                                                  style: TextStyle(
+                                                      fontSize: 13,
+                                                      //fontWeight: FontWeight.bold,
+                                                      color: Colors.grey),
+                                                ),
+                                              ]),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 1,
+                                      width: 200,
+                                      child: Container(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Text(
+                                      'Vehicle details',
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                    ),
+                                    SizedBox(
+                                      height: 30,
+                                    ),
+                                    Container(
+                                        height: 30,
+                                        child: Row(
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      'Blue Alto',
+                                                      style: TextStyle(
+                                                          fontSize: 13,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.black),
+                                                    ),
+                                                    SizedBox(width: 10),
+                                                    Icon(
+                                                      Icons.circle,
+                                                      color: Colors.lightBlue,
+                                                      size: 15,
+                                                    )
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(width: 20),
+                                            VerticalDivider(
+                                              color: Colors.grey,
+                                              thickness: 2,
+                                              width: 5,
+                                            ),
+                                            SizedBox(
+                                              width: 40,
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'BFG-662',
                                                   style: TextStyle(
                                                       fontSize: 13,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color: Colors.black),
                                                 ),
-                                                SizedBox(width: 10),
-                                                Icon(
-                                                  Icons.circle,
-                                                  color: Colors.lightBlue,
-                                                  size: 15,
-                                                )
+                                                SizedBox(
+                                                  height: 20,
+                                                ),
                                               ],
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
+                                            )
                                           ],
-                                        ),
-                                        SizedBox(width: 20),
-                                        VerticalDivider(
-                                          color: Colors.grey,
-                                          thickness: 2,
-                                          width: 5,
-                                        ),
-                                        SizedBox(
-                                          width: 40,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'BFG-662',
-                                              style: TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black),
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    )),
-                                SizedBox(
-                                  height: 1,
-                                  width: 200,
-                                  child: Container(
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ])),
+                                        )),
+                                    SizedBox(
+                                      height: 1,
+                                      width: 200,
+                                      child: Container(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ])),
+                            ],
+                          ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 20.0),
-                Row(
-                  children: [
-                    Align(
-                        // alignment: Alignment.bottomLeft,
-                        child: Container(
-                            height: 45,
-                            width: 150,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30.0),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 4,
-                                  blurRadius: 6,
-                                  offset: Offset(0, 3),
+                    ),
+                    SizedBox(height: 20.0),
+                    Row(
+                      children: [
+                        Align(
+                            // alignment: Alignment.bottomLeft,
+                            child: Container(
+                                height: 45,
+                                width: 150,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 4,
+                                      blurRadius: 6,
+                                      offset: Offset(0, 3),
+                                    ),
+                                  ],
+                                  color: Colors.white,
                                 ),
-                              ],
-                              color: Colors.white,
-                            ),
-                            child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.all(13),
-                                  // backgroundColor: Colors.red,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0),
-                                  ),
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      padding: EdgeInsets.all(13),
+                                      //backgroundColor: Colors.red,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(30.0),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.call,
+                                        color: Colors.white,
+                                        //size: 20,
+                                      ),
+                                    ),
+                                    onPressed: () async {}))),
+                        // Align(
+                        //     alignment: Alignment.bottomCenter,
+                        //     child: Container(
+                        //         height: 45,
+                        //         width: 100,
+                        //         decoration: BoxDecoration(
+                        //           borderRadius: BorderRadius.circular(30.0),
+                        //           boxShadow: [
+                        //     BoxShadow(
+                        //       color: Colors.grey.withOpacity(0.5),
+                        //       spreadRadius: 4,
+                        //       blurRadius: 6,
+                        //       offset: Offset(0, 3),
+                        //     ),
+                        //   ],
+                        //   color: Colors.white,
+                        // ),
+                        // child: ElevatedButton(
+                        //     style: ElevatedButton.styleFrom(
+                        //       padding: EdgeInsets.all(13),
+                        //       shape: RoundedRectangleBorder(
+                        //         borderRadius: BorderRadius.circular(30.0),
+                        //       ),
+                        // ),
+                        // child: Center(
+                        //   child: Icon(
+                        //     Icons.call,
+                        //     color: Colors.white,
+                        //     //size: 20,
+                        //   ),
+                        // ),
+                        // onPressed: () async {}))),
+                        SizedBox(
+                          width: 25,
+                        ),
+                        Align(
+                            //alignment: Alignment.bottomRight,
+                            child: Container(
+                                height: 45,
+                                width: 150,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 4,
+                                      blurRadius: 6,
+                                      offset: Offset(0, 3),
+                                    ),
+                                  ],
+                                  color: Colors.white,
                                 ),
-                                child: Center(
-                                  child: Icon(
-                                    Icons.call,
-                                    color: Colors.white,
-                                    //size: 20,
-                                  ),
-                                ),
-                                onPressed: () async {}))),
-                    // SizedBox(
-                    //   width: 10,
-                    // ),
-                    // Align(
-                    //     alignment: Alignment.bottomCenter,
-                    //     child: Container(
-                    //         height: 45,
-                    //         width: 100,
-                    //         decoration: BoxDecoration(
-                    //           borderRadius: BorderRadius.circular(30.0),
-                    //           boxShadow: [
-                    //             BoxShadow(
-                    //               color: Colors.grey.withOpacity(0.5),
-                    //               spreadRadius: 4,
-                    //               blurRadius: 6,
-                    //               offset: Offset(0, 3),
-                    //             ),
-                    //           ],
-                    //           color: Colors.white,
-                    //         ),
-                    //         child: ElevatedButton(
-                    //             style: ElevatedButton.styleFrom(
-                    //               padding: EdgeInsets.all(13),
-                    //               shape: RoundedRectangleBorder(
-                    //                 borderRadius: BorderRadius.circular(30.0),
-                    //               ),
-                    //             ),
-                    //             child: Center(
-                    //               child: Icon(
-                    //                 Icons.call,
-                    //                 color: Colors.white,
-                    //                 //size: 20,
-                    //               ),
-                    //             ),
-                    //             onPressed: () async {}))),
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      padding: EdgeInsets.all(13),
+                                      backgroundColor: Colors.red,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(30.0),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "Cancel",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+
+                                        //size: 20,
+                                      ),
+                                    ),
+                                    onPressed: () async {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: Text('Cancel Carpool?'),
+                                              content: Text(
+                                                  'Your ride is already on its way'),
+                                              actions: [
+                                                ElevatedButton(
+                                                  child: Text('Cancel Ride'),
+                                                  onPressed: () {
+                                                    Navigator.pop(
+                                                        context); // Close the dialog
+                                                  },
+                                                ),
+                                                ElevatedButton(
+                                                  child: Text('Back'),
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                ),
+                                              ],
+                                            );
+                                          });
+                                    }))),
+                      ],
+                    ),
                     SizedBox(
-                      width: 25,
+                      height: 10,
                     ),
                     Align(
-                        // alignment: Alignment.bottomRight,
+                        alignment: Alignment.bottomCenter,
                         child: Container(
                             height: 45,
-                            width: 150,
+                            width: 320,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30.0),
                               boxShadow: [
@@ -344,14 +417,14 @@ class _RiderState extends State<Rider> {
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   padding: EdgeInsets.all(13),
-                                  backgroundColor: Colors.red,
+                                  backgroundColor: Colors.orange,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30.0),
                                   ),
                                 ),
                                 child: Center(
                                   child: Text(
-                                    "Cancel",
+                                    "Emergency",
                                     style: TextStyle(
                                       color: Colors.white,
                                     ),
@@ -359,76 +432,10 @@ class _RiderState extends State<Rider> {
                                     //size: 20,
                                   ),
                                 ),
-                                onPressed: () async {
-                                  showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          title: Text('Cancel Carpool?'),
-                                          content: Text(
-                                              'Your ride is already on its way'),
-                                          actions: [
-                                            ElevatedButton(
-                                              child: Text('Cancel Ride'),
-                                              onPressed: () {
-                                                Navigator.pop(
-                                                    context); // Close the dialog
-                                              },
-                                            ),
-                                            ElevatedButton(
-                                              child: Text('Back'),
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                            ),
-                                          ],
-                                        );
-                                      });
-                                }))),
+                                onPressed: () async {}))),
                   ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                        height: 45,
-                        width: 320,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30.0),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 4,
-                              blurRadius: 6,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
-                          color: Colors.white,
-                        ),
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.all(13),
-                              backgroundColor: Colors.orange,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Emergency",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-
-                                //size: 20,
-                              ),
-                            ),
-                            onPressed: () async {}))),
-              ],
-            )),
-      )
-    ]));
+                )),
+          )
+        ]));
   }
 }

@@ -48,6 +48,7 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFD6FFF0),
       appBar: AppBar(
         title: const Text('Find Your Nearest Ride'),
         backgroundColor: const Color(0xFF05998C),

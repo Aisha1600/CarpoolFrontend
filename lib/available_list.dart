@@ -111,7 +111,7 @@ class AvailableList extends StatelessWidget {
                                       size: 15,
                                     ),
                                     onPressed: () {
-                                      Navigator.pushReplacement(
+                                      Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>

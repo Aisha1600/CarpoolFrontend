@@ -164,7 +164,7 @@ class _NewLogInState extends State<NewLogIn> {
                 child: const Text(
                   'Forgot Password?',
                   style: TextStyle(
-                      color: Color(0xFF05998c), // Will work,
+                      color: Color(0xFFFFBE08), // Will work,
                       fontSize: 12,
                       fontWeight: FontWeight.bold),
                 ),
@@ -221,41 +221,48 @@ class _NewLogInState extends State<NewLogIn> {
                               content: Text('Password is incorrect.'),
                             ),
                           );
-                        } else
-                          // SharedPreferences prefs =
-                          //     await SharedPreferences.getInstance();
-                          // String token = prefs.getString('jwt_token') ?? '';
-                          // print('Stored jwt token from storage is {$token}');
-                          // // //API INTEGRATION
-                          // LicenseForm form = LicenseForm(
-                          //   license_no: int.parse(LicensenoController.text.toString()),
-                          //   license_valid_from: _selectedDate.toIso8601String(),
-                          // );
+                        } else {
+                          // LoginForm form = LoginForm(
+                          //     email: emailController.text,
+                          //     password: passwordController.text);
                           // try {
                           //   final jsonData = jsonEncode(form.toJson());
                           //   print(jsonData);
                           //   print(json.decode(jsonData));
-                          //   final response = await http.put(
-                          //     //URL LOCAL HOST NEEDS TO BE CHANGED
+                          //   final response = await http.post(
+                          //     //URL NEEDS TO BE CHANGED TO THE IP ADDRESS
+                          //     //AND PORT NUMBER RUNNING THE SERVER
+                          //     //this will make server accessible from mobile app
+                          //     //KASHAF'S IP Address -> 192.168.100.35
                           //     Uri.parse(
-                          //         'http://192.168.100.35:4000/member/InsertLicense'),
-                          //     headers: {
-                          //       'Content-Type': 'application/json',
-                          //       'authorization': token
-                          //     },
+                          //         'http://192.168.100.35:4000/member/login'),
+                          //     headers: {'Content-Type': 'application/json'},
                           //     body: jsonData,
                           //   );
                           //   print(response.statusCode);
                           //   if (response.statusCode == 200) {
+                          //     print(response.body);
+
+                          //     final responseBody = json.decode(response.body);
+                          //     // Gets the JWT token from the response body
+                          //     final token = responseBody['token'];
+                          //     print('Token from API response body:{$token}');
+
+                          //     //Saves the JWT token in SharedPreferences
+                          //     SharedPreferences prefs =
+                          //         await SharedPreferences.getInstance();
+                          //     prefs.setString('jwt_token', token);
+
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const BottomNavbar()),
+                              builder: (context) => const BottomNavbar(),
+                            ),
                           );
-                        //     print(json.decode(response.body));
-                        //   }
-                        // } catch (error) {
-                        //   print(error);
+                        }
+                        //   // } catch (error) {
+                        //   //   print(error);
+                        //   // }
                         // }
                       })),
               const SizedBox(height: 4.0),
@@ -282,7 +289,7 @@ class _NewLogInState extends State<NewLogIn> {
                       child: const Text(
                         'Sign Up',
                         style: TextStyle(
-                          color: Color(0xFF05998c), // Will work,
+                          color: Color(0xFFFFBE08), // Will work,
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
                         ),

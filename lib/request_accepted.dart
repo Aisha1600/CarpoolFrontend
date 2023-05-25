@@ -33,12 +33,6 @@ class _RequestAcceptedState extends State<RequestAccepted> {
               title: Text('Message'),
               content: Text('Your Carpool Request has been accepted.'),
               actions: [
-                //   TextButton(
-                //     child: Text('Cancel'),
-                //     onPressed: () {
-                //       Navigator.pop(context); // Close the dialog
-                //     },
-                //   ),
                 TextButton(
                   child: Text('OK'),
                   onPressed: () {
