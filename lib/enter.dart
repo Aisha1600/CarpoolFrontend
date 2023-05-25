@@ -23,28 +23,23 @@ class _EnterState extends State<Enter> {
         width: double.infinity,
         // repeat: ImageRepeat.repeat,
       ),
-      SizedBox(
-        height: 200,
-      ),
-      Align(
-          alignment: Alignment.topCenter,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: Image.asset(
-              'assets/logos.gif',
-              fit: BoxFit.cover,
-              height: 90,
-              width: 90,
-            ),
-          )),
-      SizedBox(
-        height: 20,
-      ),
       Center(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Image.asset(
+                  'assets/logos.gif',
+                  fit: BoxFit.cover,
+                  height: 90,
+                  width: 90,
+                ),
+              ),
+              SizedBox(
+                height: 200,
+              ),
               Container(
                   height: 48,
                   width: 300,

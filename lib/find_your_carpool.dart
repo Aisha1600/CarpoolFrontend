@@ -1,4 +1,5 @@
 import 'package:carpoolfront/available_list.dart';
+import 'package:carpoolfront/bottom_navbar.dart';
 import 'package:carpoolfront/search_list.dart';
 
 import 'package:flutter/src/widgets/framework.dart';
@@ -52,6 +53,15 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
       appBar: AppBar(
         title: const Text('Find Your Nearest Ride'),
         backgroundColor: const Color(0xFF05998C),
+        leading: IconButton(
+          icon: Icon(Icons.home),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => BottomNavbar()),
+            );
+          },
+        ),
       ),
       body: Builder(
         builder: (BuildContext newContext) {
@@ -92,7 +102,7 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                           child: Text(
                             'Where are you?',
                             style: TextStyle(
-                              fontSize: 15.0,
+                              fontSize: 12.0,
                               fontWeight: FontWeight.normal,
                             ),
                           ),
@@ -152,7 +162,7 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     contentPadding: EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 17.5),
+                                        horizontal: 4, vertical: 5),
                                     // suffixIcon: IconButton(
                                     //   icon: Icon(
                                     //     Icons.backspace,
@@ -187,7 +197,7 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                           child: Text(
                             'Where do you want to go?',
                             style: TextStyle(
-                              fontSize: 15.0,
+                              fontSize: 12.0,
                               fontWeight: FontWeight.normal,
                             ),
                           ),
@@ -245,7 +255,7 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     contentPadding: EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 17.5),
+                                        horizontal: 4, vertical: 5),
                                   ),
                                 ),
                               ),
@@ -261,14 +271,15 @@ class _FindYourCarpoolState extends State<FindYourCarpool> {
                             child: Text(
                               'Search',
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.normal,
-                                  fontFamily: 'Palanquin'),
+                                color: Colors.white,
+                                fontSize: 15.0,
+                                //fontWeight: FontWeight.normal,
+                                //fontFamily: 'Palanquin'
+                              ),
                             ),
                             style: ElevatedButton.styleFrom(
                               primary: Color(0xFF05998C),
-                              minimumSize: Size(130, 50),
+                              minimumSize: Size(100, 40),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30)),
                               elevation: 5,

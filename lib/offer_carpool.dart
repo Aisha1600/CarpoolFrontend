@@ -2,6 +2,8 @@ import 'package:carpoolfront/available_list.dart';
 import 'package:carpoolfront/post_offer.dart';
 import 'package:flutter/material.dart';
 
+import 'bottom_navbar.dart';
+
 class OfferCarpool extends StatefulWidget {
   const OfferCarpool({super.key});
 
@@ -22,6 +24,15 @@ class _OfferCarpoolState extends State<OfferCarpool> {
           // title: const Text('Carpool Application'),
           // centerTitle: true,
           backgroundColor: const Color(0xFF05998C),
+          leading: IconButton(
+            icon: Icon(Icons.home),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => BottomNavbar()),
+              );
+            },
+          ),
         ),
         body: SingleChildScrollView(
             child: Container(

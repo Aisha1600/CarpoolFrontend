@@ -1,3 +1,4 @@
+import 'package:carpoolfront/find_your_carpool.dart';
 import 'package:carpoolfront/offer_carpool.dart';
 import 'package:carpoolfront/post_offer.dart';
 import 'package:flutter/material.dart';
@@ -294,7 +295,9 @@ class _RiderState extends State<Rider> {
                                         //size: 20,
                                       ),
                                     ),
-                                    onPressed: () async {}))),
+                                    onPressed: () async {
+                                      _makingPhoneCall();
+                                    }))),
                         // Align(
                         //     alignment: Alignment.bottomCenter,
                         //     child: Container(
@@ -375,14 +378,19 @@ class _RiderState extends State<Rider> {
                                               content: Text(
                                                   'Your ride is already on its way'),
                                               actions: [
-                                                ElevatedButton(
-                                                  child: Text('Cancel Ride'),
+                                                TextButton(
+                                                  child: Text('Continue'),
                                                   onPressed: () {
-                                                    Navigator.pop(
-                                                        context); // Close the dialog
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              const FindYourCarpool()),
+                                                    ); // Close the dialog
                                                   },
                                                 ),
-                                                ElevatedButton(
+                                                TextButton(
                                                   child: Text('Back'),
                                                   onPressed: () {
                                                     Navigator.pop(context);
@@ -432,7 +440,37 @@ class _RiderState extends State<Rider> {
                                     //size: 20,
                                   ),
                                 ),
-                                onPressed: () async {}))),
+                                onPressed: () async {
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Text('Emergency'),
+                                          content: Text(
+                                              'Your emergency contact will be informed immediately.'),
+                                          actions: [
+                                            TextButton(
+                                              child: Text('Continue'),
+                                              onPressed: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          const FindYourCarpool()),
+                                                ); // Close the dialog
+                                              },
+                                            ),
+                                            TextButton(
+                                              child: Text('Back'),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      });
+                                }))),
                   ],
                 )),
           )

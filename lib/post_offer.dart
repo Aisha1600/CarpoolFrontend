@@ -213,7 +213,7 @@ class _PostOfferState extends State<PostOffer> {
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 2, vertical: 5),
+                                    horizontal: 4, vertical: 5),
                               ),
                             ),
                           ),
@@ -283,7 +283,7 @@ class _PostOfferState extends State<PostOffer> {
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 2, vertical: 5),
+                                    horizontal: 4, vertical: 5),
                                 // suffixIcon: IconButton(
                                 //   icon: Icon(
                                 //     Icons.backspace,

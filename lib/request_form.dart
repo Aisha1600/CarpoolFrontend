@@ -82,7 +82,7 @@ class _RequestFormState extends State<RequestForm> {
                     Text(
                       'Schedule',
                       style: TextStyle(
-                        fontSize: 15.0,
+                        fontSize: 12.0,
                       ),
                     ),
                     SizedBox(
@@ -116,7 +116,7 @@ class _RequestFormState extends State<RequestForm> {
                                   "$formattedDate",
                                   // "${_selectedDate.year}-${_selectedDate.month}-${_selectedDate.day}",
                                   style: TextStyle(
-                                    fontSize: 13.0,
+                                    fontSize: 12.0,
                                   ),
                                 ),
                               ],
@@ -150,6 +150,9 @@ class _RequestFormState extends State<RequestForm> {
                                 Text(
                                   "$formattedTime",
                                   //"${_selectedTime.hour}:${_selectedTime.minute}",
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                  ),
                                 ),
                               ],
                             ),
@@ -167,7 +170,7 @@ class _RequestFormState extends State<RequestForm> {
                     Text(
                       'Seats Required',
                       style: TextStyle(
-                        fontSize: 15.0,
+                        fontSize: 12.0,
                       ),
                     ),
                     SizedBox(
@@ -177,7 +180,7 @@ class _RequestFormState extends State<RequestForm> {
                       onPressed: _incrementCounter,
                       icon: Icon(
                         Icons.add_circle,
-                        color: Color(0xFF05998C),
+                        color: Color(0xFFFFBE08),
                       ),
                     ),
                     SizedBox(width: 10),
@@ -205,7 +208,7 @@ class _RequestFormState extends State<RequestForm> {
                       onPressed: _decrementCounter,
                       icon: Icon(
                         Icons.remove_circle,
-                        color: Color(0xFF05998C),
+                        color: Color(0xFFFFBE08),
                       ),
                     ),
                   ],
@@ -219,7 +222,7 @@ class _RequestFormState extends State<RequestForm> {
                     Text(
                       'Preference',
                       style: TextStyle(
-                        fontSize: 15.0,
+                        fontSize: 12.0,
                       ),
                     ),
                     SizedBox(
@@ -265,7 +268,7 @@ class _RequestFormState extends State<RequestForm> {
                     Text(
                       'Notes',
                       style: TextStyle(
-                        fontSize: 15.0,
+                        fontSize: 12.0,
                       ),
                     ),
                     SizedBox(
@@ -376,7 +379,7 @@ class _RequestFormState extends State<RequestForm> {
       padding: EdgeInsets.symmetric(horizontal: 11, vertical: 10),
       width: 60,
       decoration: BoxDecoration(
-        color: isSelected ? Color(0xFF05998C) : Colors.white,
+        color: isSelected ? Color(0xFFFFBE08) : Colors.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -391,7 +394,7 @@ class _RequestFormState extends State<RequestForm> {
         label,
         style: TextStyle(
           color: isSelected ? Colors.white : Colors.black,
-          fontSize: 11.5,
+          fontSize: 10,
         ),
       ),
     );

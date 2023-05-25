@@ -42,12 +42,13 @@ class _Select_RoleState extends State<Select_Role> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(
-              height: 35,
+              height: 70,
             ),
             Column(
               children: [
                 Container(
                   height: 300,
+                  width: 300,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30.0),
                     boxShadow: [
@@ -62,7 +63,10 @@ class _Select_RoleState extends State<Select_Role> {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30),
-                    child: Image.asset('assets/homeposter.jpeg'),
+                    child: Image.asset(
+                      'assets/homeposter.jpeg',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 30),
