@@ -61,6 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
     Timer(Duration(seconds: 4), () {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => Enter()));
+      // Navigator.pushReplacement(
+      //     context, MaterialPageRoute(builder: (context) => BottomNavbar()));
     });
   }
 

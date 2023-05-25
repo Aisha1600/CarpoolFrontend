@@ -6,22 +6,25 @@ class AvailableList extends StatelessWidget {
 
   final List<Map<String, dynamic>> data = [
     {
-      'name': 'Muhammad Munir',
+      'name': 'Muhammad',
       'from': 'DHA Phase 6',
       'to': 'Regent Plaza',
-      'price': 200,
+      'Schedule': '18 Nov,  4.30pm',
+      'Seats': 3,
     },
     {
       'name': 'Hafeez Khan',
       'from': 'North Nazimabad',
       'to': 'Lyari',
-      'price': 250,
+      'Schedule': '18 Nov,  4.30pm',
+      'Seats': 2,
     },
     {
       'name': 'Shafiq Khan',
       'from': 'Sohrab Goth',
       'to': 'Karachi University',
-      'price': 150,
+      'Schedule': '18 Nov,  4.30pm',
+      'Seats': 0,
     },
   ];
 
@@ -84,7 +87,15 @@ class AvailableList extends StatelessWidget {
                           ),
                           SizedBox(height: 16),
                           Text(
-                            'Ride Amount: Rs${item['price']}',
+                            'Schedule: ${item['Schedule']}',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'Seats Available: ${item['Seats']}',
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
@@ -94,35 +105,32 @@ class AvailableList extends StatelessWidget {
                       ),
                     )),
                     Container(
+                      height: 160,
+                      alignment: Alignment.bottomRight,
                       padding: EdgeInsets.all(5),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 70,
-                          ),
-                          CircleAvatar(
-                              radius: 15,
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.arrow_forward_ios_outlined,
-                                      size: 15,
-                                    ),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                RideDetailsScreen()),
-                                      );
-                                    },
-                                  ),
-                                ],
-                              ))
-                        ],
-                      ),
+                      child: CircleAvatar(
+                          backgroundColor: Color(0xFFFFBE08),
+                          radius: 15,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              IconButton(
+                                icon: Icon(
+                                  Icons.arrow_forward_ios_outlined,
+                                  size: 15,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            RideDetailsScreen()),
+                                  );
+                                },
+                              ),
+                            ],
+                          )),
                     )
                   ],
                 ),
