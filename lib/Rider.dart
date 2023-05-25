@@ -148,7 +148,7 @@ class _RiderState extends State<Rider> {
                                                 Text(
                                                   '5:30 pm',
                                                   style: TextStyle(
-                                                      fontSize: 11,
+                                                      fontSize: 13,
                                                       //fontWeight: FontWeight.bold,
                                                       color: Colors.grey),
                                                 ),
@@ -239,7 +239,7 @@ class _RiderState extends State<Rider> {
                                                       color: Colors.black),
                                                 ),
                                                 SizedBox(
-                                                  height: 20,
+                                                  height: 10,
                                                 ),
                                               ],
                                             )
